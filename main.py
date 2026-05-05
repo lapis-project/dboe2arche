@@ -46,6 +46,6 @@ for x in tqdm(files_to_ingest[30:40]):
     last_lemma = any_xpath(items[-1], "./tei:form[1]/tei:orth/text()")[0]
     title = f"{first_lemma} – {last_lemma} (Datei: {f_name})"
     g.add((subj, ACDH["hasTitle"], Literal(title, lang="de")))
-    g.add((subj, ACDH["hasExtent"], Literal(f"{len(items)} Einträge")))
+    g.add((subj, ACDH["hasExtent"], Literal(f"{len(items)} Einträge", lang="de")))
 
 g.serialize(out_file)

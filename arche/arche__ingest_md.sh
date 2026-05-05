@@ -1,6 +1,6 @@
 #/bin/bash
 
-uv run arche/make_arche_rdf.py
+uv run main.py
 
 echo "ingest metadata for for ${TOPCOLID} into ${ARCHE}"
 docker run --rm \
