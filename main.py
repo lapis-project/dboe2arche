@@ -20,7 +20,7 @@ DBOE_XMLS = "/home/csae8092/repos/dboe/dboe_orig_xml/*.xml"
 
 files_to_ingest = sorted(glob.glob(DBOE_XMLS))
 
-for x in tqdm(files_to_ingest):    
+for x in tqdm(files_to_ingest[:3]):    
     f_name = os.path.basename(x)
     subj = URIRef(f"{TOP_COL_URI}/{f_name}")
     g.add((subj, RDF.type, ACDH["Resource"]))

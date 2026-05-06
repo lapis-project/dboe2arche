@@ -7,4 +7,7 @@
     acdh:hasMetadataCreator acdhi:pandorfer ;
     acdh:hasLicensor <https://id.acdh.oeaw.ac.at/acdh> ;
     acdh:hasOwner <https://id.acdh.oeaw.ac.at/oeaw> ;
+    # acdh:hasContributor <https://id.acdh.oeaw.ac.at/jbowers> ;
+    acdh:hasContributor <https://id.acdh.oeaw.ac.at/dschopper> ;
+    acdh:hasContributor <https://id.acdh.oeaw.ac.at/osiam> ;
     acdh:hasRightsHolder <https://id.acdh.oeaw.ac.at/oeaw> .

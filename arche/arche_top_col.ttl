@@ -22,5 +22,12 @@
     acdh:hasDepositor <https://id.acdh.oeaw.ac.at/acdh> ;
     acdh:hasMetadataCreator acdhi:pandorfer ;
     acdh:hasContact <https://id.acdh.oeaw.ac.at/acdh> ;
+    # acdh:hasContributor <https://id.acdh.oeaw.ac.at/jbowers> ;
+    acdh:hasContributor <https://id.acdh.oeaw.ac.at/dschopper> ;
+    acdh:hasContributor <https://id.acdh.oeaw.ac.at/osiam> ;
     acdh:hasCreator <https://id.acdh.oeaw.ac.at/oeaw> ,
         <https://id.acdh.oeaw.ac.at/acdh> .
+
+# acdhi:jbowers a acdh:Person ;
+#     acdh:hasFirstName "Jack" ;
+#     acdh:hasLastName "Bowers" .
