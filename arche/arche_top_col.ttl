@@ -5,8 +5,8 @@
 
 
 <https://id.acdh.oeaw.ac.at/dboe-tei-xml> a acdh:TopCollection ;
-    acdh:hasDescription """The data in this collection originates from a project conducted by a predecessor institution of the Austrian Centre for Digital Humanities."""@en ;
-    acdh:hasDescription """Die Daten in dieser Sammlung stammen aus einem Projekt, das von einer Vorgängereinrichtung des Austrian Centre for Digital Humanities durchgeführt wurde."""@de ;
+    acdh:hasDescription """This is the TEI version of the Datenbank der Baierischen Dialekte in Österreich, being the digitized data source of the Wörterbuch der Baierischen Dialekte in Österreich (WBÖ). It was originally transcribed in TUSTEP and has been converted to TEI, serving as one of the building blocks of "LIÖ – Lexikographisches Informationssystem Österreich"."""@en ;
+    acdh:hasDescription """Das ist die TEI-Version der Datenbank der Baierischen Dialekte in Österreich, die die digitalisierte Datenquelle des Wörterbuchs der Baierischen Dialekte in Österreich (WBÖ) darstellt. Sie wurde ursprünglich in TUSTEP transkribiert und in TEI konvertiert und dient als einer der Bausteine des "LIÖ – Lexikographisches Informationssystem Österreich"."""@de ;
     acdh:hasCoverageStartDate "1900-01-01"^^xsd:date ;
     acdh:hasCoverageEndDate "2025-01-31"^^xsd:date ;
     acdh:hasTitle """DBO@TEI"""@de ;
