@@ -20,7 +20,8 @@ DBOE_XMLS = "/home/csae8092/repos/dboe/dboe_orig_xml/*.xml"
 
 files_to_ingest = sorted(glob.glob(DBOE_XMLS))
 
-for x in tqdm(files_to_ingest[:3]):    
+all_entries = 0
+for x in tqdm(files_to_ingest[:5]):
     f_name = os.path.basename(x)
     subj = URIRef(f"{TOP_COL_URI}/{f_name}")
     g.add((subj, RDF.type, ACDH["Resource"]))
@@ -42,10 +43,33 @@ for x in tqdm(files_to_ingest[:3]):
     )
     doc = TeiReader(x)
     items = doc.any_xpath(".//tei:entry[@xml:id]")
+    all_entries += len(items)
     first_lemma = any_xpath(items[0], "./tei:form[1]/tei:orth/text()")[0]
     last_lemma = any_xpath(items[-1], "./tei:form[1]/tei:orth/text()")[0]
     title = f"{first_lemma} – {last_lemma} (Datei: {f_name})"
     g.add((subj, ACDH["hasTitle"], Literal(title, lang="de")))
     g.add((subj, ACDH["hasExtent"], Literal(f"{len(items)} Einträge", lang="de")))
+    g.add((subj, ACDH["hasExtent"], Literal(f"{len(items)} attestations", lang="en")))
 
+numb_belege_formatted = f"{all_entries:,}".replace(",", ".")
+g.add(
+    (
+        TOP_COL_URI,
+        ACDH["hasExtent"],
+        Literal(
+            f"Die Sammlung umfasst {numb_belege_formatted} Belege, verteilt auf {len(files_to_ingest)} TEI/XML-Dateien",
+            lang="de",
+        ),
+    )
+)
+g.add(
+    (
+        TOP_COL_URI,
+        ACDH["hasExtent"],
+        Literal(
+            f"The collection comprises {all_entries:,} attestations, distributed across {len(files_to_ingest)} TEI/XML files",
+            lang="en",
+        ),
+    )
+)
 g.serialize(out_file)
