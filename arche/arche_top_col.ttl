@@ -36,9 +36,9 @@
     # acdh:hasContributor <https://id.acdh.oeaw.ac.at/sschwaiger> ;
     acdh:hasContributor <https://id.acdh.oeaw.ac.at/dschopper> ;
     acdh:hasContributor <https://id.acdh.oeaw.ac.at/osiam> ;
+    acdh:hasContributor <https://orcid.org/0000-0001-9983-1362> ;  # Barbara Piringer
     acdh:hasCreatedStartDate "1993-01-01"^^xsd:date ;
     acdh:hasCreatedEndDate "2019-12-31"^^xsd:date ;
-    acdh:hasContributor <https://orcid.org/0000-0001-9983-1362> ;
     acdh:hasCreator <https://id.acdh.oeaw.ac.at/oeaw> ,
         <https://id.acdh.oeaw.ac.at/acdh> .
 

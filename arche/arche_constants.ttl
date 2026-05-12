@@ -8,6 +8,8 @@
     acdh:hasLicensor <https://id.acdh.oeaw.ac.at/acdh> ;
     acdh:hasOwner <https://id.acdh.oeaw.ac.at/oeaw> ;
     # acdh:hasContributor <https://id.acdh.oeaw.ac.at/jbowers> ;
+    # acdh:hasContributor <https://id.acdh.oeaw.ac.at/sschwaiger> ;
     acdh:hasContributor <https://id.acdh.oeaw.ac.at/dschopper> ;
     acdh:hasContributor <https://id.acdh.oeaw.ac.at/osiam> ;
+    acdh:hasContributor <https://orcid.org/0000-0001-9983-1362> ;  # Barbara Piringer
     acdh:hasRightsHolder <https://id.acdh.oeaw.ac.at/oeaw> .
