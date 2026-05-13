@@ -17,23 +17,23 @@
     acdh:hasAlternativeTitle """WBÖ Database"""@en ;
     acdh:hasLifeCycleStatus <https://vocabs.acdh.oeaw.ac.at/archelifecyclestatus/active> ;
     acdh:hasCompleteness """ToDo: Erklären warum erst bei D begeonnen wird"""@de;
-    acdh:hasAppliedMethodDescription """ToDo: Erkären wie die Daten (TEI/XML) erstellt wurden""";
+    acdh:hasAppliedMethodDescription """ToDo: Erkären wie die Daten (TEI/XML) erstellt wurden"""@de ;
     acdh:hasSubject "Dialektlexikographie"@de ;
     acdh:hasSubject "Dialect lexicography"@en ;
     acdh:hasLanguage <https://vocabs.acdh.oeaw.ac.at/iso6393/deu> ;
     acdh:hasLanguage <https://vocabs.acdh.oeaw.ac.at/iso6393/bar> ;
     acdh:hasTemporalCoverage "Österreich, Südtirol um 1900"@de;
+    acdh:hasCoverageStartDate "0900-01-01"^^xsd:date ;
+    acdh:hasCoverageEndDate "1989-12-31"^^xsd:date ;
     acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/602> ;
-    acdh:hasEditor <https://id.acdh.oeaw.ac.at/oeaw> ,
-        <https://id.acdh.oeaw.ac.at/acdh> ;
     acdh:hasCurator acdhi:pandorfer ;
     acdh:hasDepositor <https://id.acdh.oeaw.ac.at/acdh> ;
     acdh:hasMetadataCreator acdhi:pandorfer ;
     acdh:hasContact <https://id.acdh.oeaw.ac.at/acdh> ;
-    acdh:hasPrincipalInvestigator <https://id.acdh.oeaw.ac.at/alenz> ;
-    acdh:hasEditor <https://orcid.org/0000-0003-3263-6444> ;
+    acdh:hasPrincipalInvestigator <https://orcid.org/0000-0002-2783-203X> ;  # Alex Lenz
+    acdh:hasEditor <https://orcid.org/0000-0002-2783-203X> ;  # Alex Lenz
+    acdh:hasEditor <https://orcid.org/0000-0003-3263-6444> ;  # Philipp Stöckle
     # acdh:hasContributor <https://id.acdh.oeaw.ac.at/jbowers> ;
-    # acdh:hasContributor <https://id.acdh.oeaw.ac.at/sschwaiger> ;
     acdh:hasContributor <https://id.acdh.oeaw.ac.at/dschopper> ;
     acdh:hasContributor <https://id.acdh.oeaw.ac.at/osiam> ;
     acdh:hasContributor <https://orcid.org/0000-0001-9983-1362> ;  # Barbara Piringer
@@ -44,16 +44,16 @@
 
 
 <https://orcid.org/0000-0001-9983-1362> a acdh:Person;
-    acdh:hasFirstName "Barbara" ;
-    acdh:hasLastName "Piringer" .
+    acdh:hasFirstName "Barbara"@de ;
+    acdh:hasLastName "Piringer"@de .
 
 <https://orcid.org/0000-0003-3263-6444> a acdh:Person;
-    acdh:hasFirstName "Philipp" ;
-    acdh:hasLastName "Stöckle" .
+    acdh:hasFirstName "Philipp"@de ;
+    acdh:hasLastName "Stöckle"@de .
 
-acdhi:sschwaiger a acdh:Person ;
-    acdh:hasFirstName "Sonja" ;
-    acdh:hasLastName "Schwaiger" .
+<https://orcid.org/0000-0002-2783-203X> a acdh:Person;
+    acdh:hasFirstName "Alexandra"@de ;
+    acdh:hasLastName "Lenz"@de .
 
 # acdhi:jbowers a acdh:Person ;
 #     acdh:hasFirstName "Jack" ;
