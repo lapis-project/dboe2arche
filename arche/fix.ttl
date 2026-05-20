@@ -1,5 +1,0 @@
-@prefix acdh: <https://vocabs.acdh.oeaw.ac.at/schema#> .
-
-<https://d-nb.info/gnd/143111221> a acdh:Person;
-    acdh:hasFirstName "Patrick"@de ;
-    acdh:hasLastName "Fiska"@de .
