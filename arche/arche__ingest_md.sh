@@ -1,6 +1,6 @@
 #/bin/bash
 
-uv run main.py
+# uv run main.py
 
 echo "ingest metadata for for ${TOPCOLID} into ${ARCHE}"
 docker run --rm \
@@ -8,4 +8,4 @@ docker run --rm \
   --network="host" \
   --entrypoint arche-import-metadata \
   acdhch/arche-ingest \
-  /data/arche.ttl ${ARCHE} ${ARCHE_USER} ${ARCHE_PASSWORD}
+  /data/fix.ttl ${ARCHE} ${ARCHE_USER} ${ARCHE_PASSWORD}
