@@ -2,10 +2,10 @@ import glob
 import os
 import shutil
 
-from rdflib import RDF, Graph, Literal, Namespace, URIRef
-from tqdm import tqdm
 from acdh_tei_pyutils.tei import TeiReader
 from acdh_tei_pyutils.utils import any_xpath
+from rdflib import RDF, Graph, Literal, Namespace, URIRef
+from tqdm import tqdm
 
 to_ingest = "to_ingest"
 out_file = os.path.join(to_ingest, "arche.ttl")
