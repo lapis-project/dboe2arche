@@ -1,0 +1,188 @@
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>DBO@TEI</title>
+        <respStmt>
+          <resp>Data modelling and conversion by:</resp>
+          <name>Jack Bowers</name>
+          <name>Omar Siam</name>
+          <name>Daniel Schopper</name>
+        </respStmt>
+      </titleStmt>
+      <editionStmt>
+        <edition>Second TEI edition of DBOE database, created <date>2018-09</date>.</edition>
+      </editionStmt>
+      <publicationStmt>
+        <p>Publication Information to be elaborated in following versions</p>
+      </publicationStmt>
+      <sourceDesc>
+        <p> Source of current file is <ptr target="file:///opt/basex/webapp/dboe_tei_modelling/xsl/cleanExport-TEI.xsl"/> which was converted from version 09 of the plain XML version of the DBOE</p>
+      </sourceDesc>
+    </fileDesc>
+    <encodingDesc>
+      <listPrefixDef>
+        <prefixDef ident="this" matchPattern="this:A" replacementPattern="#xpath(ancestor::entry//ref[@type = 'archiv'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:ANM([0-9]+)" replacementPattern="#xpath(ancestor::entry//note[@type = 'anmerkung'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:ANMB([0-9]+)" replacementPattern="#xpath(ancestor::entry//note[@type = 'anmerkung' and @resp = 'B'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:LT([0-9]+)" replacementPattern="#xpath(ancestor::entry//form[@type = 'lautung'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:LW([0-9]+)" replacementPattern="#xpath(ancestor::entry//form[@type = 'lehnwort'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:LW" replacementPattern="#xpath(ancestor::entry//form[@type = 'lehnwort'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:BD" replacementPattern="#xpath(ancestor::entry//def[position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:BD[2]" replacementPattern="#xpath(ancestor::entry//def[2])"/>
+        <prefixDef ident="this" matchPattern="this:BD[3]" replacementPattern="#xpath(ancestor::entry//def[3])"/>
+        <prefixDef ident="this" matchPattern="this:BD[4]" replacementPattern="#xpath(ancestor::entry//def[4])"/>
+        <prefixDef ident="this" matchPattern="this:BD[5]" replacementPattern="#xpath(ancestor::entry//def[5])"/>
+        <prefixDef ident="this" matchPattern="this:BD[6]" replacementPattern="#xpath(ancestor::entry//def[6])"/>
+        <prefixDef ident="this" matchPattern="this:BD[7]" replacementPattern="#xpath(ancestor::entry//def[7])"/>
+        <prefixDef ident="this" matchPattern="this:BD[8]" replacementPattern="#xpath(ancestor::entry//def[8])"/>
+        <prefixDef ident="this" matchPattern="this:BD[9]" replacementPattern="#xpath(ancestor::entry//def[9])"/>
+        <prefixDef ident="this" matchPattern="this:BD([0-9]+)" replacementPattern="#xpath(ancestor::entry//def[position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:DV" replacementPattern="#xpath(ancestor::entry//note[@type='diverse'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:DV[1]" replacementPattern="#xpath(ancestor::entry//note[@type='diverse'][1])"/>
+        <prefixDef ident="this" matchPattern="this:DV[2]" replacementPattern="#xpath(ancestor::entry//note[@type='diverse'][2])"/>
+        <prefixDef ident="this" matchPattern="this:DV[3]" replacementPattern="#xpath(ancestor::entry//note[@type='diverse'][3])"/>
+        <prefixDef ident="this" matchPattern="this:DV[4]" replacementPattern="#xpath(ancestor::entry//note[@type='diverse'][4])"/>
+        <prefixDef ident="this" matchPattern="this:ET" replacementPattern="#xpath(ancestor::entry//etym[position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:ETO" replacementPattern="#xpath(ancestor::entry//etym[@resp='O'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:ET[1]" replacementPattern="#xpath(ancestor::entry//etym[1])"/>
+        <prefixDef ident="this" matchPattern="this:ET[2]" replacementPattern="#xpath(ancestor::entry//etym[2])"/>
+        <prefixDef ident="this" matchPattern="this:ET[3]" replacementPattern="#xpath(ancestor::entry//etym[3])"/>
+        <prefixDef ident="this" matchPattern="this:ET[4]" replacementPattern="#xpath(ancestor::entry//etym[4])"/>
+        <prefixDef ident="this" matchPattern="this:BILDDAT" replacementPattern="#xpath(ancestor::entry//figure[position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:HL([0-9]+)" replacementPattern="#xpath(ancestor::entry//form[@type = 'hauptlemma'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:HLV([0-9]+)" replacementPattern="#xpath(ancestor::entry//form[@type = 'hauptlemma' and @subtype = 'verweis'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:J" replacementPattern="#xpath(ancestor::entry//ref/date[position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:KT([0-9]+)" replacementPattern="#xpath(ancestor::entry//cit[@type = 'kontext'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:KL" replacementPattern="#xpath(ancestor::entry//interp[position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:NB([0-9]+)" replacementPattern="#xpath(ancestor::entry//note[@type = 'notabene'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:QDB" replacementPattern="#xpath(ancestor::entry//ref[@type = 'quelleBearbeitet'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:QU" replacementPattern="#xpath(ancestor::entry//ref[@type = 'quelle'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:QZ" replacementPattern="#xpath(ancestor::entry//ref[@type = 'quelleZitierte']/bibl[position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:NR([0-9]+)" replacementPattern="#xpath(ancestor::entry//ref[@type = 'fragebogenNummer'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:N" replacementPattern="#xpath(ancestor::entry//num[position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:VL([0-9]+)" replacementPattern="#xpath(ancestor::entry//form[@type = 'verweiselemma'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:VRW([0-9]+)" replacementPattern="#xpath(ancestor::entry//xr[@type = 'verweise'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:VRWO([0-9]+)" replacementPattern="#xpath(ancestor::entry//xr[@type = 'verweise' and @resp = 'O'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:VRW[2]" replacementPattern="#xpath(ancestor::entry//xr[@type = 'verweise'][2])"/>
+        <prefixDef ident="this" matchPattern="this:NL([0-9]+)" replacementPattern="#xpath(ancestor::entry//form[@type = 'nebenlemma'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:WBD[1]" replacementPattern="#xpath(ancestor::entry//cit[@type = 'kontext']/quote/pRef)"/>
+        <prefixDef ident="this" matchPattern="this:WBD[2]" replacementPattern="#xpath(ancestor::entry//cit[@type = 'kontext']/quote/pRef)"/>
+        <prefixDef ident="this" matchPattern="this:WBD[3]" replacementPattern="#xpath(ancestor::entry//cit[@type = 'kontext']/quote/pRef)"/>
+        <prefixDef ident="this" matchPattern="this:WBD[4]" replacementPattern="#xpath(ancestor::entry//cit[@type = 'kontext']/quote/pRef)"/>
+        <prefixDef ident="this" matchPattern="this:WBD[5]" replacementPattern="#xpath(ancestor::entry//cit[@type = 'kontext']/quote/pRef)"/>
+        <prefixDef ident="this" matchPattern="this:WBD[6]" replacementPattern="#xpath(ancestor::entry//cit[@type = 'kontext']/quote/pRef)"/>
+        <prefixDef ident="this" matchPattern="this:WBD/KT([0-9]+)" replacementPattern="#xpath(ancestor::entry//cit[@type='kontext']/quote/pRef[position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:ZL([0-9]+)" replacementPattern="#xpath(ancestor::entry//re[@type = 'zusatzlemma']/form/orth[position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:ZW" replacementPattern="#xpath(ancestor::entry//ref[@type = 'zitiereweise']/bibl[position() = '$1'])"/>
+      </listPrefixDef>
+    </encodingDesc>
+    <xenoData corresp="this:i433_qdbn-d16e2" xml:id="orig-i433_qdbn-d16e2">
+*A* HK 433, h4330108.foe#1
+*HL* ^-ig:0
+*QU* ++?+: Quellenang. fehlt @@@
+===
+*LT1* --
+*VRWO* zum Suffixartikel #^-ig# s.a. Einleitg. S.19
+********************
+</xenoData>
+    <xenoData corresp="this:i433_qdbn-d16e19" xml:id="orig-i433_qdbn-d16e19">
+*A* HK 433, h4330108.foe#1
+*HL* ^-ig:0
+*QU* ++?+: Quellenang. fehlt @@@
+===
+*LT1* --
+*VRWO* zum Suffixartikel #^-ig# s.a. Einleitg. S.19
+********************
+</xenoData>
+    <xenoData corresp="this:i433_qdb-d1e36" xml:id="orig-i433_qdb-d1e36">
+*A* HK 433, h4330108.foe#2
+*HL* ^-ig:0
+*QU* Gimpl, Weitzenb^ock *S* Lf.49
+*QDB* {3.1,3.2} TxPubl./MdaLit.St. *@ GIMPL^. (1910) S.  [M-21]  *O*
+===
+*KT1* va da oanklassin Schul *KL* Fg:7A21
+********************
+</xenoData>
+  </teiHeader>
+  <text>
+    <body>
+      <entry xml:id="i433_qdbn-d16e2" n="782197" source="#orig-i433_qdbn-d16e2">
+        <form type="hauptlemma" xml:id="tu-122373.7">
+          <orth>-ig</orth>
+        </form>
+        <gramGrp>
+          <pos/>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-122373.10">
+          <pron xml:lang="bar" notation="teuthonista">--</pron>
+        </form>
+        <xr type="verweise" resp="O" xml:id="tu-122373.11">zum Suffixartikel <pRef>-ig</pRef> s.a. Einleitg. S.19</xr>
+        <ref type="archiv" xml:id="tu-122373.6">HK 433, h4330108.foe#1</ref>
+        <ref type="quelle" xml:id="tu-122373.8">+<certainty assertedValue="uncertain" locus="value"/>: Quellenang. fehlt <certainty assertedValue="unknown" locus="value"/>
+        </ref>
+      </entry>
+      <entry xml:id="i433_qdbn-d16e19" n="782198" source="#orig-i433_qdbn-d16e19">
+        <form type="hauptlemma" xml:id="tu-122373.14">
+          <orth>-ig</orth>
+        </form>
+        <gramGrp>
+          <pos/>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-122373.17">
+          <pron xml:lang="bar" notation="teuthonista">--</pron>
+        </form>
+        <xr type="verweise" resp="O" xml:id="tu-122373.18">zum Suffixartikel <pRef>-ig</pRef> s.a. Einleitg. S.19</xr>
+        <ref type="archiv" xml:id="tu-122373.13">HK 433, h4330108.foe#1</ref>
+        <ref type="quelle" xml:id="tu-122373.15">+<certainty assertedValue="uncertain" locus="value"/>: Quellenang. fehlt <certainty assertedValue="unknown" locus="value"/>
+        </ref>
+      </entry>
+      <entry xml:id="i433_qdb-d1e36" n="782199" source="#orig-i433_qdb-d1e36">
+        <form type="hauptlemma" xml:id="tu-122373.21">
+          <orth>-ig</orth>
+        </form>
+        <gramGrp>
+          <pos/>
+        </gramGrp>
+        <cit type="kontext" n="1" xml:id="tu-122373.25">
+          <quote xml:lang="bar">va da oanklassin Schul</quote>
+          <interp>Fg:7A21</interp>
+        </cit>
+        <ref type="archiv" xml:id="tu-122373.20">HK 433, h4330108.foe#2</ref>
+        <ref type="quelle" xml:id="tu-122373.22">Gimpl, Weitzenböck<ref type="seite">Lf.49</ref>
+        </ref>
+        <ref type="quelleBearbeitet" xml:id="tu-122373.23">{3.1,3.2} TxPubl./MdaLit.St. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>GIMPL· (1910) S. [M-21]</bibl>
+        </ref>
+        <usg type="geo" corresp="this:QDB" resp="sigle_auto">
+          <placeName type="orig">TxPubl./MdaLit.St.</placeName>
+          <listPlace corresp="sigle:3.1">
+      <place type="Bundesland">
+        <placeName>Stmk.</placeName>
+        <idno>3</idno>
+        <listPlace>
+          <place type="Großregion">
+            <placeName>sbair.ObStmk.</placeName>
+            <idno>3.1</idno>
+          </place>
+        </listPlace>
+      </place>
+    </listPlace>
+          <listPlace corresp="sigle:3.2">
+      <place type="Bundesland">
+        <placeName>Stmk.</placeName>
+        <idno>3</idno>
+        <listPlace>
+          <place type="Großregion">
+            <placeName>mbair.ObStmk.</placeName>
+            <idno>3.2</idno>
+          </place>
+        </listPlace>
+      </place>
+    </listPlace>
+        </usg>
+      </entry>
+    </body>
+  </text>
+</TEI>

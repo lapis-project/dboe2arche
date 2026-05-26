@@ -1,0 +1,1893 @@
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>DBO@TEI</title>
+        <respStmt>
+          <resp>Data modelling and conversion by:</resp>
+          <name>Jack Bowers</name>
+          <name>Omar Siam</name>
+          <name>Daniel Schopper</name>
+        </respStmt>
+      </titleStmt>
+      <editionStmt>
+        <edition>Second TEI edition of DBOE database, created <date>2018-09</date>.</edition>
+      </editionStmt>
+      <publicationStmt>
+        <p>Publication Information to be elaborated in following versions</p>
+      </publicationStmt>
+      <sourceDesc>
+        <p> Source of current file is <ptr target="file:///opt/basex/webapp/dboe_tei_modelling/xsl/cleanExport-TEI.xsl"/> which was converted from version 09 of the plain XML version of the DBOE</p>
+      </sourceDesc>
+    </fileDesc>
+    <encodingDesc>
+      <listPrefixDef>
+        <prefixDef ident="this" matchPattern="this:A" replacementPattern="#xpath(ancestor::entry//ref[@type = 'archiv'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:ANM([0-9]+)" replacementPattern="#xpath(ancestor::entry//note[@type = 'anmerkung'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:ANMB([0-9]+)" replacementPattern="#xpath(ancestor::entry//note[@type = 'anmerkung' and @resp = 'B'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:LT([0-9]+)" replacementPattern="#xpath(ancestor::entry//form[@type = 'lautung'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:LW([0-9]+)" replacementPattern="#xpath(ancestor::entry//form[@type = 'lehnwort'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:LW" replacementPattern="#xpath(ancestor::entry//form[@type = 'lehnwort'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:BD" replacementPattern="#xpath(ancestor::entry//def[position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:BD[2]" replacementPattern="#xpath(ancestor::entry//def[2])"/>
+        <prefixDef ident="this" matchPattern="this:BD[3]" replacementPattern="#xpath(ancestor::entry//def[3])"/>
+        <prefixDef ident="this" matchPattern="this:BD[4]" replacementPattern="#xpath(ancestor::entry//def[4])"/>
+        <prefixDef ident="this" matchPattern="this:BD[5]" replacementPattern="#xpath(ancestor::entry//def[5])"/>
+        <prefixDef ident="this" matchPattern="this:BD[6]" replacementPattern="#xpath(ancestor::entry//def[6])"/>
+        <prefixDef ident="this" matchPattern="this:BD[7]" replacementPattern="#xpath(ancestor::entry//def[7])"/>
+        <prefixDef ident="this" matchPattern="this:BD[8]" replacementPattern="#xpath(ancestor::entry//def[8])"/>
+        <prefixDef ident="this" matchPattern="this:BD[9]" replacementPattern="#xpath(ancestor::entry//def[9])"/>
+        <prefixDef ident="this" matchPattern="this:BD([0-9]+)" replacementPattern="#xpath(ancestor::entry//def[position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:DV" replacementPattern="#xpath(ancestor::entry//note[@type='diverse'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:DV[1]" replacementPattern="#xpath(ancestor::entry//note[@type='diverse'][1])"/>
+        <prefixDef ident="this" matchPattern="this:DV[2]" replacementPattern="#xpath(ancestor::entry//note[@type='diverse'][2])"/>
+        <prefixDef ident="this" matchPattern="this:DV[3]" replacementPattern="#xpath(ancestor::entry//note[@type='diverse'][3])"/>
+        <prefixDef ident="this" matchPattern="this:DV[4]" replacementPattern="#xpath(ancestor::entry//note[@type='diverse'][4])"/>
+        <prefixDef ident="this" matchPattern="this:ET" replacementPattern="#xpath(ancestor::entry//etym[position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:ETO" replacementPattern="#xpath(ancestor::entry//etym[@resp='O'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:ET[1]" replacementPattern="#xpath(ancestor::entry//etym[1])"/>
+        <prefixDef ident="this" matchPattern="this:ET[2]" replacementPattern="#xpath(ancestor::entry//etym[2])"/>
+        <prefixDef ident="this" matchPattern="this:ET[3]" replacementPattern="#xpath(ancestor::entry//etym[3])"/>
+        <prefixDef ident="this" matchPattern="this:ET[4]" replacementPattern="#xpath(ancestor::entry//etym[4])"/>
+        <prefixDef ident="this" matchPattern="this:BILDDAT" replacementPattern="#xpath(ancestor::entry//figure[position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:HL([0-9]+)" replacementPattern="#xpath(ancestor::entry//form[@type = 'hauptlemma'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:HLV([0-9]+)" replacementPattern="#xpath(ancestor::entry//form[@type = 'hauptlemma' and @subtype = 'verweis'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:J" replacementPattern="#xpath(ancestor::entry//ref/date[position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:KT([0-9]+)" replacementPattern="#xpath(ancestor::entry//cit[@type = 'kontext'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:KL" replacementPattern="#xpath(ancestor::entry//interp[position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:NB([0-9]+)" replacementPattern="#xpath(ancestor::entry//note[@type = 'notabene'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:QDB" replacementPattern="#xpath(ancestor::entry//ref[@type = 'quelleBearbeitet'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:QU" replacementPattern="#xpath(ancestor::entry//ref[@type = 'quelle'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:QZ" replacementPattern="#xpath(ancestor::entry//ref[@type = 'quelleZitierte']/bibl[position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:NR([0-9]+)" replacementPattern="#xpath(ancestor::entry//ref[@type = 'fragebogenNummer'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:N" replacementPattern="#xpath(ancestor::entry//num[position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:VL([0-9]+)" replacementPattern="#xpath(ancestor::entry//form[@type = 'verweiselemma'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:VRW([0-9]+)" replacementPattern="#xpath(ancestor::entry//xr[@type = 'verweise'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:VRWO([0-9]+)" replacementPattern="#xpath(ancestor::entry//xr[@type = 'verweise' and @resp = 'O'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:VRW[2]" replacementPattern="#xpath(ancestor::entry//xr[@type = 'verweise'][2])"/>
+        <prefixDef ident="this" matchPattern="this:NL([0-9]+)" replacementPattern="#xpath(ancestor::entry//form[@type = 'nebenlemma'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:WBD[1]" replacementPattern="#xpath(ancestor::entry//cit[@type = 'kontext']/quote/pRef)"/>
+        <prefixDef ident="this" matchPattern="this:WBD[2]" replacementPattern="#xpath(ancestor::entry//cit[@type = 'kontext']/quote/pRef)"/>
+        <prefixDef ident="this" matchPattern="this:WBD[3]" replacementPattern="#xpath(ancestor::entry//cit[@type = 'kontext']/quote/pRef)"/>
+        <prefixDef ident="this" matchPattern="this:WBD[4]" replacementPattern="#xpath(ancestor::entry//cit[@type = 'kontext']/quote/pRef)"/>
+        <prefixDef ident="this" matchPattern="this:WBD[5]" replacementPattern="#xpath(ancestor::entry//cit[@type = 'kontext']/quote/pRef)"/>
+        <prefixDef ident="this" matchPattern="this:WBD[6]" replacementPattern="#xpath(ancestor::entry//cit[@type = 'kontext']/quote/pRef)"/>
+        <prefixDef ident="this" matchPattern="this:WBD/KT([0-9]+)" replacementPattern="#xpath(ancestor::entry//cit[@type='kontext']/quote/pRef[position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:ZL([0-9]+)" replacementPattern="#xpath(ancestor::entry//re[@type = 'zusatzlemma']/form/orth[position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:ZW" replacementPattern="#xpath(ancestor::entry//ref[@type = 'zitiereweise']/bibl[position() = '$1'])"/>
+      </listPrefixDef>
+    </encodingDesc>
+    <xenoData corresp="this:g307_qdb-d1e2" xml:id="orig-g307_qdb-d1e2">
+*A* HK 307, G307#1.1 = G3070306.pla#1.1, korr. W.B.
+*HL* ge-:0
+*QU* Kranzmayer, Sprachaltert^umer, in ZsfMf. *S* 27., 172
+*QDB* {wb}  Mda:Restformen  *@ KRANZMAYER^. (1960b) S.  [S-1576; Z-520=ZMF/1960 ]  *O*
+===
+*LT1* --
+*DV1* Im Wiener Raum findet man die ^altesten Belege f^ur Silbenschwund, also f^ur g-, bereits in der 2. H^alfte des 12. Jhs., in Tirol erst im 14. Jh.
+********************
+</xenoData>
+    <xenoData corresp="this:g307_qdb-d1e17" xml:id="orig-g307_qdb-d1e17">
+*A* HK 307, G307#2.1 = G3070306.pla#2.1, korr. W.B.
+*HL* ge-:0
+*QU* WB^O, Einleitung *S* 19 @@@
+===
+*LT1* --
+*DV1* zum Pr^afixartikel, siehe QU: LITERATURHINWEIS!
+********************
+</xenoData>
+    <xenoData corresp="this:g307_qdb-d1e31" xml:id="orig-g307_qdb-d1e31">
+*A* HK 307, G307#3.1 = G3070306.pla#3.1, korr. W.B.
+*HL* ge-:0
+*QU* Hornung, SI Pladen (1972) *S* 201
+*QDB* {0.3b01} Plad.:sbair.SI *@ PladWb.(1972)
+*ZW* S. [HA-3573]
+===
+*LT1* --
+*DV1* s.QU: LITERATURHINWEIS!
+********************
+</xenoData>
+    <xenoData corresp="this:g307_qdb-d1e48" xml:id="orig-g307_qdb-d1e48">
+*A* HK 307, G307#4.1 = G3070306.pla#4.1, korr. W.B.
+*HL* ge-:0
+*QU* DSA *K* 28 @@@
+===
+*LT1* --
+*DV1* s.QU: LITERATURHINWEIS!
+********************
+</xenoData>
+    <xenoData corresp="this:g307_qdb-d1e59" xml:id="orig-g307_qdb-d1e59">
+*A* HK 307, G307#5.1 = G3070306.pla#5.1, korr. W.B.
+*HL* ge-:0
+*QU* Kranzmayer, Reimchronik *S* 35 *P* 9
+*QDB* {wb} sprkPubl./hist.LitSpr.St. *@ KRANZMAYER^. (1950) S. [A-524] *O*
+===
+*LT1* --
+*DV1* s.QU: LITERATURHINWEIS!
+********************
+</xenoData>
+    <xenoData corresp="this:g307_qdb-d1e76" xml:id="orig-g307_qdb-d1e76">
+*A* HK 307, G307#6.1 = G3070306.pla#6.1, korr. W.B.
+*HL* ge-:0
+*QU* Schabus Diss. *S* 61 - 64
+*QDB* {2.1f,2.1g} K^a.Lesacht.:sObK^a. *@ SCHABUS^. (1971) Bd.,S. [D-4074/1-2: Diss."Mda.Lesacht.:DialGeogr."] *O* Lesacht. in K^a. ## ggf. LT-O ber^ucksichtigen
+===
+*LT1* --
+*DV1* s.QU: LITERATURHINWEIS!
+********************
+</xenoData>
+    <xenoData corresp="this:g307_qdb-d1e93" xml:id="orig-g307_qdb-d1e93">
+*A* HK 307, G307#7.1 = G3070306.pla#7.1, korr. W.B.
+*HL* ge-:0
+*QU* Fersent.Wb. *S* 78
+*QDB* {0.3a} Fersent. *@ FersentWb.(1982)
+*ZW* S. HA-5245
+===
+*LT1* --
+*DV1* s.QU: LITERATURHINWEIS!
+********************
+</xenoData>
+    <xenoData corresp="this:g307_qdb-d1e110" xml:id="orig-g307_qdb-d1e110">
+*A* HK 307, G307#8.1 = G3070306.pla#8.1, korr. W.B.
+*HL* ge-:0
+*QU* Schabus Diss. *S* 118
+*QDB* {2.1f,2.1g} K^a.Lesacht.:sObK^a. *@ SCHABUS^. (1971) Bd.,S. [D-4074/1-2: Diss."Mda.Lesacht.:DialGeogr."] *O* Lesacht. in K^a. ## ggf. LT-O ber^ucksichtigen
+===
+*LT1* --
+*DV1* s.QU: LITERATURHINWEIS!
+********************
+</xenoData>
+    <xenoData corresp="this:g307_qdb-d1e127" xml:id="orig-g307_qdb-d1e127">
+*A* HK 307, G307#9.1 = G3070306.pla#9.1, korr. W.B.
+*HL* lachen:6
+*QU* Sch^opf, Tir.Id., Innsbruck (1866) *S* 164
+*QDB* {1B,1C} Tir. *@ TirId.(1866)
+*ZW* S. HA-145/a-d
+===
+*LT1* d'l%\acht [P2] *O* Unt.Innt.
+*BD/LT1* gelacht
+********************
+</xenoData>
+    <xenoData corresp="this:g307_qdb-d1e152" xml:id="orig-g307_qdb-d1e152">
+*A* HK 307, G307#10.1 = G3070306.pla#10.1, korr. W.B.
+*HL* ge-:0
+*QU* Kranzmayer, Sprachaltert^umer, in ZsfMf. *S* 27., 172
+*QDB* {wb}  Mda:Restformen  *@ KRANZMAYER^. (1960b) S.  [S-1576; Z-520=ZMF/1960 ]  *O*
+===
+*LT1* --
+*DV1* s.QU: LITERATURHINWEIS!
+********************
+</xenoData>
+    <xenoData corresp="this:g307_qdb-d1e167" xml:id="orig-g307_qdb-d1e167">
+*A* HK 307, G307#11.1 = G3070306.pla#11.1, korr. W.B.
+*HL* ge-:0
+*QU* Kranzmayer, Sprachaltert^umer in ZsfMf. *S* 27., 171
+*QDB* {wb}  Mda:Restformen  *@ KRANZMAYER^. (1960b) S.  [S-1576; Z-520=ZMF/1960 ]  *O*
+===
+*LT1* --
+*DV1* s.QU: LITERATURHINWEIS!
+********************
+</xenoData>
+    <xenoData corresp="this:g307_qdb-d1e183" xml:id="orig-g307_qdb-d1e183">
+*A* HK 307, G307#12.1 = G3070306.pla#12.1, korr. W.B.
+*HL* ge-:0
+*QU* Kranzmayer, Sprachaltert^umer, in ZsfMf. *S* 27., 172
+*QDB* {wb}  Mda:Restformen  *@ KRANZMAYER^. (1960b) S.  [S-1576; Z-520=ZMF/1960 ]  *O*
+===
+*LT1* --
+*DV1* s.QU: LITERATURHINWEIS!
+********************
+</xenoData>
+    <xenoData corresp="this:g307_qdb-d1e198" xml:id="orig-g307_qdb-d1e198">
+*A* HK 307, G307#13.1 = G3070306.pla#13.1, korr. W.B.
+*HL* ge-:0
+*QU* Kranzmayer, Lgg. *S* 122
+*QDB* {wb} mkPubl./Lgg.+Lautgesch. *@ Lgg. [Vorw./Einl.] S./ev.#.! od. K.  [HA-2187]  *O*
+===
+*LT1* --
+*DV1* s.QU: LITERATURHINWEIS!
+********************
+</xenoData>
+    <xenoData corresp="this:g307_qdb-d1e213" xml:id="orig-g307_qdb-d1e213">
+*A* HK 307, G307#14.1 = G3070306.pla#14.1, korr. W.B.
+*HL* ge-:0
+*QU* Kranzmayer, Sprachaltert^umer, in ZsfMf. *S* 27., 171
+*QDB* {wb}  Mda:Restformen  *@ KRANZMAYER^. (1960b) S.  [S-1576; Z-520=ZMF/1960 ]  *O*
+===
+*LT1* --
+*DV1* s.QU: LITERATURHINWEIS!
+********************
+</xenoData>
+    <xenoData corresp="this:g307_qdb-d1e228" xml:id="orig-g307_qdb-d1e228">
+*A* HK 307, G307#15.1 = G3070306.pla#15.1, korr. W.B.
+*HL* ge-:0
+*QU* Kranzmayer, Sprachaltert^umer, in ZsfMf. *S* 27.
+*QDB* {wb}  Mda:Restformen  *@ KRANZMAYER^. (1960b) S.  [S-1576; Z-520=ZMF/1960 ]  *O*
+===
+*LT1* --
+*DV1* s.QU: LITERATURHINWEIS!
+********************
+</xenoData>
+    <xenoData corresp="this:g307_qdb-d1e243" xml:id="orig-g307_qdb-d1e243">
+*A* HK 307, G307#16.1 = G3070306.pla#16.1, korr. W.B.
+*HL* ge-:0
+*QU* Kranzmayer, Sprachaltert^umer, in ZsfMf. *S* 27., 172
+*QDB* {wb}  Mda:Restformen  *@ KRANZMAYER^. (1960b) S.  [S-1576; Z-520=ZMF/1960 ]  *O*
+===
+*LT1* --
+*DV1* s.QU: LITERATURHINWEIS!
+********************
+</xenoData>
+    <xenoData corresp="this:g307_qdb-d1e258" xml:id="orig-g307_qdb-d1e258">
+*A* HK 307, G307#17.1 = G3070306.pla#17.1, korr. W.B.
+*HL* ge-:0
+*QU* Kranzmayer, Sprachaltert^umer, in ZsfMf. *S* 27.
+*QDB* {wb}  Mda:Restformen  *@ KRANZMAYER^. (1960b) S.  [S-1576; Z-520=ZMF/1960 ]  *O*
+===
+*LT1* --
+*DV1* s.QU: LITERATURHINWEIS!
+********************
+</xenoData>
+    <xenoData corresp="this:g307_qdb-d1e273" xml:id="orig-g307_qdb-d1e273">
+*A* HK 307, G307#18.1 = G3070306.pla#18.1, korr. W.B.
+*HL* ge-:0
+*QU* Kranzmayer, Sprachaltert^umer, in ZsfMf. *S* 27., 171
+*QDB* {wb}  Mda:Restformen  *@ KRANZMAYER^. (1960b) S.  [S-1576; Z-520=ZMF/1960 ]  *O*
+===
+*LT1* --
+*DV1* Kranzmayer, Sprachaltert^umer, in ZsfMf.
+********************
+</xenoData>
+    <xenoData corresp="this:g307_qdb-d1e288" xml:id="orig-g307_qdb-d1e288">
+*A* HK 307, G307#19.1 = G3070306.pla#19.1, korr. W.B.
+*HL* ge-:0
+*QU* Kranzmayer, Lggr. *S* E 19, 29 b1 / e, 38 a 9, 50 b *K* 19, 20
+*QDB* {wb} mkPubl./Lgg.+Lautgesch. *@ Lgg. [Vorw./Einl.] S./ev.#.! od. K.  [HA-2187]  *O*
+===
+*LT1* --
+*DV1* s.QU: LITERATURHINWEIS!
+********************
+</xenoData>
+    <xenoData corresp="this:g307_qdb-d1e303" xml:id="orig-g307_qdb-d1e303">
+*A* HK 307, G307#20.1 = G3070306.pla#20.1, korr. W.B.
+*HL* ge-:0
+*QU* Schmeller, Wb. *S* I, 875
+*QDB* {X} Bair.Spr.Geb. *@ BayerWb.^2
+*ZW* Bd.,S. HA-3604/1-2
+===
+*LT1* --
+*DV1* s.QU: LITERATURHINWEIS!
+********************
+</xenoData>
+    <xenoData corresp="this:g307_qdb-d1e320" xml:id="orig-g307_qdb-d1e320">
+*A* HK 307, G307#21.1 = G3070306.pla#21.1, korr. W.B.
+*HL* ge-:0
+*QU* Schatz, Tir.Wb.
+*QDB* {1B,1C}Tir. *@ TirWb.(1955-1956)
+*ZW* Bd.,S. HA-3602/1-2/a-e [Ausg. 1955-1956 u. 1993]
+===
+*LT1* gE *ANMO* + Inf.
+*DV1* s.QU: LITERATURHINWEIS! s. N^aheres HK!
+********************
+</xenoData>
+    <xenoData corresp="this:g307_qdb-d1e341" xml:id="orig-g307_qdb-d1e341">
+*A* HK 307, G307#22.1 = G3070306.pla#22.1, korr. W.B.
+*HL* ge-:0
+*QU* Jakob Wb., Wr.Dialekt (1929)
+*QDB* {6.5} W. *@ WrWb.(1929)
+*ZW* S. HA-276+scn.txt: wrwb [Ausg. 1980]
+===
+*LT1* --
+*DV1* s.QU: LITERATURHINWEIS! die Vorsilbe ge (Augment) fehlt allen Zeitw^ortern, deren Stamm mit b, d, g, k, p, qu, t und z beginnt
+********************
+</xenoData>
+    <xenoData corresp="this:g307_qdb-d1e357" xml:id="orig-g307_qdb-d1e357">
+*A* HK 307, G307#23.1 = G3070306.pla#25.1, korr. W.B.
+*HL* ge-:0
+*QU* Schabus Diss. *K* 3
+*QDB* {2.1f,2.1g} K^a.Lesacht.:sObK^a. *@ SCHABUS^. (1971) Bd.,S. [D-4074/1-2: Diss."Mda.Lesacht.:DialGeogr."] *O* Lesacht. in K^a. ## ggf. LT-O ber^ucksichtigen
+===
+*LT1* --
+*DV1* s.QU: LITERATURHINWEIS!
+********************
+</xenoData>
+    <xenoData corresp="this:g307_qdb-d1e372" xml:id="orig-g307_qdb-d1e372">
+*A* HK 307, G307#24.1 = G3070306.pla#26.1, korr. W.B.
+*HL* ge-:0
+*QU* Urkunden d. Cist.-Stiftes Heiligenkreuz, Fontes
+*QDB* {X} hist. *@ FRA 2/11, FRA 2/16 S. [HN 4630/2/11 bzw. HN 4630/2/16] *O*
+===
+*LT1* --
+*DV1* s.QU: LITERATURHINWEIS! s. N^aheres HK!
+********************
+</xenoData>
+    <xenoData corresp="this:g307_qdb-d1e385" xml:id="orig-g307_qdb-d1e385">
+*A* HK 307, G307#25.1 = G3070306.pla#27.1, korr. W.B.
+*HL* ge-:0
+*QU* Urkundenbuch Chorh. - Stift Neustift, Ti., Fontes @@@
+===
+*LT1* --
+*DV1* s.QU: LITERATURHINWEIS! s. N^aheres HK!
+********************
+</xenoData>
+    <xenoData corresp="this:g307_qdb-d1e397" xml:id="orig-g307_qdb-d1e397">
+*A* HK 307, G307#26.1 = G3070306.pla#28.1, korr. W.B.
+*HL* ge-:0
+*QU* Copey-Buch Wien, Fontes *S* 7
+*QDB* {X} hist. *@ FRA 2/7 S. [Hw-4630/2/7/a] *O*
+===
+*LT1* --
+*DV1* s.QU: LITERATURHINWEIS! s.N^aheres HK!
+********************
+</xenoData>
+    <xenoData corresp="this:g307_qdb-d1e412" xml:id="orig-g307_qdb-d1e412">
+*A* HK 307, G307#27.1 = G3070306.pla#29.1, korr. W.B.
+*HL* ge-:0
+*QU* Stiftungsbuch Cist.- Kloster Zwettl, Fontes
+*QDB* {6.3} hist. FRA 2/3 Bd.S.
+===
+*LT1* --
+*DV1* s.QU: LITERATURHINWEIS! s. N^aheres HK!
+********************
+</xenoData>
+    <xenoData corresp="this:g307_qdb-d1e425" xml:id="orig-g307_qdb-d1e425">
+*A* HK 307, G307#28.1 = G3070306.pla#30.1, korr. W.B.
+*HL* ge-:0
+*QU* Urkunden z.Gesch.d. Stiftes Klosterneuburg, Fontes
+*QDB* {X} hist. *@ FRA 2/10, FRA 2/28 S. [HN-4630/2/10,28] *O*
+===
+*LT1* --
+*DV1* s.QU: LITERATURHINWEIS! s. N^aheres HK!
+********************
+</xenoData>
+    <xenoData corresp="this:g307_qdb-d1e438" xml:id="orig-g307_qdb-d1e438">
+*A* HK 307, G307#29.1 = G3070306.pla#31.1, korr. W.B.
+*HL* ge-:0
+*QU* Codex diplomaticus Austro-Frisingensis, Fontes
+*QDB* {X} hist. *@ FRA 2/31, FRA 2/35, FRA 2/36 S. [4630/2/31,35,36] *O*
+===
+*LT1* --
+*DV1* s.QU: LITERATURHINWEIS! s. N^aheres HK!
+********************
+</xenoData>
+    <xenoData corresp="this:g307_qdb-d1e451" xml:id="orig-g307_qdb-d1e451">
+*A* HK 307, G307#30.1 = G3070306.pla#32.1, korr. W.B.
+*HL* ge-:0
+*QU* Urkunden z.Gesch.d. Stiftes G^ottweig, Fontes
+*QDB* {X} hist. *@ FRA 2/51, FRA 2/52, FRA 2/55 S. [HN-4630/2/51,52,55] *O*
+===
+*LT1* --
+*DV1* s.QU: LITERATURHINWEIS! s. N^aheres HK!
+********************
+</xenoData>
+    <xenoData corresp="this:g307_qdb-d1e464" xml:id="orig-g307_qdb-d1e464">
+*A* HK 307, G307#31.1 = G3070306.pla#33.1, korr. W.B.
+*HL* ge-:0
+*QU* Rechtsquellen der St^adte Krems u. Stein, Fontes juris
+*QDB* {6.3t04} hist. *@ FRA 3/1 S. HW-4630/3/1
+===
+*LT1* --
+*DV1* s.QU: LITERATURHINWEIS! s. N^aheres HK!
+********************
+</xenoData>
+    <xenoData corresp="this:g307_qdb-d1e477" xml:id="orig-g307_qdb-d1e477">
+*A* HK 307, G307#32.1 = G3070306.pla#34.1, korr. W.B.
+*HL* ge-:0
+*QU* Urkundenbuch, Chorherrenstift St.P^olten
+*QDB* {X} hist. UrkTxte:St.P^olten *@ UBSP^olt. Bd., S. [HN-3972/1-2] *O*
+===
+*LT1* --
+*DV1* s.QU: LITERATURHINWEIS! s. N^aheres HK!
+********************
+</xenoData>
+    <xenoData corresp="this:g307_qdb-d1e490" xml:id="orig-g307_qdb-d1e490">
+*A* HK 307, G307#33.1 = G3070306.pla#35.1, korr. W.B.
+*HL* ge-:0
+*QU* Enikel, F^urstenbuch, Mon.Germ. *S* III / 2, 3955
+*QDB* {6.5} hist. *@ ENIKEL^. (u.1285/1980) S./ev.V. H-4828/S.597-679
+===
+*LT1* --
+*DV1* s.QU: LITERATURHINWEIS!
+********************
+</xenoData>
+    <xenoData corresp="this:g307_qdb-d1e506" xml:id="orig-g307_qdb-d1e506">
+*A* HK 307, G307#34.1 = G3070306.pla#36.1, korr. W.B.
+*HL* ge-:0
+*QU* Neubauer, Altd.Idiot.d.Egerl.Mda.; Straberger *S* 61
+*QDB* {wb0:CZ-Eg} Egerl./nbair. *@ EgerlId.(1887) S. [A-61b: NEUBAUER-Wb.] *O* Egerl.
+===
+*LT1* --
+*DV1* s.QU: LITERATURHINWEIS!
+********************
+</xenoData>
+    <xenoData corresp="this:g307_qdb-d1e523" xml:id="orig-g307_qdb-d1e523">
+*A* HK 307, G307#35.1 = G3070306.pla#37.1, korr. W.B.
+*HL* ge-:0
+*QU* S^u^s, Salzbg.Volksl. (1865) *S* 166
+*QDB* {4} VLied *@ S^USS^. (1865) S. [M-3712] *O*
+===
+*LT1* --
+*DV1* s.QU: LITERATURHINWEIS!
+********************
+</xenoData>
+    <xenoData corresp="this:g307_qdb-d1e538" xml:id="orig-g307_qdb-d1e538">
+*A* HK 307, G307#36.1 = G3070306.pla#38.1, korr. W.B.
+*HL* ge-:0
+*QU* Kr^ollendf. N^O; Steinhauser
+*QDB* {6.1d01} uYbbst.:Ybbst.:nwMostv.:nMostv.:wMostv.: Mostv.:N^O *@ Slg.STEINHAUSER^. (1.H.20.Jh.) od. *@ FbB.STEINHAUSER^. (19xx) [SlgDiss."Kr^ollendf." od. SFb./EFb.; wrTr] *O* Kr^ollendf. N^O
+===
+*LT1* g.e^-
+*DV1* s. N^aheres HK!
+********************
+</xenoData>
+    <xenoData corresp="this:g307_qdb-d1e557" xml:id="orig-g307_qdb-d1e557">
+*A* HK 307, G307#37.1 = G3070306.pla#39.1, korr. W.B.
+*HL* g;e:9
+*QU* Obertraun; Hango
+*QDB* {5.3a06} s^oSkgt.:swTraunv.:O^O *@ FbB.HANGO^. (19xx) [EFb./Mtlg.] *O* Obertraun O^O
+===
+*KT1* vodrahn mar ins ge?
+*BD/KT1* kehren wir um?
+********************
+</xenoData>
+    <xenoData corresp="this:g307_qdb-d1e578" xml:id="orig-g307_qdb-d1e578">
+*A* HK 307, G307#38.1 = G3070306.pla#40.1, korr. W.B.
+*HL* ge-:0
+*QU* Beranek, Mda.v.SM^a. (1936) *S* 151 *P* 55
+*QDB* {8.3} SM^a. *@ BERANEK^. (1936) S. [HA-341] *O* SM^a.
+===
+*LT1* --
+*DV1* s.QU: LITERATURHINWEIS!
+********************
+</xenoData>
+    <xenoData corresp="this:g307_qdb-d1e597" xml:id="orig-g307_qdb-d1e597">
+*A* HK 307, G307#39.1 = G3070306.pla#41.1, korr. W.B.
+*HL* ge-:0
+*QU* Beranek, Mda.v.SM^a. (1936) *S* 152 *P* 55
+*QDB* {8.3} SM^a. *@ BERANEK^. (1936) S. [HA-341] *O* SM^a.
+===
+*LT1* --
+*DV1* s.QU: LITERATURHINWEIS!
+********************
+</xenoData>
+    <xenoData corresp="this:g307_qdb-d1e616" xml:id="orig-g307_qdb-d1e616">
+*A* HK 307, G307#40.1 = G3070306.pla#42.1, korr. W.B.
+*HL* ge-:0
+*QU* Urkundenbuch v. Kremsm^unster, Orig. aus (1333); Weitzenb^ock *N* 198
+*QDB* {X} hist. UrkTxte *@ UBKremsmst. S. [Hn-5748] *O*
+===
+*LT1* --
+*DV1* s. N^aheres HK!
+********************
+</xenoData>
+    <xenoData corresp="this:g307_qdb-d1e631" xml:id="orig-g307_qdb-d1e631">
+*A* HK 307, G307#41.1 = G3070306.pla#43.1, korr. W.B.
+*HL* ke:8
+*QU* Cipolla, 13 Gemeind., Arch.glott. *S* 8, 254
+*QDB* {01.,0.2,0.3} Dreiz.Gm.:zimbr./sbair.SI:ObIt.@ ZimbrWb.(1882-1885)
+*ZW* S. HA-3748
+===
+*LT1* che
+*BD/LT1* weil; denn; da^s
+********************
+</xenoData>
+    <xenoData corresp="this:g307_qdb-d1e654" xml:id="orig-g307_qdb-d1e654">
+*A* HK 307, G307#42.1 = G3070306.pla#44.1, korr. W.B.
+*HL* ke:8
+*NL* gge:8
+*QU* Bacher, Lusern; Podleiszek
+*QDB* {0.2a} Lus.:sbair.SI:ObIt. *@ LusWb.(1905)
+*ZW* S. HA-496
+===
+*LT1* ke
+*BD/LT1* da^s; denn; weil
+*ETO* it. che
+********************
+</xenoData>
+    <xenoData corresp="this:g307_qdb-d1e680" xml:id="orig-g307_qdb-d1e680">
+*A* HK 307, G307#43.1 = G3070306.pla#45.1, korr. W.B.
+*HL* ge-:0
+*QU* Nagl, Roanad-Gramm.; Wiessner *S* 43, 10
+*QDB* {6.2j13} sWr.Beck:N^O *@ N^oGr.(1886)
+*ZW* S./ev.Nr. HA-3970
+===
+*LT1* ge *ANMO* Partizipialaugment
+*DV1* s.QU: LITERATURHINWEIS!
+********************
+</xenoData>
+    <xenoData corresp="this:g307_qdb-d1e703" xml:id="orig-g307_qdb-d1e703">
+*A* HK 307, G307#44.1 = G3070306.pla#46.1, korr. W.B.
+*HL* ge-:0
+*QU* Schmeller, Cimbr.Wb.; Straberger
+*QDB* {X} Bair.Spr.Geb. *@ BayerWb.^2
+*ZW* Bd.,S. HA-3604/1-2
+===
+*LT1* ga^-
+*LT2* ghe^-
+*BD/LT1* ge-
+********************
+</xenoData>
+    <xenoData corresp="this:g307_qdb-d1e727" xml:id="orig-g307_qdb-d1e727">
+*A* HK 307, G307#45.1 = G3070306.pla#47.1, korr. W.B.
+*HL* ge-:0
+*QU* Beranek, SM^a. (1936) *S* 20 *P* 58
+*QDB* {8.3} SM^a. *@ BERANEK^. (1936) S. [HA-341] *O* SM^a.
+===
+*LT1* --
+*DV1* s.QU: LITERATURHINWEIS!
+********************
+</xenoData>
+    <xenoData corresp="this:g307_qdb-d1e746" xml:id="orig-g307_qdb-d1e746">
+*A* HK 307, G307#46.1 = G3070306.pla#48.1, korr. W.B.
+*HL* ge-:0
+*QU* Rudolf, Diss. Aussfern *S* 383
+*QDB* {1C.1c} Au^sf.:mkDiss./Mda *@ RUDOLF^. (1933) S. [Dw-4510] *O*
+===
+*LT1* --
+*DV1* s.QU: LITERATURHINWEIS!
+********************
+</xenoData>
+    <xenoData corresp="this:g307_qdb-d1e761" xml:id="orig-g307_qdb-d1e761">
+*A* HK 307, G307#47.1 = G3070306.pla#49.1, korr. W.B.
+*HL* ge-:0
+*QU* Rudolf Diss., Aussfern *S* 299
+*QDB* {1C.1c} Au^sf.:mkDiss./Mda *@ RUDOLF^. (1933) S. [Dw-4510] *O*
+===
+*LT1* --
+*DV1* s.QU: LITERATURHINWEIS!
+********************
+</xenoData>
+  </teiHeader>
+  <text>
+    <body>
+      <entry xml:id="g307_qdb-d1e2" n="391360" source="#orig-g307_qdb-d1e2">
+        <form type="hauptlemma" xml:id="tu-61720.35">
+          <orth>ge-</orth>
+        </form>
+        <gramGrp>
+          <pos/>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61720.39">
+          <pron xml:lang="bar" notation="teuthonista">--</pron>
+        </form>
+        <note type="diverse" n="1" xml:id="tu-61720.40">Im Wiener Raum findet man die ältesten Belege für Silbenschwund, also für g-, bereits in der 2. Hälfte des 12. Jhs., in Tirol erst im 14. Jh.</note>
+        <ref type="archiv" xml:id="tu-61720.34">HK 307, G307#1.1 = G3070306.pla#1.1, korr. W.B.</ref>
+        <ref type="quelle" xml:id="tu-61720.36">Kranzmayer, Sprachaltertümer, in ZsfMf.<ref type="seite">27., 172</ref>
+        </ref>
+        <ref type="quelleBearbeitet" xml:id="tu-61720.37">{wb} Mda:Restformen </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>KRANZMAYER· (1960b) S. [S-1576; Z-520=ZMF/1960 ]</bibl>
+        </ref>
+      </entry>
+      <entry xml:id="g307_qdb-d1e17" n="391361" source="#orig-g307_qdb-d1e17">
+        <form type="hauptlemma" xml:id="tu-61720.43">
+          <orth>ge-</orth>
+        </form>
+        <gramGrp>
+          <pos/>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61720.46">
+          <pron xml:lang="bar" notation="teuthonista">--</pron>
+        </form>
+        <note type="diverse" n="1" xml:id="tu-61720.47">zum Präfixartikel, siehe QU: LITERATURHINWEIS!</note>
+        <ref type="archiv" xml:id="tu-61720.42">HK 307, G307#2.1 = G3070306.pla#2.1, korr. W.B.</ref>
+        <ref type="quelle" xml:id="tu-61720.44">WBÖ, Einleitung<ref type="seite">19 <certainty assertedValue="unknown" locus="value"/>
+          </ref>
+        </ref>
+      </entry>
+      <entry xml:id="g307_qdb-d1e31" n="391362" source="#orig-g307_qdb-d1e31">
+        <form type="hauptlemma" xml:id="tu-61720.50">
+          <orth>ge-</orth>
+        </form>
+        <gramGrp>
+          <pos/>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61720.55">
+          <pron xml:lang="bar" notation="teuthonista">--</pron>
+        </form>
+        <note type="diverse" n="1" xml:id="tu-61720.56">s.QU: LITERATURHINWEIS!</note>
+        <ref type="archiv" xml:id="tu-61720.49">HK 307, G307#3.1 = G3070306.pla#3.1, korr. W.B.</ref>
+        <ref type="quelle" xml:id="tu-61720.51">Hornung, SI Pladen (1972)<ref type="seite">201</ref>
+        </ref>
+        <ref type="quelleBearbeitet" xml:id="tu-61720.52">{0.3b01} Plad.:sbair.SI </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>PladWb.(1972)</bibl>
+        </ref>
+        <ref type="zitiereweise" xml:id="tu-61720.53">
+          <bibl>S. [HA-3573]</bibl>
+        </ref>
+      </entry>
+      <entry xml:id="g307_qdb-d1e48" n="391363" source="#orig-g307_qdb-d1e48">
+        <form type="hauptlemma" xml:id="tu-61720.59">
+          <orth>ge-</orth>
+        </form>
+        <gramGrp>
+          <pos/>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61721.2">
+          <pron xml:lang="bar" notation="teuthonista">--</pron>
+        </form>
+        <note type="diverse" n="1" xml:id="tu-61721.3">s.QU: LITERATURHINWEIS!</note>
+        <ref type="archiv" xml:id="tu-61720.58">HK 307, G307#4.1 = G3070306.pla#4.1, korr. W.B.</ref>
+        <ref type="quelle" xml:id="tu-61720.60">DSA<num>28 <certainty assertedValue="unknown" locus="value"/>
+          </num>
+        </ref>
+      </entry>
+      <entry xml:id="g307_qdb-d1e59" n="391364" source="#orig-g307_qdb-d1e59">
+        <form type="hauptlemma" xml:id="tu-61721.6">
+          <orth>ge-</orth>
+        </form>
+        <gramGrp>
+          <pos/>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61721.10">
+          <pron xml:lang="bar" notation="teuthonista">--</pron>
+        </form>
+        <note type="diverse" n="1" xml:id="tu-61721.11">s.QU: LITERATURHINWEIS!</note>
+        <ref type="archiv" xml:id="tu-61721.5">HK 307, G307#5.1 = G3070306.pla#5.1, korr. W.B.</ref>
+        <ref type="quelle" xml:id="tu-61721.7">Kranzmayer, Reimchronik<ref type="seite">35</ref>
+          <ref type="paragraph">9</ref>
+        </ref>
+        <ref type="quelleBearbeitet" xml:id="tu-61721.8">{wb} sprkPubl./hist.LitSpr.St. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>KRANZMAYER· (1950) S. [A-524]</bibl>
+        </ref>
+      </entry>
+      <entry xml:id="g307_qdb-d1e76" n="391365" source="#orig-g307_qdb-d1e76">
+        <form type="hauptlemma" xml:id="tu-61721.14">
+          <orth>ge-</orth>
+        </form>
+        <gramGrp>
+          <pos/>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61721.18">
+          <pron xml:lang="bar" notation="teuthonista">--</pron>
+        </form>
+        <note type="diverse" n="1" xml:id="tu-61721.19">s.QU: LITERATURHINWEIS!</note>
+        <ref type="archiv" xml:id="tu-61721.13">HK 307, G307#6.1 = G3070306.pla#6.1, korr. W.B.</ref>
+        <ref type="quelle" xml:id="tu-61721.15">Schabus Diss.<ref type="seite">61 - 64</ref>
+        </ref>
+        <ref type="quelleBearbeitet" xml:id="tu-61721.16">{2.1f,2.1g} Kä.Lesacht.:sObKä. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>SCHABUS· (1971) Bd.,S. [D-4074/1-2: Diss."Mda.Lesacht.:DialGeogr."]</bibl>
+        </ref>
+        <usg type="geo" corresp="this:QDB" resp="sigle_auto">
+          <placeName type="orig">Lesacht. in Kä. ## ggf. LT-O berücksichtigen</placeName>
+          <listPlace corresp="sigle:2.1f">
+      <place type="Bundesland">
+        <placeName>Ktn.</placeName>
+        <idno>2</idno>
+        <listPlace>
+          <place type="Großregion">
+            <placeName>ObKtn.</placeName>
+            <idno>2.1</idno>
+            <listPlace>
+              <place type="Kleinregion">
+                <placeName>ob.Ktn.Lesacht.</placeName>
+                <idno>2.1f</idno>
+              </place>
+            </listPlace>
+          </place>
+        </listPlace>
+      </place>
+    </listPlace>
+          <listPlace corresp="sigle:2.1g">
+      <place type="Bundesland">
+        <placeName>Ktn.</placeName>
+        <idno>2</idno>
+        <listPlace>
+          <place type="Großregion">
+            <placeName>ObKtn.</placeName>
+            <idno>2.1</idno>
+            <listPlace>
+              <place type="Kleinregion">
+                <placeName>unt.Ktn.Lesacht.</placeName>
+                <idno>2.1g</idno>
+              </place>
+            </listPlace>
+          </place>
+        </listPlace>
+      </place>
+    </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="g307_qdb-d1e93" n="391366" source="#orig-g307_qdb-d1e93">
+        <form type="hauptlemma" xml:id="tu-61721.22">
+          <orth>ge-</orth>
+        </form>
+        <gramGrp>
+          <pos/>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61721.27">
+          <pron xml:lang="bar" notation="teuthonista">--</pron>
+        </form>
+        <note type="diverse" n="1" xml:id="tu-61721.28">s.QU: LITERATURHINWEIS!</note>
+        <ref type="archiv" xml:id="tu-61721.21">HK 307, G307#7.1 = G3070306.pla#7.1, korr. W.B.</ref>
+        <ref type="quelle" xml:id="tu-61721.23">Fersent.Wb.<ref type="seite">78</ref>
+        </ref>
+        <ref type="quelleBearbeitet" xml:id="tu-61721.24">{0.3a} Fersent. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>FersentWb.(1982)</bibl>
+        </ref>
+        <ref type="zitiereweise" xml:id="tu-61721.25">
+          <bibl>S. HA-5245</bibl>
+        </ref>
+      </entry>
+      <entry xml:id="g307_qdb-d1e110" n="391367" source="#orig-g307_qdb-d1e110">
+        <form type="hauptlemma" xml:id="tu-61721.31">
+          <orth>ge-</orth>
+        </form>
+        <gramGrp>
+          <pos/>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61721.35">
+          <pron xml:lang="bar" notation="teuthonista">--</pron>
+        </form>
+        <note type="diverse" n="1" xml:id="tu-61721.36">s.QU: LITERATURHINWEIS!</note>
+        <ref type="archiv" xml:id="tu-61721.30">HK 307, G307#8.1 = G3070306.pla#8.1, korr. W.B.</ref>
+        <ref type="quelle" xml:id="tu-61721.32">Schabus Diss.<ref type="seite">118</ref>
+        </ref>
+        <ref type="quelleBearbeitet" xml:id="tu-61721.33">{2.1f,2.1g} Kä.Lesacht.:sObKä. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>SCHABUS· (1971) Bd.,S. [D-4074/1-2: Diss."Mda.Lesacht.:DialGeogr."]</bibl>
+        </ref>
+        <usg type="geo" corresp="this:QDB" resp="sigle_auto">
+          <placeName type="orig">Lesacht. in Kä. ## ggf. LT-O berücksichtigen</placeName>
+          <listPlace corresp="sigle:2.1f">
+      <place type="Bundesland">
+        <placeName>Ktn.</placeName>
+        <idno>2</idno>
+        <listPlace>
+          <place type="Großregion">
+            <placeName>ObKtn.</placeName>
+            <idno>2.1</idno>
+            <listPlace>
+              <place type="Kleinregion">
+                <placeName>ob.Ktn.Lesacht.</placeName>
+                <idno>2.1f</idno>
+              </place>
+            </listPlace>
+          </place>
+        </listPlace>
+      </place>
+    </listPlace>
+          <listPlace corresp="sigle:2.1g">
+      <place type="Bundesland">
+        <placeName>Ktn.</placeName>
+        <idno>2</idno>
+        <listPlace>
+          <place type="Großregion">
+            <placeName>ObKtn.</placeName>
+            <idno>2.1</idno>
+            <listPlace>
+              <place type="Kleinregion">
+                <placeName>unt.Ktn.Lesacht.</placeName>
+                <idno>2.1g</idno>
+              </place>
+            </listPlace>
+          </place>
+        </listPlace>
+      </place>
+    </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="g307_qdb-d1e127" n="391368" source="#orig-g307_qdb-d1e127">
+        <form type="hauptlemma" xml:id="tu-61721.39">
+          <orth>lachen</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61721.44">
+          <pron xml:lang="bar" notation="teuthonista">d'l­acht</pron>
+          <gramGrp>
+            <gram> [P2]</gram>
+          </gramGrp>
+        </form>
+        <sense corresp="this:LT1" xml:id="tu-61721.45">
+          <def xml:lang="de">gelacht</def>
+        </sense>
+        <ref type="archiv" xml:id="tu-61721.38">HK 307, G307#9.1 = G3070306.pla#9.1, korr. W.B.</ref>
+        <ref type="quelle" xml:id="tu-61721.40">Schöpf, Tir.Id., Innsbruck (1866)<ref type="seite">164</ref>
+        </ref>
+        <ref type="quelleBearbeitet" xml:id="tu-61721.41">{1B,1C} Tir. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>TirId.(1866)</bibl>
+        </ref>
+        <ref type="zitiereweise" xml:id="tu-61721.42">
+          <bibl>S. HA-145/a-d</bibl>
+        </ref>
+        <usg type="geo" corresp="this:LT1">
+          <placeName type="orig">Unt.Innt.</placeName>
+          <listPlace corresp="sigle:1C.3e">
+            <place type="Bundesland">
+              <placeName>NTir.</placeName>
+              <idno>1C</idno>
+              <listPlace>
+                <place type="Großregion">
+                  <placeName>öNTir.</placeName>
+                  <idno>1C.3</idno>
+                  <listPlace>
+                    <place type="Kleinregion">
+                      <placeName>öUInnt.</placeName>
+                      <idno>1C.3e</idno>
+                    </place>
+                  </listPlace>
+                </place>
+              </listPlace>
+            </place>
+          </listPlace>
+          <listPlace corresp="sigle:1C.3c">
+            <place type="Bundesland">
+              <placeName>NTir.</placeName>
+              <idno>1C</idno>
+              <listPlace>
+                <place type="Großregion">
+                  <placeName>öNTir.</placeName>
+                  <idno>1C.3</idno>
+                  <listPlace>
+                    <place type="Kleinregion">
+                      <placeName>wUInnt.</placeName>
+                      <idno>1C.3c</idno>
+                    </place>
+                  </listPlace>
+                </place>
+              </listPlace>
+            </place>
+          </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="g307_qdb-d1e152" n="391369" source="#orig-g307_qdb-d1e152">
+        <form type="hauptlemma" xml:id="tu-61721.48">
+          <orth>ge-</orth>
+        </form>
+        <gramGrp>
+          <pos/>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61721.52">
+          <pron xml:lang="bar" notation="teuthonista">--</pron>
+        </form>
+        <note type="diverse" n="1" xml:id="tu-61721.53">s.QU: LITERATURHINWEIS!</note>
+        <ref type="archiv" xml:id="tu-61721.47">HK 307, G307#10.1 = G3070306.pla#10.1, korr. W.B.</ref>
+        <ref type="quelle" xml:id="tu-61721.49">Kranzmayer, Sprachaltertümer, in ZsfMf.<ref type="seite">27., 172</ref>
+        </ref>
+        <ref type="quelleBearbeitet" xml:id="tu-61721.50">{wb} Mda:Restformen </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>KRANZMAYER· (1960b) S. [S-1576; Z-520=ZMF/1960 ]</bibl>
+        </ref>
+      </entry>
+      <entry xml:id="g307_qdb-d1e167" n="391370" source="#orig-g307_qdb-d1e167">
+        <form type="hauptlemma" xml:id="tu-61721.56">
+          <orth>ge-</orth>
+        </form>
+        <gramGrp>
+          <pos/>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61721.60">
+          <pron xml:lang="bar" notation="teuthonista">--</pron>
+        </form>
+        <note type="diverse" n="1" xml:id="tu-61722.1">s.QU: LITERATURHINWEIS!</note>
+        <ref type="archiv" xml:id="tu-61721.55">HK 307, G307#11.1 = G3070306.pla#11.1, korr. W.B.</ref>
+        <ref type="quelle" xml:id="tu-61721.57">Kranzmayer, Sprachaltertümer in ZsfMf.<ref type="seite">27., 171</ref>
+        </ref>
+        <ref type="quelleBearbeitet" xml:id="tu-61721.58">{wb} Mda:Restformen </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>KRANZMAYER· (1960b) S. [S-1576; Z-520=ZMF/1960 ]</bibl>
+        </ref>
+      </entry>
+      <entry xml:id="g307_qdb-d1e183" n="391371" source="#orig-g307_qdb-d1e183">
+        <form type="hauptlemma" xml:id="tu-61722.4">
+          <orth>ge-</orth>
+        </form>
+        <gramGrp>
+          <pos/>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61722.8">
+          <pron xml:lang="bar" notation="teuthonista">--</pron>
+        </form>
+        <note type="diverse" n="1" xml:id="tu-61722.9">s.QU: LITERATURHINWEIS!</note>
+        <ref type="archiv" xml:id="tu-61722.3">HK 307, G307#12.1 = G3070306.pla#12.1, korr. W.B.</ref>
+        <ref type="quelle" xml:id="tu-61722.5">Kranzmayer, Sprachaltertümer, in ZsfMf.<ref type="seite">27., 172</ref>
+        </ref>
+        <ref type="quelleBearbeitet" xml:id="tu-61722.6">{wb} Mda:Restformen </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>KRANZMAYER· (1960b) S. [S-1576; Z-520=ZMF/1960 ]</bibl>
+        </ref>
+      </entry>
+      <entry xml:id="g307_qdb-d1e198" n="391372" source="#orig-g307_qdb-d1e198">
+        <form type="hauptlemma" xml:id="tu-61722.12">
+          <orth>ge-</orth>
+        </form>
+        <gramGrp>
+          <pos/>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61722.16">
+          <pron xml:lang="bar" notation="teuthonista">--</pron>
+        </form>
+        <note type="diverse" n="1" xml:id="tu-61722.17">s.QU: LITERATURHINWEIS!</note>
+        <ref type="archiv" xml:id="tu-61722.11">HK 307, G307#13.1 = G3070306.pla#13.1, korr. W.B.</ref>
+        <ref type="quelle" xml:id="tu-61722.13">Kranzmayer, Lgg.<ref type="seite">122</ref>
+        </ref>
+        <ref type="quelleBearbeitet" xml:id="tu-61722.14">{wb} mkPubl./Lgg.+Lautgesch. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>Lgg. [Vorw./Einl.] S./ev.§ od. K. [HA-2187]</bibl>
+        </ref>
+      </entry>
+      <entry xml:id="g307_qdb-d1e213" n="391373" source="#orig-g307_qdb-d1e213">
+        <form type="hauptlemma" xml:id="tu-61722.20">
+          <orth>ge-</orth>
+        </form>
+        <gramGrp>
+          <pos/>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61722.24">
+          <pron xml:lang="bar" notation="teuthonista">--</pron>
+        </form>
+        <note type="diverse" n="1" xml:id="tu-61722.25">s.QU: LITERATURHINWEIS!</note>
+        <ref type="archiv" xml:id="tu-61722.19">HK 307, G307#14.1 = G3070306.pla#14.1, korr. W.B.</ref>
+        <ref type="quelle" xml:id="tu-61722.21">Kranzmayer, Sprachaltertümer, in ZsfMf.<ref type="seite">27., 171</ref>
+        </ref>
+        <ref type="quelleBearbeitet" xml:id="tu-61722.22">{wb} Mda:Restformen </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>KRANZMAYER· (1960b) S. [S-1576; Z-520=ZMF/1960 ]</bibl>
+        </ref>
+      </entry>
+      <entry xml:id="g307_qdb-d1e228" n="391374" source="#orig-g307_qdb-d1e228">
+        <form type="hauptlemma" xml:id="tu-61722.28">
+          <orth>ge-</orth>
+        </form>
+        <gramGrp>
+          <pos/>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61722.32">
+          <pron xml:lang="bar" notation="teuthonista">--</pron>
+        </form>
+        <note type="diverse" n="1" xml:id="tu-61722.33">s.QU: LITERATURHINWEIS!</note>
+        <ref type="archiv" xml:id="tu-61722.27">HK 307, G307#15.1 = G3070306.pla#15.1, korr. W.B.</ref>
+        <ref type="quelle" xml:id="tu-61722.29">Kranzmayer, Sprachaltertümer, in ZsfMf.<ref type="seite">27.</ref>
+        </ref>
+        <ref type="quelleBearbeitet" xml:id="tu-61722.30">{wb} Mda:Restformen </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>KRANZMAYER· (1960b) S. [S-1576; Z-520=ZMF/1960 ]</bibl>
+        </ref>
+      </entry>
+      <entry xml:id="g307_qdb-d1e243" n="391375" source="#orig-g307_qdb-d1e243">
+        <form type="hauptlemma" xml:id="tu-61722.36">
+          <orth>ge-</orth>
+        </form>
+        <gramGrp>
+          <pos/>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61722.40">
+          <pron xml:lang="bar" notation="teuthonista">--</pron>
+        </form>
+        <note type="diverse" n="1" xml:id="tu-61722.41">s.QU: LITERATURHINWEIS!</note>
+        <ref type="archiv" xml:id="tu-61722.35">HK 307, G307#16.1 = G3070306.pla#16.1, korr. W.B.</ref>
+        <ref type="quelle" xml:id="tu-61722.37">Kranzmayer, Sprachaltertümer, in ZsfMf.<ref type="seite">27., 172</ref>
+        </ref>
+        <ref type="quelleBearbeitet" xml:id="tu-61722.38">{wb} Mda:Restformen </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>KRANZMAYER· (1960b) S. [S-1576; Z-520=ZMF/1960 ]</bibl>
+        </ref>
+      </entry>
+      <entry xml:id="g307_qdb-d1e258" n="391376" source="#orig-g307_qdb-d1e258">
+        <form type="hauptlemma" xml:id="tu-61722.44">
+          <orth>ge-</orth>
+        </form>
+        <gramGrp>
+          <pos/>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61722.48">
+          <pron xml:lang="bar" notation="teuthonista">--</pron>
+        </form>
+        <note type="diverse" n="1" xml:id="tu-61722.49">s.QU: LITERATURHINWEIS!</note>
+        <ref type="archiv" xml:id="tu-61722.43">HK 307, G307#17.1 = G3070306.pla#17.1, korr. W.B.</ref>
+        <ref type="quelle" xml:id="tu-61722.45">Kranzmayer, Sprachaltertümer, in ZsfMf.<ref type="seite">27.</ref>
+        </ref>
+        <ref type="quelleBearbeitet" xml:id="tu-61722.46">{wb} Mda:Restformen </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>KRANZMAYER· (1960b) S. [S-1576; Z-520=ZMF/1960 ]</bibl>
+        </ref>
+      </entry>
+      <entry xml:id="g307_qdb-d1e273" n="391377" source="#orig-g307_qdb-d1e273">
+        <form type="hauptlemma" xml:id="tu-61722.52">
+          <orth>ge-</orth>
+        </form>
+        <gramGrp>
+          <pos/>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61722.56">
+          <pron xml:lang="bar" notation="teuthonista">--</pron>
+        </form>
+        <note type="diverse" n="1" xml:id="tu-61722.57">Kranzmayer, Sprachaltertümer, in ZsfMf.</note>
+        <ref type="archiv" xml:id="tu-61722.51">HK 307, G307#18.1 = G3070306.pla#18.1, korr. W.B.</ref>
+        <ref type="quelle" xml:id="tu-61722.53">Kranzmayer, Sprachaltertümer, in ZsfMf.<ref type="seite">27., 171</ref>
+        </ref>
+        <ref type="quelleBearbeitet" xml:id="tu-61722.54">{wb} Mda:Restformen </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>KRANZMAYER· (1960b) S. [S-1576; Z-520=ZMF/1960 ]</bibl>
+        </ref>
+      </entry>
+      <entry xml:id="g307_qdb-d1e288" n="391378" source="#orig-g307_qdb-d1e288">
+        <form type="hauptlemma" xml:id="tu-61722.60">
+          <orth>ge-</orth>
+        </form>
+        <gramGrp>
+          <pos/>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61723.4">
+          <pron xml:lang="bar" notation="teuthonista">--</pron>
+        </form>
+        <note type="diverse" n="1" xml:id="tu-61723.5">s.QU: LITERATURHINWEIS!</note>
+        <ref type="archiv" xml:id="tu-61722.59">HK 307, G307#19.1 = G3070306.pla#19.1, korr. W.B.</ref>
+        <ref type="quelle" xml:id="tu-61723.1">Kranzmayer, Lggr.<ref type="seite">E 19, 29 b1 / e, 38 a 9, 50 b</ref>
+          <num>19, 20</num>
+        </ref>
+        <ref type="quelleBearbeitet" xml:id="tu-61723.2">{wb} mkPubl./Lgg.+Lautgesch. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>Lgg. [Vorw./Einl.] S./ev.§ od. K. [HA-2187]</bibl>
+        </ref>
+      </entry>
+      <entry xml:id="g307_qdb-d1e303" n="391379" source="#orig-g307_qdb-d1e303">
+        <form type="hauptlemma" xml:id="tu-61723.8">
+          <orth>ge-</orth>
+        </form>
+        <gramGrp>
+          <pos/>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61723.13">
+          <pron xml:lang="bar" notation="teuthonista">--</pron>
+        </form>
+        <note type="diverse" n="1" xml:id="tu-61723.14">s.QU: LITERATURHINWEIS!</note>
+        <ref type="archiv" xml:id="tu-61723.7">HK 307, G307#20.1 = G3070306.pla#20.1, korr. W.B.</ref>
+        <ref type="quelle" xml:id="tu-61723.9">Schmeller, Wb.<ref type="seite">I, 875</ref>
+        </ref>
+        <ref type="quelleBearbeitet" xml:id="tu-61723.10">{X} Bair.Spr.Geb. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>BayerWb.²</bibl>
+        </ref>
+        <ref type="zitiereweise" xml:id="tu-61723.11">
+          <bibl>Bd.,S. HA-3604/1-2</bibl>
+        </ref>
+      </entry>
+      <entry xml:id="g307_qdb-d1e320" n="391380" source="#orig-g307_qdb-d1e320">
+        <form type="hauptlemma" xml:id="tu-61723.17">
+          <orth>ge-</orth>
+        </form>
+        <gramGrp>
+          <pos/>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61723.22">
+          <pron xml:lang="bar" notation="teuthonista">gə</pron>
+        </form>
+        <note type="anmerkung" n="1" corresp="this:LT1" resp="O">+ Inf.</note>
+        <note type="diverse" n="1" xml:id="tu-61723.23">s.QU: LITERATURHINWEIS! s. Näheres HK!</note>
+        <ref type="archiv" xml:id="tu-61723.16">HK 307, G307#21.1 = G3070306.pla#21.1, korr. W.B.</ref>
+        <ref type="quelle" xml:id="tu-61723.18">Schatz, Tir.Wb.</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-61723.19">{1B,1C}Tir. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>TirWb.(1955-1956)</bibl>
+        </ref>
+        <ref type="zitiereweise" xml:id="tu-61723.20">
+          <bibl>Bd.,S. HA-3602/1-2/a-e [Ausg. 1955-1956 u. 1993]</bibl>
+        </ref>
+        <usg type="geo" corresp="this:QDB" resp="sigle_auto">
+          <placeName type="orig">Tir.</placeName>
+          <listPlace corresp="sigle:1B">
+      <place type="Bundesland">
+        <placeName>OTir.</placeName>
+        <idno>1B</idno>
+      </place>
+    </listPlace>
+          <listPlace corresp="sigle:1C">
+      <place type="Bundesland">
+        <placeName>NTir.</placeName>
+        <idno>1C</idno>
+      </place>
+    </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="g307_qdb-d1e341" n="391381" source="#orig-g307_qdb-d1e341">
+        <form type="hauptlemma" xml:id="tu-61723.26">
+          <orth>ge-</orth>
+        </form>
+        <gramGrp>
+          <pos/>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61723.31">
+          <pron xml:lang="bar" notation="teuthonista">--</pron>
+        </form>
+        <note type="diverse" n="1" xml:id="tu-61723.32">s.QU: LITERATURHINWEIS! die Vorsilbe ge (Augment) fehlt allen Zeitwörtern, deren Stamm mit b, d, g, k, p, qu, t und z beginnt</note>
+        <ref type="archiv" xml:id="tu-61723.25">HK 307, G307#22.1 = G3070306.pla#22.1, korr. W.B.</ref>
+        <ref type="quelle" xml:id="tu-61723.27">Jakob Wb., Wr.Dialekt (1929)</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-61723.28">{6.5} W. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>WrWb.(1929)</bibl>
+        </ref>
+        <ref type="zitiereweise" xml:id="tu-61723.29">
+          <bibl>S. HA-276+scn.txt: wrwb [Ausg. 1980]</bibl>
+        </ref>
+        <usg type="geo" corresp="this:QDB" resp="sigle_auto">
+          <placeName type="orig">W.</placeName>
+          <listPlace corresp="sigle:6.5">
+      <place type="Bundesland">
+        <placeName>Wien</placeName>
+        <idno>6.5</idno>
+        <listPlace>
+          <place type="Großregion">
+            <placeName>Wien</placeName>
+            <idno>6.5</idno>
+          </place>
+        </listPlace>
+      </place>
+    </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="g307_qdb-d1e357" n="391382" source="#orig-g307_qdb-d1e357">
+        <form type="hauptlemma" xml:id="tu-61723.35">
+          <orth>ge-</orth>
+        </form>
+        <gramGrp>
+          <pos/>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61723.39">
+          <pron xml:lang="bar" notation="teuthonista">--</pron>
+        </form>
+        <note type="diverse" n="1" xml:id="tu-61723.40">s.QU: LITERATURHINWEIS!</note>
+        <ref type="archiv" xml:id="tu-61723.34">HK 307, G307#23.1 = G3070306.pla#25.1, korr. W.B.</ref>
+        <ref type="quelle" xml:id="tu-61723.36">Schabus Diss.<num>3</num>
+        </ref>
+        <ref type="quelleBearbeitet" xml:id="tu-61723.37">{2.1f,2.1g} Kä.Lesacht.:sObKä. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>SCHABUS· (1971) Bd.,S. [D-4074/1-2: Diss."Mda.Lesacht.:DialGeogr."]</bibl>
+        </ref>
+        <usg type="geo" corresp="this:QDB" resp="sigle_auto">
+          <placeName type="orig">Lesacht. in Kä. ## ggf. LT-O berücksichtigen</placeName>
+          <listPlace corresp="sigle:2.1f">
+      <place type="Bundesland">
+        <placeName>Ktn.</placeName>
+        <idno>2</idno>
+        <listPlace>
+          <place type="Großregion">
+            <placeName>ObKtn.</placeName>
+            <idno>2.1</idno>
+            <listPlace>
+              <place type="Kleinregion">
+                <placeName>ob.Ktn.Lesacht.</placeName>
+                <idno>2.1f</idno>
+              </place>
+            </listPlace>
+          </place>
+        </listPlace>
+      </place>
+    </listPlace>
+          <listPlace corresp="sigle:2.1g">
+      <place type="Bundesland">
+        <placeName>Ktn.</placeName>
+        <idno>2</idno>
+        <listPlace>
+          <place type="Großregion">
+            <placeName>ObKtn.</placeName>
+            <idno>2.1</idno>
+            <listPlace>
+              <place type="Kleinregion">
+                <placeName>unt.Ktn.Lesacht.</placeName>
+                <idno>2.1g</idno>
+              </place>
+            </listPlace>
+          </place>
+        </listPlace>
+      </place>
+    </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="g307_qdb-d1e372" n="391383" source="#orig-g307_qdb-d1e372">
+        <form type="hauptlemma" xml:id="tu-61723.43">
+          <orth>ge-</orth>
+        </form>
+        <gramGrp>
+          <pos/>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61723.47">
+          <pron xml:lang="bar" notation="teuthonista">--</pron>
+        </form>
+        <note type="diverse" n="1" xml:id="tu-61723.48">s.QU: LITERATURHINWEIS! s. Näheres HK!</note>
+        <ref type="archiv" xml:id="tu-61723.42">HK 307, G307#24.1 = G3070306.pla#26.1, korr. W.B.</ref>
+        <ref type="quelle" xml:id="tu-61723.44">Urkunden d. Cist.-Stiftes Heiligenkreuz, Fontes</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-61723.45">{X} hist. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>FRA 2/11, FRA 2/16 S. [HN 4630/2/11 bzw. HN 4630/2/16]</bibl>
+        </ref>
+      </entry>
+      <entry xml:id="g307_qdb-d1e385" n="391384" source="#orig-g307_qdb-d1e385">
+        <form type="hauptlemma" xml:id="tu-61723.51">
+          <orth>ge-</orth>
+        </form>
+        <gramGrp>
+          <pos/>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61723.54">
+          <pron xml:lang="bar" notation="teuthonista">--</pron>
+        </form>
+        <note type="diverse" n="1" xml:id="tu-61723.55">s.QU: LITERATURHINWEIS! s. Näheres HK!</note>
+        <ref type="archiv" xml:id="tu-61723.50">HK 307, G307#25.1 = G3070306.pla#27.1, korr. W.B.</ref>
+        <ref type="quelle" xml:id="tu-61723.52">Urkundenbuch Chorh. - Stift Neustift, Ti., Fontes <certainty assertedValue="unknown" locus="value"/>
+        </ref>
+      </entry>
+      <entry xml:id="g307_qdb-d1e397" n="391385" source="#orig-g307_qdb-d1e397">
+        <form type="hauptlemma" xml:id="tu-61723.58">
+          <orth>ge-</orth>
+        </form>
+        <gramGrp>
+          <pos/>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61724.2">
+          <pron xml:lang="bar" notation="teuthonista">--</pron>
+        </form>
+        <note type="diverse" n="1" xml:id="tu-61724.3">s.QU: LITERATURHINWEIS! s.Näheres HK!</note>
+        <ref type="archiv" xml:id="tu-61723.57">HK 307, G307#26.1 = G3070306.pla#28.1, korr. W.B.</ref>
+        <ref type="quelle" xml:id="tu-61723.59">Copey-Buch Wien, Fontes<ref type="seite">7</ref>
+        </ref>
+        <ref type="quelleBearbeitet" xml:id="tu-61723.60">{X} hist. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>FRA 2/7 S. [Hw-4630/2/7/a]</bibl>
+        </ref>
+      </entry>
+      <entry xml:id="g307_qdb-d1e412" n="391386" source="#orig-g307_qdb-d1e412">
+        <form type="hauptlemma" xml:id="tu-61724.6">
+          <orth>ge-</orth>
+        </form>
+        <gramGrp>
+          <pos/>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61724.10">
+          <pron xml:lang="bar" notation="teuthonista">--</pron>
+        </form>
+        <note type="diverse" n="1" xml:id="tu-61724.11">s.QU: LITERATURHINWEIS! s. Näheres HK!</note>
+        <ref type="archiv" xml:id="tu-61724.5">HK 307, G307#27.1 = G3070306.pla#29.1, korr. W.B.</ref>
+        <ref type="quelle" xml:id="tu-61724.7">Stiftungsbuch Cist.- Kloster Zwettl, Fontes</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-61724.8">{6.3} hist. FRA 2/3 Bd.S.</ref>
+        <usg type="geo" corresp="this:QDB" resp="sigle_auto">
+          <placeName type="orig">hist. FRA 2/3 Bd.S.</placeName>
+          <listPlace corresp="sigle:6.3">
+      <place type="Bundesland">
+        <placeName>NÖ</placeName>
+        <idno>6</idno>
+        <listPlace>
+          <place type="Großregion">
+            <placeName>Waldv.</placeName>
+            <idno>6.3</idno>
+          </place>
+        </listPlace>
+      </place>
+    </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="g307_qdb-d1e425" n="391387" source="#orig-g307_qdb-d1e425">
+        <form type="hauptlemma" xml:id="tu-61724.14">
+          <orth>ge-</orth>
+        </form>
+        <gramGrp>
+          <pos/>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61724.18">
+          <pron xml:lang="bar" notation="teuthonista">--</pron>
+        </form>
+        <note type="diverse" n="1" xml:id="tu-61724.19">s.QU: LITERATURHINWEIS! s. Näheres HK!</note>
+        <ref type="archiv" xml:id="tu-61724.13">HK 307, G307#28.1 = G3070306.pla#30.1, korr. W.B.</ref>
+        <ref type="quelle" xml:id="tu-61724.15">Urkunden z.Gesch.d. Stiftes Klosterneuburg, Fontes</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-61724.16">{X} hist. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>FRA 2/10, FRA 2/28 S. [HN-4630/2/10,28]</bibl>
+        </ref>
+      </entry>
+      <entry xml:id="g307_qdb-d1e438" n="391388" source="#orig-g307_qdb-d1e438">
+        <form type="hauptlemma" xml:id="tu-61724.22">
+          <orth>ge-</orth>
+        </form>
+        <gramGrp>
+          <pos/>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61724.26">
+          <pron xml:lang="bar" notation="teuthonista">--</pron>
+        </form>
+        <note type="diverse" n="1" xml:id="tu-61724.27">s.QU: LITERATURHINWEIS! s. Näheres HK!</note>
+        <ref type="archiv" xml:id="tu-61724.21">HK 307, G307#29.1 = G3070306.pla#31.1, korr. W.B.</ref>
+        <ref type="quelle" xml:id="tu-61724.23">Codex diplomaticus Austro-Frisingensis, Fontes</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-61724.24">{X} hist. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>FRA 2/31, FRA 2/35, FRA 2/36 S. [4630/2/31,35,36]</bibl>
+        </ref>
+      </entry>
+      <entry xml:id="g307_qdb-d1e451" n="391389" source="#orig-g307_qdb-d1e451">
+        <form type="hauptlemma" xml:id="tu-61724.30">
+          <orth>ge-</orth>
+        </form>
+        <gramGrp>
+          <pos/>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61724.34">
+          <pron xml:lang="bar" notation="teuthonista">--</pron>
+        </form>
+        <note type="diverse" n="1" xml:id="tu-61724.35">s.QU: LITERATURHINWEIS! s. Näheres HK!</note>
+        <ref type="archiv" xml:id="tu-61724.29">HK 307, G307#30.1 = G3070306.pla#32.1, korr. W.B.</ref>
+        <ref type="quelle" xml:id="tu-61724.31">Urkunden z.Gesch.d. Stiftes Göttweig, Fontes</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-61724.32">{X} hist. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>FRA 2/51, FRA 2/52, FRA 2/55 S. [HN-4630/2/51,52,55]</bibl>
+        </ref>
+      </entry>
+      <entry xml:id="g307_qdb-d1e464" n="391390" source="#orig-g307_qdb-d1e464">
+        <form type="hauptlemma" xml:id="tu-61724.38">
+          <orth>ge-</orth>
+        </form>
+        <gramGrp>
+          <pos/>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61724.42">
+          <pron xml:lang="bar" notation="teuthonista">--</pron>
+        </form>
+        <note type="diverse" n="1" xml:id="tu-61724.43">s.QU: LITERATURHINWEIS! s. Näheres HK!</note>
+        <ref type="archiv" xml:id="tu-61724.37">HK 307, G307#31.1 = G3070306.pla#33.1, korr. W.B.</ref>
+        <ref type="quelle" xml:id="tu-61724.39">Rechtsquellen der Städte Krems u. Stein, Fontes juris</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-61724.40">{6.3t04} hist. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>FRA 3/1 S. HW-4630/3/1</bibl>
+        </ref>
+        <usg type="geo" corresp="this:QDB" resp="sigle_auto">
+          <placeName type="orig">hist.</placeName>
+          <listPlace corresp="sigle:6.3t04">
+      <place type="Bundesland">
+        <placeName>NÖ</placeName>
+        <idno>6</idno>
+        <listPlace>
+          <place type="Großregion">
+            <placeName>Waldv.</placeName>
+            <idno>6.3</idno>
+            <listPlace>
+              <place type="Kleinregion">
+                <placeName>nWachau</placeName>
+                <idno>6.3t</idno>
+                <listPlace>
+                  <place type="Gemeinde">
+                    <placeName>Krems an der Donau</placeName>
+                    <idno/>
+                    <listPlace>
+                      <place type="Ort">
+                        <placeName>Krems an der Donau</placeName>
+                        <idno>6.3t04</idno>
+                      </place>
+                    </listPlace>
+                  </place>
+                </listPlace>
+              </place>
+            </listPlace>
+          </place>
+        </listPlace>
+      </place>
+    </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="g307_qdb-d1e477" n="391391" source="#orig-g307_qdb-d1e477">
+        <form type="hauptlemma" xml:id="tu-61724.46">
+          <orth>ge-</orth>
+        </form>
+        <gramGrp>
+          <pos/>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61724.50">
+          <pron xml:lang="bar" notation="teuthonista">--</pron>
+        </form>
+        <note type="diverse" n="1" xml:id="tu-61724.51">s.QU: LITERATURHINWEIS! s. Näheres HK!</note>
+        <ref type="archiv" xml:id="tu-61724.45">HK 307, G307#32.1 = G3070306.pla#34.1, korr. W.B.</ref>
+        <ref type="quelle" xml:id="tu-61724.47">Urkundenbuch, Chorherrenstift St.Pölten</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-61724.48">{X} hist. UrkTxte:St.Pölten </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>UBSPölt. Bd., S. [HN-3972/1-2]</bibl>
+        </ref>
+      </entry>
+      <entry xml:id="g307_qdb-d1e490" n="391392" source="#orig-g307_qdb-d1e490">
+        <form type="hauptlemma" xml:id="tu-61724.54">
+          <orth>ge-</orth>
+        </form>
+        <gramGrp>
+          <pos/>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61724.58">
+          <pron xml:lang="bar" notation="teuthonista">--</pron>
+        </form>
+        <note type="diverse" n="1" xml:id="tu-61724.59">s.QU: LITERATURHINWEIS!</note>
+        <ref type="archiv" xml:id="tu-61724.53">HK 307, G307#33.1 = G3070306.pla#35.1, korr. W.B.</ref>
+        <ref type="quelle" xml:id="tu-61724.55">Enikel, Fürstenbuch, Mon.Germ.<ref type="seite">III / 2, 3955</ref>
+        </ref>
+        <ref type="quelleBearbeitet" xml:id="tu-61724.56">{6.5} hist. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>ENIKEL· (u.1285/1980) S./ev.V. H-4828/S.597-679</bibl>
+        </ref>
+        <usg type="geo" corresp="this:QDB" resp="sigle_auto">
+          <placeName type="orig">hist.</placeName>
+          <listPlace corresp="sigle:6.5">
+      <place type="Bundesland">
+        <placeName>Wien</placeName>
+        <idno>6.5</idno>
+        <listPlace>
+          <place type="Großregion">
+            <placeName>Wien</placeName>
+            <idno>6.5</idno>
+          </place>
+        </listPlace>
+      </place>
+    </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="g307_qdb-d1e506" n="391393" source="#orig-g307_qdb-d1e506">
+        <form type="hauptlemma" xml:id="tu-61725.2">
+          <orth>ge-</orth>
+        </form>
+        <gramGrp>
+          <pos/>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61725.6">
+          <pron xml:lang="bar" notation="teuthonista">--</pron>
+        </form>
+        <note type="diverse" n="1" xml:id="tu-61725.7">s.QU: LITERATURHINWEIS!</note>
+        <ref type="archiv" xml:id="tu-61725.1">HK 307, G307#34.1 = G3070306.pla#36.1, korr. W.B.</ref>
+        <ref type="quelle" xml:id="tu-61725.3">Neubauer, Altd.Idiot.d.Egerl.Mda.; Straberger<ref type="seite">61</ref>
+        </ref>
+        <ref type="quelleBearbeitet" xml:id="tu-61725.4">{wb0:CZ-Eg} Egerl./nbair. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>EgerlId.(1887) S. [A-61b: NEUBAUER-Wb.]Egerl.</bibl>
+        </ref>
+      </entry>
+      <entry xml:id="g307_qdb-d1e523" n="391394" source="#orig-g307_qdb-d1e523">
+        <form type="hauptlemma" xml:id="tu-61725.10">
+          <orth>ge-</orth>
+        </form>
+        <gramGrp>
+          <pos/>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61725.14">
+          <pron xml:lang="bar" notation="teuthonista">--</pron>
+        </form>
+        <note type="diverse" n="1" xml:id="tu-61725.15">s.QU: LITERATURHINWEIS!</note>
+        <ref type="archiv" xml:id="tu-61725.9">HK 307, G307#35.1 = G3070306.pla#37.1, korr. W.B.</ref>
+        <ref type="quelle" xml:id="tu-61725.11">Süß, Salzbg.Volksl. (1865)<ref type="seite">166</ref>
+        </ref>
+        <ref type="quelleBearbeitet" xml:id="tu-61725.12">{4} VLied </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>SÜSS· (1865) S. [M-3712]</bibl>
+        </ref>
+        <usg type="geo" corresp="this:QDB" resp="sigle_auto">
+          <placeName type="orig">VLied</placeName>
+          <listPlace corresp="sigle:4">
+      <place type="Bundesland">
+        <placeName>Sbg.</placeName>
+        <idno>4</idno>
+      </place>
+    </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="g307_qdb-d1e538" n="391395" source="#orig-g307_qdb-d1e538">
+        <form type="hauptlemma" xml:id="tu-61725.18">
+          <orth>ge-</orth>
+        </form>
+        <gramGrp>
+          <pos/>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61725.22">
+          <pron xml:lang="bar" notation="teuthonista">gė-</pron>
+        </form>
+        <note type="diverse" n="1" xml:id="tu-61725.23">s. Näheres HK!</note>
+        <ref type="archiv" xml:id="tu-61725.17">HK 307, G307#36.1 = G3070306.pla#38.1, korr. W.B.</ref>
+        <ref type="quelle" xml:id="tu-61725.19">Kröllendf. NÖ; Steinhauser</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-61725.20">{6.1d01} uYbbst.:Ybbst.:nwMostv.:nMostv.:wMostv.: Mostv.:NÖ </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>Slg.STEINHAUSER· (1.H.20.Jh.) od. *@ FbB.STEINHAUSER· (19xx) [SlgDiss."Kröllendf." od. SFb./EFb.; wrTr]</bibl>
+        </ref>
+        <usg type="geo" corresp="this:QDB">
+          <placeName type="orig">Kröllendf. NÖ</placeName>
+          <listPlace corresp="sigle:6.1d01">
+            <place type="Bundesland">
+              <placeName>NÖ</placeName>
+              <idno>6</idno>
+              <listPlace>
+                <place type="Großregion">
+                  <placeName>Mostv.</placeName>
+                  <idno>6.1</idno>
+                  <listPlace>
+                    <place type="Kleinregion">
+                      <placeName>uYbbst.</placeName>
+                      <idno>6.1d</idno>
+                      <listPlace>
+                        <place type="Gemeinde">
+                          <placeName>Allhartsberg</placeName>
+                          <listPlace>
+                            <place type="Ort">
+                              <placeName>Allhartsberg</placeName>
+                              <idno>6.1d01</idno>
+                            </place>
+                          </listPlace>
+                        </place>
+                      </listPlace>
+                    </place>
+                  </listPlace>
+                </place>
+              </listPlace>
+            </place>
+          </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="g307_qdb-d1e557" n="391396" source="#orig-g307_qdb-d1e557">
+        <form type="hauptlemma" xml:id="tu-61725.26">
+          <orth>gę</orth>
+        </form>
+        <gramGrp>
+          <pos>Interj</pos>
+        </gramGrp>
+        <cit type="kontext" n="1" xml:id="tu-61725.30">
+          <quote xml:lang="bar">vodrahn mar ins ge?</quote>
+          <def xml:lang="de">kehren wir um?</def>
+        </cit>
+        <ref type="archiv" xml:id="tu-61725.25">HK 307, G307#37.1 = G3070306.pla#39.1, korr. W.B.</ref>
+        <ref type="quelle" xml:id="tu-61725.27">Obertraun; Hango</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-61725.28">{5.3a06} söSkgt.:swTraunv.:OÖ </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>FbB.HANGO· (19xx) [EFb./Mtlg.]</bibl>
+        </ref>
+        <usg type="geo" corresp="this:QDB">
+          <placeName type="orig">Obertraun OÖ</placeName>
+          <listPlace corresp="sigle:5.3a06">
+            <place type="Bundesland">
+              <placeName>OÖ</placeName>
+              <idno>5</idno>
+              <listPlace>
+                <place type="Großregion">
+                  <placeName>Traunv.</placeName>
+                  <idno>5.3</idno>
+                  <listPlace>
+                    <place type="Kleinregion">
+                      <placeName>söSkgt.</placeName>
+                      <idno>5.3a</idno>
+                      <listPlace>
+                        <place type="Gemeinde">
+                          <placeName>Obertraun</placeName>
+                          <listPlace>
+                            <place type="Ort">
+                              <placeName>Obertraun</placeName>
+                              <idno>5.3a06</idno>
+                            </place>
+                          </listPlace>
+                        </place>
+                      </listPlace>
+                    </place>
+                  </listPlace>
+                </place>
+              </listPlace>
+            </place>
+          </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="g307_qdb-d1e578" n="391397" source="#orig-g307_qdb-d1e578">
+        <form type="hauptlemma" xml:id="tu-61725.34">
+          <orth>ge-</orth>
+        </form>
+        <gramGrp>
+          <pos/>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61725.38">
+          <pron xml:lang="bar" notation="teuthonista">--</pron>
+        </form>
+        <note type="diverse" n="1" xml:id="tu-61725.39">s.QU: LITERATURHINWEIS!</note>
+        <ref type="archiv" xml:id="tu-61725.33">HK 307, G307#38.1 = G3070306.pla#40.1, korr. W.B.</ref>
+        <ref type="quelle" xml:id="tu-61725.35">Beranek, Mda.v.SMä. (1936)<ref type="seite">151</ref>
+          <ref type="paragraph">55</ref>
+        </ref>
+        <ref type="quelleBearbeitet" xml:id="tu-61725.36">{8.3} SMä. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>BERANEK· (1936) S. [HA-341]</bibl>
+        </ref>
+        <usg type="geo" corresp="this:QDB">
+          <placeName>SMä.</placeName>
+        </usg>
+      </entry>
+      <entry xml:id="g307_qdb-d1e597" n="391398" source="#orig-g307_qdb-d1e597">
+        <form type="hauptlemma" xml:id="tu-61725.42">
+          <orth>ge-</orth>
+        </form>
+        <gramGrp>
+          <pos/>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61725.46">
+          <pron xml:lang="bar" notation="teuthonista">--</pron>
+        </form>
+        <note type="diverse" n="1" xml:id="tu-61725.47">s.QU: LITERATURHINWEIS!</note>
+        <ref type="archiv" xml:id="tu-61725.41">HK 307, G307#39.1 = G3070306.pla#41.1, korr. W.B.</ref>
+        <ref type="quelle" xml:id="tu-61725.43">Beranek, Mda.v.SMä. (1936)<ref type="seite">152</ref>
+          <ref type="paragraph">55</ref>
+        </ref>
+        <ref type="quelleBearbeitet" xml:id="tu-61725.44">{8.3} SMä. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>BERANEK· (1936) S. [HA-341]</bibl>
+        </ref>
+        <usg type="geo" corresp="this:QDB">
+          <placeName>SMä.</placeName>
+        </usg>
+      </entry>
+      <entry xml:id="g307_qdb-d1e616" n="391399" source="#orig-g307_qdb-d1e616">
+        <form type="hauptlemma" xml:id="tu-61725.50">
+          <orth>ge-</orth>
+        </form>
+        <gramGrp>
+          <pos/>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61725.54">
+          <pron xml:lang="bar" notation="teuthonista">--</pron>
+        </form>
+        <note type="diverse" n="1" xml:id="tu-61725.55">s. Näheres HK!</note>
+        <ref type="archiv" xml:id="tu-61725.49">HK 307, G307#40.1 = G3070306.pla#42.1, korr. W.B.</ref>
+        <ref type="quelle" xml:id="tu-61725.51">Urkundenbuch v. Kremsmünster, Orig. aus (1333); Weitzenböck<num>198</num>
+        </ref>
+        <ref type="quelleBearbeitet" xml:id="tu-61725.52">{X} hist. UrkTxte </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>UBKremsmst. S. [Hn-5748]</bibl>
+        </ref>
+      </entry>
+      <entry xml:id="g307_qdb-d1e631" n="391400" source="#orig-g307_qdb-d1e631">
+        <form type="hauptlemma" xml:id="tu-61725.58">
+          <orth>ke</orth>
+        </form>
+        <gramGrp>
+          <pos>Conj</pos>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61726.3">
+          <pron xml:lang="bar" notation="teuthonista">che</pron>
+        </form>
+        <sense corresp="this:LT1" xml:id="tu-61726.4">
+          <def xml:lang="de">weil; denn; daß</def>
+        </sense>
+        <ref type="archiv" xml:id="tu-61725.57">HK 307, G307#41.1 = G3070306.pla#43.1, korr. W.B.</ref>
+        <ref type="quelle" xml:id="tu-61725.59">Cipolla, 13 Gemeind., Arch.glott.<ref type="seite">8, 254</ref>
+        </ref>
+        <ref type="quelleBearbeitet" xml:id="tu-61725.60">{01.,0.2,0.3} Dreiz.Gm.:zimbr./sbair.SI:ObIt.@ ZimbrWb.(1882-1885)</ref>
+        <ref type="zitiereweise" xml:id="tu-61726.1">
+          <bibl>S. HA-3748</bibl>
+        </ref>
+      </entry>
+      <entry xml:id="g307_qdb-d1e654" n="391401" source="#orig-g307_qdb-d1e654">
+        <form type="hauptlemma" xml:id="tu-61726.7">
+          <orth>ke</orth>
+        </form>
+        <gramGrp>
+          <pos>Conj</pos>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61726.13">
+          <pron xml:lang="bar" notation="teuthonista">ke</pron>
+        </form>
+        <sense corresp="this:LT1" xml:id="tu-61726.14">
+          <def xml:lang="de">daß; denn; weil</def>
+        </sense>
+        <etym resp="O" xml:id="tu-61726.15">it. che</etym>
+        <form type="nebenlemma" xml:id="tu-61726.8">
+          <orth>gge</orth>
+          <gramGrp>
+            <pos>Conj</pos>
+          </gramGrp>
+        </form>
+        <ref type="archiv" xml:id="tu-61726.6">HK 307, G307#42.1 = G3070306.pla#44.1, korr. W.B.</ref>
+        <ref type="quelle" xml:id="tu-61726.9">Bacher, Lusern; Podleiszek</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-61726.10">{0.2a} Lus.:sbair.SI:ObIt. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>LusWb.(1905)</bibl>
+        </ref>
+        <ref type="zitiereweise" xml:id="tu-61726.11">
+          <bibl>S. HA-496</bibl>
+        </ref>
+      </entry>
+      <entry xml:id="g307_qdb-d1e680" n="391402" source="#orig-g307_qdb-d1e680">
+        <form type="hauptlemma" xml:id="tu-61726.18">
+          <orth>ge-</orth>
+        </form>
+        <gramGrp>
+          <pos/>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61726.23">
+          <pron xml:lang="bar" notation="teuthonista">ge</pron>
+        </form>
+        <note type="anmerkung" n="1" corresp="this:LT1" resp="O">Partizipialaugment</note>
+        <note type="diverse" n="1" xml:id="tu-61726.24">s.QU: LITERATURHINWEIS!</note>
+        <ref type="archiv" xml:id="tu-61726.17">HK 307, G307#43.1 = G3070306.pla#45.1, korr. W.B.</ref>
+        <ref type="quelle" xml:id="tu-61726.19">Nagl, Roanad-Gramm.; Wiessner<ref type="seite">43, 10</ref>
+        </ref>
+        <ref type="quelleBearbeitet" xml:id="tu-61726.20">{6.2j13} sWr.Beck:NÖ </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>NöGr.(1886)</bibl>
+        </ref>
+        <ref type="zitiereweise" xml:id="tu-61726.21">
+          <bibl>S./ev.Nr. HA-3970</bibl>
+        </ref>
+        <usg type="geo" corresp="this:QDB" resp="sigle_auto">
+          <placeName type="orig">sWr.Beck:NÖ</placeName>
+          <listPlace corresp="sigle:6.2j13">
+      <place type="Bundesland">
+        <placeName>NÖ</placeName>
+        <idno>6</idno>
+        <listPlace>
+          <place type="Großregion">
+            <placeName>Industriev.</placeName>
+            <idno>6.2</idno>
+            <listPlace>
+              <place type="Kleinregion">
+                <placeName>sWr.Beck.</placeName>
+                <idno>6.2j</idno>
+                <listPlace>
+                  <place type="Gemeinde">
+                    <placeName>Natschbach-Loipersbach</placeName>
+                    <idno/>
+                    <listPlace>
+                      <place type="Ort">
+                        <placeName>Natschbach-Loipersbach</placeName>
+                        <idno>6.2j13</idno>
+                      </place>
+                    </listPlace>
+                  </place>
+                </listPlace>
+              </place>
+            </listPlace>
+          </place>
+        </listPlace>
+      </place>
+    </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="g307_qdb-d1e703" n="391403" source="#orig-g307_qdb-d1e703">
+        <form type="hauptlemma" xml:id="tu-61726.27">
+          <orth>ge-</orth>
+        </form>
+        <gramGrp>
+          <pos/>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61726.32">
+          <pron xml:lang="bar" notation="teuthonista">ga-</pron>
+        </form>
+        <form type="lautung" n="2" xml:id="tu-61726.33">
+          <pron xml:lang="bar" notation="teuthonista">ghe-</pron>
+        </form>
+        <sense corresp="this:LT1" xml:id="tu-61726.34">
+          <def xml:lang="de">ge-</def>
+        </sense>
+        <ref type="archiv" xml:id="tu-61726.26">HK 307, G307#44.1 = G3070306.pla#46.1, korr. W.B.</ref>
+        <ref type="quelle" xml:id="tu-61726.28">Schmeller, Cimbr.Wb.; Straberger</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-61726.29">{X} Bair.Spr.Geb. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>BayerWb.²</bibl>
+        </ref>
+        <ref type="zitiereweise" xml:id="tu-61726.30">
+          <bibl>Bd.,S. HA-3604/1-2</bibl>
+        </ref>
+      </entry>
+      <entry xml:id="g307_qdb-d1e727" n="391404" source="#orig-g307_qdb-d1e727">
+        <form type="hauptlemma" xml:id="tu-61726.37">
+          <orth>ge-</orth>
+        </form>
+        <gramGrp>
+          <pos/>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61726.41">
+          <pron xml:lang="bar" notation="teuthonista">--</pron>
+        </form>
+        <note type="diverse" n="1" xml:id="tu-61726.42">s.QU: LITERATURHINWEIS!</note>
+        <ref type="archiv" xml:id="tu-61726.36">HK 307, G307#45.1 = G3070306.pla#47.1, korr. W.B.</ref>
+        <ref type="quelle" xml:id="tu-61726.38">Beranek, SMä. (1936)<ref type="seite">20</ref>
+          <ref type="paragraph">58</ref>
+        </ref>
+        <ref type="quelleBearbeitet" xml:id="tu-61726.39">{8.3} SMä. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>BERANEK· (1936) S. [HA-341]</bibl>
+        </ref>
+        <usg type="geo" corresp="this:QDB">
+          <placeName>SMä.</placeName>
+        </usg>
+      </entry>
+      <entry xml:id="g307_qdb-d1e746" n="391405" source="#orig-g307_qdb-d1e746">
+        <form type="hauptlemma" xml:id="tu-61726.45">
+          <orth>ge-</orth>
+        </form>
+        <gramGrp>
+          <pos/>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61726.49">
+          <pron xml:lang="bar" notation="teuthonista">--</pron>
+        </form>
+        <note type="diverse" n="1" xml:id="tu-61726.50">s.QU: LITERATURHINWEIS!</note>
+        <ref type="archiv" xml:id="tu-61726.44">HK 307, G307#46.1 = G3070306.pla#48.1, korr. W.B.</ref>
+        <ref type="quelle" xml:id="tu-61726.46">Rudolf, Diss. Aussfern<ref type="seite">383</ref>
+        </ref>
+        <ref type="quelleBearbeitet" xml:id="tu-61726.47">{1C.1c} Außf.:mkDiss./Mda </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>RUDOLF· (1933) S. [Dw-4510]</bibl>
+        </ref>
+        <usg type="geo" corresp="this:QDB" resp="sigle_auto">
+          <placeName type="orig">Außf.:mkDiss./Mda</placeName>
+          <listPlace corresp="sigle:1C.1c">
+      <place type="Bundesland">
+        <placeName>NTir.</placeName>
+        <idno>1C</idno>
+        <listPlace>
+          <place type="Großregion">
+            <placeName>wNTir.</placeName>
+            <idno>1C.1</idno>
+            <listPlace>
+              <place type="Kleinregion">
+                <placeName>Außf.Lecht.</placeName>
+                <idno>1C.1c</idno>
+              </place>
+            </listPlace>
+          </place>
+        </listPlace>
+      </place>
+    </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="g307_qdb-d1e761" n="391406" source="#orig-g307_qdb-d1e761">
+        <form type="hauptlemma" xml:id="tu-61726.53">
+          <orth>ge-</orth>
+        </form>
+        <gramGrp>
+          <pos/>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61726.57">
+          <pron xml:lang="bar" notation="teuthonista">--</pron>
+        </form>
+        <note type="diverse" n="1" xml:id="tu-61726.58">s.QU: LITERATURHINWEIS!</note>
+        <ref type="archiv" xml:id="tu-61726.52">HK 307, G307#47.1 = G3070306.pla#49.1, korr. W.B.</ref>
+        <ref type="quelle" xml:id="tu-61726.54">Rudolf Diss., Aussfern<ref type="seite">299</ref>
+        </ref>
+        <ref type="quelleBearbeitet" xml:id="tu-61726.55">{1C.1c} Außf.:mkDiss./Mda </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>RUDOLF· (1933) S. [Dw-4510]</bibl>
+        </ref>
+        <usg type="geo" corresp="this:QDB" resp="sigle_auto">
+          <placeName type="orig">Außf.:mkDiss./Mda</placeName>
+          <listPlace corresp="sigle:1C.1c">
+      <place type="Bundesland">
+        <placeName>NTir.</placeName>
+        <idno>1C</idno>
+        <listPlace>
+          <place type="Großregion">
+            <placeName>wNTir.</placeName>
+            <idno>1C.1</idno>
+            <listPlace>
+              <place type="Kleinregion">
+                <placeName>Außf.Lecht.</placeName>
+                <idno>1C.1c</idno>
+              </place>
+            </listPlace>
+          </place>
+        </listPlace>
+      </place>
+    </listPlace>
+        </usg>
+      </entry>
+    </body>
+  </text>
+</TEI>

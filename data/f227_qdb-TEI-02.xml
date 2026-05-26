@@ -1,0 +1,3784 @@
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>DBO@TEI</title>
+        <respStmt>
+          <resp>Data modelling and conversion by:</resp>
+          <name>Jack Bowers</name>
+          <name>Omar Siam</name>
+          <name>Daniel Schopper</name>
+        </respStmt>
+      </titleStmt>
+      <editionStmt>
+        <edition>Second TEI edition of DBOE database, created <date>2018-09</date>.</edition>
+      </editionStmt>
+      <publicationStmt>
+        <p>Publication Information to be elaborated in following versions</p>
+      </publicationStmt>
+      <sourceDesc>
+        <p> Source of current file is <ptr target="file:///opt/basex/webapp/dboe_tei_modelling/xsl/cleanExport-TEI.xsl"/> which was converted from version 09 of the plain XML version of the DBOE</p>
+      </sourceDesc>
+    </fileDesc>
+    <encodingDesc>
+      <listPrefixDef>
+        <prefixDef ident="this" matchPattern="this:A" replacementPattern="#xpath(ancestor::entry//ref[@type = 'archiv'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:ANM([0-9]+)" replacementPattern="#xpath(ancestor::entry//note[@type = 'anmerkung'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:ANMB([0-9]+)" replacementPattern="#xpath(ancestor::entry//note[@type = 'anmerkung' and @resp = 'B'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:LT([0-9]+)" replacementPattern="#xpath(ancestor::entry//form[@type = 'lautung'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:LW([0-9]+)" replacementPattern="#xpath(ancestor::entry//form[@type = 'lehnwort'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:LW" replacementPattern="#xpath(ancestor::entry//form[@type = 'lehnwort'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:BD" replacementPattern="#xpath(ancestor::entry//def[position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:BD[2]" replacementPattern="#xpath(ancestor::entry//def[2])"/>
+        <prefixDef ident="this" matchPattern="this:BD[3]" replacementPattern="#xpath(ancestor::entry//def[3])"/>
+        <prefixDef ident="this" matchPattern="this:BD[4]" replacementPattern="#xpath(ancestor::entry//def[4])"/>
+        <prefixDef ident="this" matchPattern="this:BD[5]" replacementPattern="#xpath(ancestor::entry//def[5])"/>
+        <prefixDef ident="this" matchPattern="this:BD[6]" replacementPattern="#xpath(ancestor::entry//def[6])"/>
+        <prefixDef ident="this" matchPattern="this:BD[7]" replacementPattern="#xpath(ancestor::entry//def[7])"/>
+        <prefixDef ident="this" matchPattern="this:BD[8]" replacementPattern="#xpath(ancestor::entry//def[8])"/>
+        <prefixDef ident="this" matchPattern="this:BD[9]" replacementPattern="#xpath(ancestor::entry//def[9])"/>
+        <prefixDef ident="this" matchPattern="this:BD([0-9]+)" replacementPattern="#xpath(ancestor::entry//def[position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:DV" replacementPattern="#xpath(ancestor::entry//note[@type='diverse'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:DV[1]" replacementPattern="#xpath(ancestor::entry//note[@type='diverse'][1])"/>
+        <prefixDef ident="this" matchPattern="this:DV[2]" replacementPattern="#xpath(ancestor::entry//note[@type='diverse'][2])"/>
+        <prefixDef ident="this" matchPattern="this:DV[3]" replacementPattern="#xpath(ancestor::entry//note[@type='diverse'][3])"/>
+        <prefixDef ident="this" matchPattern="this:DV[4]" replacementPattern="#xpath(ancestor::entry//note[@type='diverse'][4])"/>
+        <prefixDef ident="this" matchPattern="this:ET" replacementPattern="#xpath(ancestor::entry//etym[position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:ETO" replacementPattern="#xpath(ancestor::entry//etym[@resp='O'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:ET[1]" replacementPattern="#xpath(ancestor::entry//etym[1])"/>
+        <prefixDef ident="this" matchPattern="this:ET[2]" replacementPattern="#xpath(ancestor::entry//etym[2])"/>
+        <prefixDef ident="this" matchPattern="this:ET[3]" replacementPattern="#xpath(ancestor::entry//etym[3])"/>
+        <prefixDef ident="this" matchPattern="this:ET[4]" replacementPattern="#xpath(ancestor::entry//etym[4])"/>
+        <prefixDef ident="this" matchPattern="this:BILDDAT" replacementPattern="#xpath(ancestor::entry//figure[position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:HL([0-9]+)" replacementPattern="#xpath(ancestor::entry//form[@type = 'hauptlemma'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:HLV([0-9]+)" replacementPattern="#xpath(ancestor::entry//form[@type = 'hauptlemma' and @subtype = 'verweis'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:J" replacementPattern="#xpath(ancestor::entry//ref/date[position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:KT([0-9]+)" replacementPattern="#xpath(ancestor::entry//cit[@type = 'kontext'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:KL" replacementPattern="#xpath(ancestor::entry//interp[position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:NB([0-9]+)" replacementPattern="#xpath(ancestor::entry//note[@type = 'notabene'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:QDB" replacementPattern="#xpath(ancestor::entry//ref[@type = 'quelleBearbeitet'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:QU" replacementPattern="#xpath(ancestor::entry//ref[@type = 'quelle'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:QZ" replacementPattern="#xpath(ancestor::entry//ref[@type = 'quelleZitierte']/bibl[position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:NR([0-9]+)" replacementPattern="#xpath(ancestor::entry//ref[@type = 'fragebogenNummer'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:N" replacementPattern="#xpath(ancestor::entry//num[position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:VL([0-9]+)" replacementPattern="#xpath(ancestor::entry//form[@type = 'verweiselemma'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:VRW([0-9]+)" replacementPattern="#xpath(ancestor::entry//xr[@type = 'verweise'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:VRWO([0-9]+)" replacementPattern="#xpath(ancestor::entry//xr[@type = 'verweise' and @resp = 'O'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:VRW[2]" replacementPattern="#xpath(ancestor::entry//xr[@type = 'verweise'][2])"/>
+        <prefixDef ident="this" matchPattern="this:NL([0-9]+)" replacementPattern="#xpath(ancestor::entry//form[@type = 'nebenlemma'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:WBD[1]" replacementPattern="#xpath(ancestor::entry//cit[@type = 'kontext']/quote/pRef)"/>
+        <prefixDef ident="this" matchPattern="this:WBD[2]" replacementPattern="#xpath(ancestor::entry//cit[@type = 'kontext']/quote/pRef)"/>
+        <prefixDef ident="this" matchPattern="this:WBD[3]" replacementPattern="#xpath(ancestor::entry//cit[@type = 'kontext']/quote/pRef)"/>
+        <prefixDef ident="this" matchPattern="this:WBD[4]" replacementPattern="#xpath(ancestor::entry//cit[@type = 'kontext']/quote/pRef)"/>
+        <prefixDef ident="this" matchPattern="this:WBD[5]" replacementPattern="#xpath(ancestor::entry//cit[@type = 'kontext']/quote/pRef)"/>
+        <prefixDef ident="this" matchPattern="this:WBD[6]" replacementPattern="#xpath(ancestor::entry//cit[@type = 'kontext']/quote/pRef)"/>
+        <prefixDef ident="this" matchPattern="this:WBD/KT([0-9]+)" replacementPattern="#xpath(ancestor::entry//cit[@type='kontext']/quote/pRef[position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:ZL([0-9]+)" replacementPattern="#xpath(ancestor::entry//re[@type = 'zusatzlemma']/form/orth[position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:ZW" replacementPattern="#xpath(ancestor::entry//ref[@type = 'zitiereweise']/bibl[position() = '$1'])"/>
+      </listPrefixDef>
+    </encodingDesc>
+    <xenoData corresp="this:f237_qdb-d1e29398" xml:id="orig-f237_qdb-d1e29398">
+*A* HK 327, f227#944.1 = fare0126.eck#1.1
+*HL* (aus)faren:6
+*QU* Biberwier, Bez. Reutte, Rudolf
+*QDB* {1C.1f02} Zw.Toren:Au^sf.:WTir. *@ FbB.RUDOLF^. (193x:30-35) [SFb.42-46,64/EFb.3-7,9/Mtlg.] *O* Biberwier NTir.
+===
+*NR/KT1* 44A7: ausfahren; Bed. (wegfahren; m. Arm ausholen;*)
+*KT1* mipm wagAn ausf-arA *KL* Fg:7A16
+*ZL/KT1* Wagen:1
+===
+*NR/KT2* 44A7: ausfahren; Bed. (wegfahren; m. Arm ausholen;*)
+*KT2* mitEr hant bAm &gt;sraibA ausf-arA *KL* Fg:7A17A16
+*ZL/KT2* Hand:1
+*ZL/KT2* schreiben:6;I/1
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e29438" xml:id="orig-f237_qdb-d1e29438">
+*A* HK 327, f227#945.1 = fare0126.eck#2.1
+*HL* (aus)faren:6
+*QU* Biberwier, Bez. Reutte, Rudolf
+*QDB* {1C.1f02} Zw.Toren:Au^sf.:WTir. *@ FbB.RUDOLF^. (193x:30-35) [SFb.42-46,64/EFb.3-7,9/Mtlg.] *O* Biberwier NTir.
+===
+*NR/KT1* 44A7: ausfahren; Bed. (wegfahren; m. Arm ausholen;*)
+*KT1* |An ts;orn ausf-arA l);osA *KL* Fg:U166
+*ZL/KT1* Zorn:1
+*ZL/KT1* l%&lt;a^sen:6
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e29467" xml:id="orig-f237_qdb-d1e29467">
+*A* HK 327, f227#946.1 = fare0126.eck#3.1
+*HL* (aus)faren:6
+*QU* Kirchau, Teufelsbauer
+*QDB* {6.2h28} Buckl.Wt.:s^oIndustriev.:sIndustriev.:^oIndustriev.:Industriev.:N^O *@ FbB.TEUFELSBAUER^. (19xx) [SFb./EFb./WFb.2] *O* Kirchau in Gm. Warth N^O
+===
+*NR* 44A7: ausfahren; Bed. (wegfahren; m. Arm ausholen;*)
+*LT1* ausf%*a^-n
+*BD/LT1* AUSFAHREN mit dem Wagen; weit ... ausholen
+===
+*NR/KT1* 44A7: ausfahren; Bed. (wegfahren; m. Arm ausholen;*)
+*KT1* is Feia is ausgf%*an [P2] *KL* Fg:A166
+*BD/KT1* DAS FEUER ist zum Ausbruch gekommen
+*ZL/KT1* Feuer:1
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e29505" xml:id="orig-f237_qdb-d1e29505">
+*A* HK 327, f227#947.1 = fare0126.eck#4.1
+*HL* (aus)faren:6
+*QU* Fendels, Kammerlander
+*QDB* {1C.1m02} obstObInnt.:ObInnt.:Innt.:WTir.:wNTir.:NTir.:Tir. *@ FbB.KAMMERLANDER^. (19xx) [SFb./WFb.2] *O* Fendels NTir.
+===
+*NR/KT1* 44A7: ausfahren; Bed. (wegfahren; m. Arm ausholen;*)
+*KT1* Ge^!at it z'nochn zu^!ai, der Schu^!achter fohrt [sg3] weit aus [0] *ANMB* Ltg!
+*BD/KT1* Geht nicht zu nahe hinzu, der Schuster f^ahrt weit aus
+*DV/KT1* Wenn der Schuster auf der St^or ist und die Kinder sich zu nahe hinzu dr^angen
+*ZL/KT1* (zu{o^-hin)g%&lt;en:6;imp;pl
+*ZL/KT1* weit:3;M
+*ZL/KT1* Schu{oster:1
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e29541" xml:id="orig-f237_qdb-d1e29541">
+*A* HK 327, f227#948.1 = fare0126.eck#5.1
+*HL* (aus)faren:6
+*QU* Greifenburg, Traunig
+*QDB* {2.1d03} ObDraut.:sObK^a. *@ FbB.TRAUNIG^. (192x:22-25) [SFb.1-44,tw/WrFb.1/Mtlg.] *O* Greifenb-g. K^a.
+===
+*NR/KT1* 44A7: ausfahren; Bed. (wegfahren; m. Arm ausholen;*)
+*KT1* Bua we a sche aus^-f%*aarn
+*BD/KT1* Bub wirst ausfahren *ANMO* spottender Zuruf
+*DV/KT1* wenn jemand mit einem armseligen Fuhrwerk des Weges kommt
+*ZL/KT1* Pu{obe:1
+*ZL/KT1* sch&lt;^on:2;P
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e29575" xml:id="orig-f237_qdb-d1e29575">
+*A* HK 327, f227#949.1 = fare0126.eck#6.1
+*HL* (aus)faren:6
+*QU* +Speisendf. a. d. Thaya N^O, Hinterecker @@@
+===
+*NR* 44A7: ausfahren; Bed. (wegfahren; m. Arm ausholen;*)
+*DV1* "Mit der Hand AUSFAHREN", "mit dem Arm ausfahren" scheint nicht ^ublich zu sein
+===
+*NR/KT1* 44A7: ausfahren; Bed. (wegfahren; m. Arm ausholen;*)
+*KT1* m-;oAriN |F-;oA [pl3] mA -%*as [0]! *KL* Fg:3650
+*WBD/KT1* fort- FAHREN
+*ZL/KT1* morgen:3;Z
+===
+*NR/KT2* 44A7: ausfahren; Bed. (wegfahren; m. Arm ausholen;*)
+*KT2* viA r i ~in b-es**n gN~;omA h;ob, is de ^Tsig/~^anAr~..in -%*as^kF-;oAn viA dA d-^af..i *ANMB* #..i# Ersatzzeichen f^ur auf den Kopf gestelltes i
+*ZL/KT2* n%:emen:6;P2
+*ZL/KT2* Zig%/einer:1
+*ZL/KT2* Teufel:1
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e29620" xml:id="orig-f237_qdb-d1e29620">
+*A* HK 327, f227#950.1 = fare0126.eck#7.1
+*HL* (aus)faren:6
+*QU* Hopfgtn. u. St.Johann, Bichler
+*QDB* {1C.3} ^oNOTir.:NOTir.:^oNTir.:NTir.:Tir.*@ Bichler *O* Hopfgtn. NTir. u. St.Johann NTir.
+===
+*NR* 44A7: ausfahren; Bed. (wegfahren; m. Arm ausholen;*)
+*LT1* ausf)a^!rn
+*BD/LT1* AUSFAHREN mit Wagen
+*BD/LT2* mit DEN Kindern AUSFAHREN, auch wenn alle zu Fu^s gehen, ausgehen
+===
+*NR/KT1* 44A7: ausfahren; Bed. (wegfahren; m. Arm ausholen;*)
+*KT1* Wo f)ascht [sg2] hai^!nt mit d^o Kinna aus [0]
+*ZL/KT1* Kind:1;pl
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e29656" xml:id="orig-f237_qdb-d1e29656">
+*A* HK 327, f227#951.1 = fare0126.eck#8.1
+*HL* (aus)faren:6
+*QU* Hopfgtn. u. St.Johann, Bichler
+*QDB* {1C.3} ^oNOTir.:NOTir.:^oNTir.:NTir.:Tir.*@ Bichler *O* Hopfgtn. NTir. u. St.Johann NTir.
+===
+*NR/KT1* 44A7: ausfahren; Bed. (wegfahren; m. Arm ausholen;*)
+*KT1* ausf)a^!rn mit oan *KL* Fg:675
+*BD/KT1* im Wagen mit einem fahren
+*ZL/KT1* -ein:5;IN
+===
+*NR/KT2* 44A7: ausfahren; Bed. (wegfahren; m. Arm ausholen;*)
+*KT2* f)ar [imp,sg2] mid dean Saggra aus [0] *KL* Fg:67A10
+*BD/KT2* bring den St^ankerer aus der Wirtsstube
+*ZL/KT2* S.akerer:1
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e29698" xml:id="orig-f237_qdb-d1e29698">
+*A* HK 327, f227#952.1 = fare0126.eck#9.1
+*HL* (aus)faren:6
+*QU* Hopfgtn. u. St.Johann, Bichler
+*QDB* {1C.3} ^oNOTir.:NOTir.:^oNTir.:NTir.:Tir.*@ Bichler *O* Hopfgtn. NTir. u. St.Johann NTir.
+===
+*NR/KT1* 44A7: ausfahren; Bed. (wegfahren; m. Arm ausholen;*)
+*KT1* ea is mit da H)andt ausgf)a^!rn [P2] *KL* Fg:567A16
+*WBD/KT1* AUFAHREN = AUSHOLEN um zu schlagen; beim Schreiben AUSFAHREN
+*ZL/KT1* Hand:1
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e29727" xml:id="orig-f237_qdb-d1e29727">
+*A* HK 327, f227#953.1 = fare0126.eck#10.1
+*HL* (aus)faren:6
+*QU* K^onigswerth, Horner
+*QDB* {10} nwEgerld./nbair. *@ FbB.HORNER^. (1922-35) [SFb.8,13-105tw./EFb.4-9/WrFb.1/Mtlg.] *O* K^onigswerth Egerld.
+===
+*NR/KT1* 44A7: ausfahren; Bed. (wegfahren; m. Arm ausholen;*)
+*KT1* pos^T asf-;oE^-..n *KL* Fg:16
+*BD/KT1* die post ausfahren = die PAKETE an die Empf^anger zur Verteilung bringen
+*ZL/KT1* Post:1
+===
+*NR/KT2* 44A7: ausfahren; Bed. (wegfahren; m. Arm ausholen;*)
+*KT2* |E kl-;ois -asf-;oE^-..n *KL* Fg:U16
+*BD/KT2* ein Geleise ausfahren = immer in derselben Spur bleiben - beim wiederholten Fahren
+*ZL/KT2* (Ge)l-eise:1
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e29769" xml:id="orig-f237_qdb-d1e29769">
+*A* HK 327, f227#954.1 = fare0126.eck#11.1
+*HL* (aus)faren:6
+*QU* K^onigswerth, Horner
+*QDB* {10} nwEgerld./nbair. *@ FbB.HORNER^. (1922-35) [SFb.8,13-105tw./EFb.4-9/WrFb.1/Mtlg.] *O* K^onigswerth Egerld.
+===
+*NR/KT1* 44A7: ausfahren; Bed. (wegfahren; m. Arm ausholen;*)
+*KT1* m-is^T asf-;oE^-..n *KL* Fg:16
+*BD/KT1* Mist ausfahren = Mist fahren
+*ZL/KT1* Mist:1
+===
+*NR/KT2* 44A7: ausfahren; Bed. (wegfahren; m. Arm ausholen;*)
+*KT2* ^TE h-;eE -is -askf-;oE^-..n [P2] *KL* Fg:A166
+*BD/KT2* der Herr ist ausgefahren (mit dem Wagen, meist zum Vergn^ugen)
+*ZL/KT2* H%:err:1
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e29812" xml:id="orig-f237_qdb-d1e29812">
+*A* HK 327, f227#955.1 = fare0126.eck#12.1
+*HL* (aus)faren:6
+*QU* Biberwier, Bez. Reutte, Rudolf
+*QDB* {1C.1f02} Zw.Toren:Au^sf.:WTir. *@ FbB.RUDOLF^. (193x:30-35) [SFb.42-46,64/EFb.3-7,9/Mtlg.] *O* Biberwier NTir.
+===
+*NR/KT1* 44A7b: Ausfahrets
+*KT1* auskf-arEts tsuik *KL* Fg:61
+*ZL/KT1* Zeug:1
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e29839" xml:id="orig-f237_qdb-d1e29839">
+*A* HK 327, f227#956.1 = fare0126.eck#13.1
+*HL* (aus)faren:6
+*QU* Hopfgtn. u. St.Johann, Bichler
+*QDB* {1C.3} ^oNOTir.:NOTir.:^oNTir.:NTir.:Tir.*@ Bichler *O* Hopfgtn. NTir. u. St.Johann NTir.
+===
+*NR/KT1* 44A7c
+*KT1* an ausgf)a^!rns [P2,fl] diandl *KL* Fg:U61
+*BD/KT1* ein ausgelassenes Weib
+*ZL/KT1* Dierne:1;D1
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e29868" xml:id="orig-f237_qdb-d1e29868">
+*A* HK 327, f227#957.1 = fare0126.eck#14.1
+*HL* (aus)faren:6
+*QU* Plattetschlag, Schacherl
+*QDB* {8.1a11} uB^oW:wSB^o.:SB^o.:B^o. *@ FbB.SCHACHERL^. (19xx) [SFb./EFb./Slg."Plattetschl."] *O* Plattetschl. B^oW
+===
+*NR* 44A7: ausfahren; Bed. (wegfahren; m. Arm ausholen;*)
+*LT1* ausfoarn
+*BD/LT1* AUSFAHREN mit dem Wagen, dem Schlitten
+*DV1* dagegen: #ausf^u[r]n#: ausf^uhren, nicht allein etwas ausf^uhren aus dem Hause, z. B. aufs Feld, oder eine b^ose Handlung begehen, sondern auch einen Weg durch tiefe eingefahrene Radspuren schlecht machen "#An ausgfoarna W.eg#"; man sagt dazu aber auch: #in W.eg ausfoarn#
+*VRWO* s. a. #ausf^u[r]n#
+===
+*NR/KT1* 44A7: ausfahren; Bed. (wegfahren; m. Arm ausholen;*)
+*KT1* An ausgfoarna [P2,fl] W.eg *KL* Fg:U61
+*BD/KT1* ein durch tiefe eingefahrene Radspuren schlecht gemachter Weg
+*ZL/KT1* W%:eg:1
+===
+*NR/KT2* 44A7: ausfahren; Bed. (wegfahren; m. Arm ausholen;*)
+*KT2* in W.eg ausfoarn
+*BD/KT2* DEN Weg durch tiefe eingefahrene Radspuren schlecht machen
+*ZL/KT2* W%:eg:1
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e29930" xml:id="orig-f237_qdb-d1e29930">
+*A* HK 327, f227#958.1 = fare0126.eck#15.1
+*HL* (aus)fu{eren:6
+*QU* Plattetschlag, Schacherl
+*QDB* {8.1a11} uB^oW:wSB^o.:SB^o.:B^o. *@ FbB.SCHACHERL^. (19xx) [SFb./EFb./Slg."Plattetschl."] *O* Plattetschl. B^oW
+===
+*NR* 44A7: ausfahren; Bed. (wegfahren; m. Arm ausholen;*)
+*LT1* ausf^u[r]n
+*BD/LT1* ausf^uhren
+*VRWB* s. a. (aus)faren
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e29957" xml:id="orig-f237_qdb-d1e29957">
+*A* HK 327, f227#959.1 = fare0126.eck#16.1
+*HL* (aus)faren:6
+*QU* Angerbg., Juffinger
+*QDB* {1C.3c07} wUInnt.: UInnt.:NOTir.:^oNTir. *@ FbB.JUFFINGER^. (19xx) [SFb.] *O* Angerbg. in Gm. Kramsach NTir.
+===
+*NR* 64I46: von d. Alm abtreiben; wann? Regeln
+*LT1* ausf;o^!rn
+*BD/LT1* von der Alpe abfahren
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e29982" xml:id="orig-f237_qdb-d1e29982">
+*A* HK 327, f227#960.1 = fare0126.eck#17.1
+*HL* (aus)faren:6
+*QU* Weident., Gra^sl
+*QDB* {11.3a05} WRum.*@ FbB.GRASSL^. (19xx) [SFb.] *O* Weident. WRum.
+===
+*NR/KT1* 18E12: Mist ausfahren/f^uhren
+*KT1* n Mist ausfohrn *KL* Fg:A16
+*WBD/KT1* ausfahren
+*DV/KT1* was auch #dung)a# genannt wird
+*ZL/KT1* Mist:1
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e30017" xml:id="orig-f237_qdb-d1e30017">
+*A* HK 327, f227#961.1 = fare0126.eck#18.1
+*HL* (aus)faren:6
+*QU* Oschelin, Bachmann
+*QDB* {wb0:CZ-Eg} s^oEgerl./nbair. *@ FbB.BACHMANN^. (19xx) [SFb./Mtlg.] *O* Oschelin Egerl.
+===
+*NR/KT1* 18E12: Mist ausfahren/f^uhren
+*KT1* m-ist -asf%*aE^!rn *KL* Fg:16
+*BD/KT1* Mist ausfahren
+*DV/KT1* #m-ist -asfeiE^!rn# = Mist ausfahren
+*ZL/KT1* Mist:1
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e30051" xml:id="orig-f237_qdb-d1e30051">
+*A* HK 327, f227#962.1 = fare0126.eck#19.1
+*HL* (aus)faren:6
+*QU* Eger, Habermann
+*QDB* {10.2a26} nwEgerld:Tschech./nbair. Eger Egerld.
+===
+*NR/KT1* 18E12: Mist ausfahren/f^uhren
+*KT1* Mist a-sfahr'n *KL* Fg:16
+*BD/KT1* Mist ausf^uhren
+*ZL/KT1* Mist:1
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e30076" xml:id="orig-f237_qdb-d1e30076">
+*A* HK 327, f227#963.1 = fare0126.eck#20.1
+*HL* (aus)faren:6
+*QU* Asch, Alberti
+*QDB* {10.3a} nwEgerl./nbair. *@ FbB.ALBERTI^. (1913-14) [SFb.1-29/Mtlg.] *O* Asch Egerl.
+===
+*NR/KT1* 18E12: Mist ausfahren/f^uhren
+*KT1* mist asf%*aE^!rn *KL* Fg:16
+*ZL/KT1* Mist:1
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e30103" xml:id="orig-f237_qdb-d1e30103">
+*A* HK 327, f227#964.1 = fare0126.eck#21.1
+*HL* (aus)faren:6
+*QU* Sangerbg., Reiniger
+*QDB* {wb0:CZ-Eg} nwEgerl./nbair. *@ FbB.REINIGER^. (191x:13-1915) [SFb.] *O* Sangerbg. Egerl.
+===
+*NR* 18E12: Mist ausfahren/f^uhren
+*LT1* -asf.oEn
+*LT2* -asgf.oEn [P2]
+*BD/LT1* ausfahren
+===
+*NR/KT1* 18E12: Mist ausfahren/f^uhren
+*KT1* m-ist asf.oEn *KL* Fg:16
+*BD/KT1* Mist ausfahren
+*ZL/KT1* Mist:1
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e30145" xml:id="orig-f237_qdb-d1e30145">
+*A* HK 327, f227#965.1 = fare0126.eck#22.1
+*HL* (aus)faren:6
+*QU* Ma.Kulm, Hassmann
+*QDB* {10.2a50} nwEgerld. *@ Mtlg.Hassmann?
+===
+*NR/KT1* 18E12: Mist ausfahren/f^uhren
+*KT1* m-%/ist -%\asf-%*aE^-n *KL* Fg:16
+*BD/KT1* Mist ausfahren
+*ZL/KT1* Mist:1
+*KT2* tu-N -%\asf-%*aE^-n *KL* Fg:16
+*BD/KT2* D^unger ausfahren
+*ZL/KT2* Tung:1
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e30184" xml:id="orig-f237_qdb-d1e30184">
+*A* HK 327, f227#966.1 = fare0126.eck#23.1
+*HL* (aus)faren:6
+*QU* Neurollau bei Karlsbad, Hassmann @@@
+===
+*NR* 18E12: Mist ausfahren/f^uhren
+*DV1* HIER bringt Mist ausfahren am Samstag Ungl^uck, hei^st es
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e30200" xml:id="orig-f237_qdb-d1e30200">
+*A* HK 327, f227#967.1 = fare0126.eck#24.1
+*HL* (aus)faren:6
+*QU* Neubg. b. Asch, Oertel
+*QDB* {10.2a54} nwEgerld.
+===
+*NR/KT1* 18E12: Mist ausfahren/f^uhren
+*KT1* Mist asfoahn *KL* Fg:16
+*BD/KT1* Mist ausfahren
+*DV/KT1* #dungE# = d^ungen
+*ZL/KT1* Mist:1
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e30230" xml:id="orig-f237_qdb-d1e30230">
+*A* HK 327, f227#968.1 = fare0126.eck#25.1
+*HL* (aus)faren:6
+*QU* Plan, Urban
+*QDB* {10.2c35} swEgerld. *@ FbB.URBAN^. (19xx) [SFb./Mtlg.] *O* Plan Egerld.
+===
+*NR/KT1* 18E12: Mist ausfahren/f^uhren
+*KT1* Dung asfaa[o]n *KL* Fg:16
+*ZL/KT1* Tung:1
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e30257" xml:id="orig-f237_qdb-d1e30257">
+*A* HK 327, f227#969.1 = fare0126.eck#26.1
+*HL* (aus)faren:6
+*QU* Seiz, Richter
+*QDB* {3.2b02} Liesingt.:^oObMurgeb.:mbair.ObSt. *@ FbB.RICHTER^. (19xx) [SFb.] *O* Seiz in Gm. Kammern St.
+===
+*NR/KT1* 18E12: Mist ausfahren/f^uhren
+*KT1* Mist ausfoa^!rn *KL* Fg:16
+*DV/KT1* #Mist ausfia^!rn#, #Mist ausbriNan#
+*ZL/KT1* Mist:1
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e30290" xml:id="orig-f237_qdb-d1e30290">
+*A* HK 327, f227#970.1 = fare0126.eck#27.1
+*HL* (aus)faren:6
+*QU* Reichent., Stich
+*QDB* {10.2c38} swEgerld.:Tschech./nbair.: Reichent. Egerld. *@ Fb./Mtlg.Stich
+===
+*NR/KT1* 18E12: Mist ausfahren/f^uhren
+*KT1* M-ist asfoE^!rn *KL* Fg:16
+*BD/KT1* Mist ausfahren
+*ZL/KT1* Mist:1
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e30317" xml:id="orig-f237_qdb-d1e30317">
+*A* HK 327, f227#971.1 = fare0126.eck#28.1
+*HL* faren:6
+*QU* Reichent., Stich
+*QDB* {10.2c38} swEgerld.:Tschech./nbair.: Reichent. Egerld. *@ Fb./Mtlg.Stich
+===
+*NR* 18E12: Mist ausfahren/f^uhren
+*LT1* ich foE [sg1+5P1]
+*LT2* du foEst [sg2+5P2]
+*LT3* du fiEst [+5P2]
+*LT4* eE foEt [sg3+5P3]
+*LT5* eE fiEt [+5P3]
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e30355" xml:id="orig-f237_qdb-d1e30355">
+*A* HK 327, f227#972.1 = fare0126.eck#29.1
+*HL* (aus)faren:6
+*QU* Radschin, Frasl
+*QDB* {6.3a15} nwWaldv.:nWaldv.:wWaldv.:Waldv.:N^O *@ FbB.FRASL^. (19xx) [SFb.] *O* Radschin in Gm. Kautzen N^O [2o/1.]
+===
+*NR/KT1* 18E12: Mist ausfahren/f^uhren
+*KT1* Mist au^!sfoan khouma wouns a r.ength *ANMB* #Mist au^!sfoan# im Or. zusammen
+*BD/KT1* Mistausfahren kann man wenn es auch regnet
+*ZL/KT1* Mist:1
+*ZL/KT1* k^onnen:6;sg3
+*ZL/KT1* regnen:6;sg3
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e30391" xml:id="orig-f237_qdb-d1e30391">
+*A* HK 327, f227#973.1 = fare0126.eck#30.1
+*HL* fu{eren:6
+*QU* Radschin, Frasl
+*QDB* {6.3a15} nwWaldv.:nWaldv.:wWaldv.:Waldv.:N^O *@ FbB.FRASL^. (19xx) [SFb.] *O* Radschin in Gm. Kautzen N^O [2o/1.]
+===
+*NR/KT1* 18E12: Mist ausfahren/f^uhren
+*KT1* -;ea tuit Mistfian
+*BD/KT1* er tut Mist fahren; ER TUT MIST f^uhren
+*ZL/KT1* Mist:1
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e30418" xml:id="orig-f237_qdb-d1e30418">
+*A* HK 327, f227#974.1 = fare0126.eck#31.1
+*HL* (aus)faren:6
+*QU* Imst, Schatz
+*QDB* {1C.1n01} wObInnt.:ObInnt.:Innt.:Tir.:wNTir.:NTir.:Tir. *@ FbB.SCHATZ^. (19xx) [SFb./Mtlg.] *O* Imst NTir.
+===
+*NR* 18F1: pfl^ugen/ackern/bauen; Bed.Untersch.?; ^ubertr.Bed.
+*LT1* ausf-;orE
+===
+*NR/KT1* 18F1: pfl^ugen/ackern/bauen; Bed.Untersch.?; ^ubertr.Bed.
+*KT1* |En ;okXEr ausf-;orE *KL* Fg:A16
+*WBD/KT1* umpfl^ugen
+*ZL/KT1* Acker:1
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e30454" xml:id="orig-f237_qdb-d1e30454">
+*A* HK 327, f227#975.1 = fare0126.eck#32.1
+*HL* (aus)faren:6
+*QU* Winklern, Trojer
+*QDB* {2.1b06} mM^ollt.:nObK^a. *@ FbB.TROJER^. (191x:12-17) [SFb.] *O* Winklern K^a.
+===
+*NR* 18F1 (f): pfl^ugen/ackern/bauen; Bed.Untersch.?; ^ubertr.Bed.
+*LT1* ausgf%*aan [P2]
+*BD/LT1* ausgefahren
+*DV1* Die Ackerkrume hat keine besondere Bezeichnung
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e30481" xml:id="orig-f237_qdb-d1e30481">
+*A* HK 327, f227#976.1 = fare0126.eck#33.1
+*HL* (aus)faren:6
+*QU* Lamb., Pausinger
+*QDB* {5.2b18} mHausrv.:O^O *@ FbB.PAUSINGER^. (19xx) [SFb.] *O* (Umg.) Lamb. O^O
+===
+*NR* 31A3: Teigarbeiten bei Wei^sgeb^ack (im Ggs. zu Schwarz-)
+*LT1* ausfahrn
+*LT2* ausfahrn
+*BD/LT1* in die Backkuchl tragen
+*BD/LT2* SEMMELN IN DIE K^ALTE BRINGEN, NACHDEM SIE GENUG GEGART SIND
+*DV1/LT2* Wenn die Semmeln genug gegart sind, m^ussen sie in die K^alte gebracht werden
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e30516" xml:id="orig-f237_qdb-d1e30516">
+*A* HK 327, f227#977.1 = fare0126.eck#34.1
+*HL* (aus)faren:6
+*QU* Zellerndf., Mattes
+*QDB* {6.4b08} Pulkaut.:nwWeinv.:nWeinv.:wWeinv.:Weinv.:N^O *@ Slg.Mattes *O* Zellerndf. N^O
+===
+*NR/KT1* 31A11: den Laden (m. Teigsemmeln) neb. Ofengrube stellen
+*KT1* |En L;odn ausf;oa^!rn
+*ZL/KT1* Laden:1
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e30541" xml:id="orig-f237_qdb-d1e30541">
+*A* HK 327, f227#978.1 = fare0126.eck#35.1
+*HL* (aus)faren:6
+*QU* Kuschwarda, Ilg
+*QDB* {10.1a09} mB^oW:Tschech./mbair. *O* Kuschwarda B^oW
+===
+*NR* 31A11: den Laden (m. Teigsemmeln) neb. Ofengrube stellen
+*LT1* Ausfoan !
+*BD/LT1* ausfahren
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e30564" xml:id="orig-f237_qdb-d1e30564">
+*A* HK 327, f227#979.1 = fare0126.eck#36.1
+*HL* (aus)faren:6
+*QU* Mauer b. W., Z. @@@
+===
+*NR* 31A11: den Laden (m. Teigsemmeln) neb. Ofengrube stellen
+*LT1* ausf;oan
+*BD/LT1* ausfahren
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e30584" xml:id="orig-f237_qdb-d1e30584">
+*A* HK 327, f227#980.1 = fare0126.eck#37.1
+*HL* (aus)faren:6
+*QU* Meran, Menghin
+*QDB* {1A.1h} Umg.Meran:Burggr.:wSTir.:STir.:It. *@ FbB.MENGHIN^. (19xx) [SFb./EFb./WFb.2/Mtlg.] *O* (Umg.) Meran STir.
+===
+*NR/KT1* 33B26: d. Arme bewegen (umeinanderfuchteln)
+*KT1* Mitn %*arm ausf%*arn *KL* Fg:7A16
+*BD/KT1* mit dem Arm ausfahren
+*DV/KT1* z. B. um eine Ohrfeige zu geben
+*ZL/KT1* Arm:1
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e30616" xml:id="orig-f237_qdb-d1e30616">
+*A* HK 327, f227#981.1 = fare0126.eck#38.1
+*HL* (aus)faren:6
+*QU* Gmunden, Loitlesberger
+*QDB* {5.3b} n^oSkgt.:^oSkgt.:Skgt.:swTraunv.:sTraunv.: wTraunv.:Traunv.:O^O *@ FbB.LOITLESBERGER^. (19xx) [SFb./Mtlg./Slg. "PflN+TierN.Gmunden"] *O* Gmunden O^O
+===
+*NR* 17C28: vermurt/verw^ustet durch Elemente, v. Ackerboden
+*LT1* ausgf%*a^!rn
+===
+*NR/KT1* 17C28: vermurt/verw^ustet durch Elemente, v. Ackerboden
+*KT1* ^On Laidn^-F^a^!^ol is^!os ausgf%*a^!rn [P2]
+*ZL/KT1* (Leiten)f%:eld:1
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e30648" xml:id="orig-f237_qdb-d1e30648">
+*A* HK 327, f227#982.1 = fare0126.eck#39.1
+*HL* (aus)faren:6
+*QU* Kiens, R^od
+*QDB* {1A.4d02} unt.STir.Pustert.:^oSTir. *@ FbB.R^OD^. (19xx) [SFb./Mtlg.?] *O* Kiens STir.
+===
+*NR/KT1* 7A5: Hausschau(en) vor Verlobg. (auf d. Beschau gehn)
+*KT1* mit oando ausf-orn
+*DV/KT1* Man macht h^aufig eine Spazierfahrt, Wallfahrt etc.
+*ZL/KT1* -ein:5;IN;fl
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e30675" xml:id="orig-f237_qdb-d1e30675">
+*A* HK 327, f227#983.1 = fare0126.eck#40.1
+*HL* (aus)faren:6
+*QU* Fusch, Huber
+*QDB* {4.2c01} Fuschert.:UPinzg.:Pinzg.:Sa. *@ FbB.HUBER^. (1913-30) [SFb./EFb./Mtlg.] *O* Fusch Sa.
+===
+*NR/KT1* 77D69: Galle in Komp. (gallhantig, -bitter)
+*KT1* das oan d G%*a^!i^!l ausf%*a^!rscht [sg3] *KL* Ra:85A16
+*ZL/KT1* -ein:5;IN
+*ZL/KT1* Galle:1
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e30704" xml:id="orig-f237_qdb-d1e30704">
+*A* HK 327, f227#984.1 = fare0126.eck#41.1
+*HL* (aus)faren:6
+*QU* Kuf., K.
+*QDB* {1C.3e06} ^oUInnt.:UInnt.:Innt.:^oNOTir.:NOTir.:^oNTir.:NTir.:Tir. *@ FbB.KAPFINGER^. (19xx) [SFb.] *O* Kufstn. NTir.
+===
+*NR/KT1* 89L1: Himmel im relig.Sinn; im Fluch*; F^ug./Ra.*
+*KT1* Wennst ann Himm;^o w^ust kemma, / Muast d;^o feina benemma, / Mit dei growa Maniar / Wurtens ausf;oh^!rn mit dia! *KL* 4Z *ANMB* Querstrich ^uber #feina#, #Maniar#, #aus#
+*ZL/KT1* Himmel:1
+*ZL/KT1* k%:emmen:6
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e30743" xml:id="orig-f237_qdb-d1e30743">
+*A* HK 327, f227#985.1 = fare0126.eck#42.1
+*HL* (aus)faren:6
+*QU* Hopfgtn. u. St.Johann, Bichler
+*QDB* {1C.3} ^oNOTir.:NOTir.:^oNTir.:NTir.:Tir.*@ Bichler *O* Hopfgtn. NTir. u. St.Johann NTir.
+===
+*NR/KT1* 47D11: spazieren; Komp./Abl.; Syn. (hossen gehn)
+*KT1* mit d^o Khinna ausf)a^!..rn *KL* Fg:7A16
+*WBD/KT1* spazieren gehen
+*ZL/KT1* Kind:1
+===
+*NR/KT2* 47D11: spazieren; Komp./Abl.; Syn. (hossen gehn)
+*KT2* mit d'r )A^otn ausf)a^!..rn *KL* Fg:7A16
+*WBD/KT2* spazieren gehen
+*ZL/KT2* alt:2;P/1,fl
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e30785" xml:id="orig-f237_qdb-d1e30785">
+*A* HK 327, f227#986.1 = fare0126.eck#43.1
+*HL* (aus)faren:6
+*QU* Gro^spold, Piringer
+*QDB* {wb0:RU} Landlergeb.:Siebenb^urgen:WRum./mbair. *@ FbB.PIRINGER^. (19xx) [SFb.] *O* Gr.Pold WRum.
+===
+*NR/KT1* 1H11: Ausschlag um Mund; Mund-Krankh. (Mundf^aule*)
+*KT1* |Es is ;eam tsum +? Maul auskf%*arn [P2] *KL* Ra.
+*BD/KT1* er hat Ausschlag um den Mund
+*ZL/KT1* Maul:1
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e30814" xml:id="orig-f237_qdb-d1e30814">
+*A* HK 327, f227#987.1 = fare0126.eck#44.1
+*HL* (aus)faren:6
+*QU* Winklern, Trojer
+*QDB* {2.1b06} mM^ollt.:nObK^a. *@ FbB.TROJER^. (191x:12-17) [SFb.] *O* Winklern K^a.
+===
+*NR* 29B70 (F2): Arbeiten/Werkz./Maschinen b. gewerbl.Brotbacken*
+*LT1* ausf%*aan
+*BD/LT1* ausfahren = das Hinaustragen des Geb^ackes oder Brotes von der Backstube in einen k^uhlen Raum
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e30840" xml:id="orig-f237_qdb-d1e30840">
+*A* HK 327, f227#988.1 = fare0126.eck#45.1
+*HL* (aus)faren:6
+*QU* Sch^onbg., Andr.
+*QDB* {10.1a} mB^oW:Tschech./mbair. *@ FbB.ANDRASCHKO^. (1913-28) [SFb.1-80tw.,94/WrFb.1/Mtlg.] *O* (Leimsgrub u. Moarh^auser in Gm.) Sch^onbg. B^oW
+===
+*NR/KT1* 79E16: Stelle, wo Sensenhieb zu Ende ist (hinter d.Mahd)
+*KT1* wou mA r ausfoAhd [sg3] *KL* Fg:356
+*BD/KT1* wo man ausf^ahrt
+*ZL/KT1* wo:3;FR
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e30869" xml:id="orig-f237_qdb-d1e30869">
+*A* HK 327, f227#989.1 = fare0126.eck#46.1
+*HL* (aus)faren:6
+*QU* Reichgruben b. St.P., Bertl
+*QDB* {6.1q06} Perschlingt.:n^oMostv.:nMostv.:^oMostv.:Mostv.:N^O *@ Mtlg. Bertl?
+===
+*NR/KT1* 26P30: Eiter m. Vb. (es spritzt; es auskratzen,*)
+*KT1* dou is ouwar s^-Ortar au^sgforn [P2] wiars des Gschw^uar aufgschnin hom
+*ZL/KT1* -Eiter:1
+*ZL/KT1* (Ge)schw%:er:1
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e30894" xml:id="orig-f237_qdb-d1e30894">
+*A* HK 327, f227#990.1 = fare0126.eck#47.1
+*HL* (aus)faren:6
+*QU* Wien, P^oschl
+*QDB* {6.5} W. *O* Wien
+===
+*NR* 28A14: Zeitang. zum Feuer(machen) im Backofen, Ra.*
+*LT1* ausfarn
+*BD/LT1* AUSFAHREN (= wenn das Geb^ack fertig ist)
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e30917" xml:id="orig-f237_qdb-d1e30917">
+*A* HK 327, f227#991.1 = fare0126.eck#48.1
+*HL* (aus)faren:6
+*QU* Rohr im Gebirge, Schmatzberger
+*QDB* {6.2e04} Schneebg.Geb.:swIndustriev.:sIndustriev.:wIndustriev.:Industriev.:N^O *@ FbB.SCHMATZBERGER^. (19xx) [SFb.] *O* Rohr N^O
+===
+*NR/KT1* 29B41 (F): Brotteig nach d. G^arg. aus d. Trog nehmen (*)
+*KT1* Do)ag a-usfo)arn *KL* Fg:16
+*BD/KT1* Teig ausfahren = TEIG ins K^uhle bringen
+*ZL/KT1* T-eig:1
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e30946" xml:id="orig-f237_qdb-d1e30946">
+*A* HK 327, f227#992.1 = fare0126.eck#49.1
+*HL* (aus)faren:6
+*QU* Matrei, Egger
+*QDB* {1C.2h02} mittl.NTir.Wippt.:NTir.Wippt.:Wippt.:Sillgeb.:mNTir. *@ FbB.EGGER^. (19xx) [SFb.] *O* Matrei NTir.
+===
+*NR* 28A33: Herstellgsr^aume der gewerbl.B^ackerei
+*LT1* ausf-..orn
+*BD/LT1* von der Garb wegnehmen
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e30971" xml:id="orig-f237_qdb-d1e30971">
+*A* HK 327, f227#993.1 = fare0126.eck#50.1
+*HL* (aus)fallen:6
+*QU* Gmunden, Loitlesberger
+*QDB* {5.3b} n^oSkgt.:^oSkgt.:Skgt.:swTraunv.:sTraunv.: wTraunv.:Traunv.:O^O *@ FbB.LOITLESBERGER^. (19xx) [SFb./Mtlg./Slg. "PflN+TierN.Gmunden"] *O* Gmunden O^O
+===
+*NR* 22E3: Bein "Knochen" (als Subj.) m. Vb. (w^achst,*)
+*LT1* ausf%*a^on
+===
+*NR/KT1* 22E3: Bein "Knochen" (als Subj.) m. Vb. (w^achst,*)
+*KT1* a B;oa^!n h%*ad a^!r s^o ausgf%*a^!^on *KL* Fg:U16556
+*WBD/KT1* durch Fall ausgekegelt
+*ZL/KT1* P-ein:1
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e31007" xml:id="orig-f237_qdb-d1e31007">
+*A* HK 327, f227#994.1 = fare0126.eck#51.1
+*HL* (aus)faren:6
+*QU* Schlanders, Gamper
+*QDB* {1A.1d03} westl.uVinschg.:wSTir. *@ FbB.GAMPER^. (19xx) [SFb./Mtlg.] *O* Schlanders STir.
+===
+*NR/KT1* 34C29: Bewegungen m. Hand ausf^uhren, gestikulieren (*)
+*KT1* mit di H;ent ausf-;orn *KL* Fg:7A16
+*BD/KT1* mit den H^anden ausfahren; MIT DEN H^ANDEN fuchteln
+*ZL/KT1* Hand:1;pl
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e31036" xml:id="orig-f237_qdb-d1e31036">
+*A* HK 327, f227#995.1 = fare0126.eck#52.1
+*HL* (aus)faren:6
+*QU* Stra^sburg Umg., Nagelmayer
+*QDB* {2.2d,2.3b,2.3c,2.3d} Gurkt.:MK^a.:K^a. *@ FbB.NAGELMAYER^. (19xx) [SFb./WFb.2/Mtlg.]
+===
+*NR* 76K67: fahrtbereit machen, aufbrechen
+*LT1* ausf%))oarn
+*BD/LT1* ausfahren = eine Vergn^ugungsfahrt unternehmen
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e31059" xml:id="orig-f237_qdb-d1e31059">
+*A* HK 327, f227#996.1 = fare0126.eck#53.1
+*HL* (aus)faren:6
+*QU* Plattetschlag, Schacherl
+*QDB* {8.1a11} uB^oW:wSB^o.:SB^o.:B^o. *@ FbB.SCHACHERL^. (19xx) [SFb./EFb./Slg."Plattetschl."] *O* Plattetschl. B^oW
+===
+*NR* 45B7: auslaufen; Bed./F^ug. (Fl^ussigk.; spazieren gehn,*)
+*LT1* ausfoarn
+*BD/LT1* auslaufen EINES SCHIFFES
+*VRWO* vgl: #ausrina# = auslaufen
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e31089" xml:id="orig-f237_qdb-d1e31089">
+*A* HK 327, f227#997.1 = fare0126.eck#54.1
+*HL* (aus)rinnen:6
+*QU* Plattetschlag, Schacherl
+*QDB* {8.1a11} uB^oW:wSB^o.:SB^o.:B^o. *@ FbB.SCHACHERL^. (19xx) [SFb./EFb./Slg."Plattetschl."] *O* Plattetschl. B^oW
+===
+*NR* 45B7: auslaufen; Bed./F^ug. (Fl^ussigk.; spazieren gehn,*)
+*LT1* ausrina
+*BD/LT1* auslaufen
+*VRWO* vgl. #ausfoarn#
+********************
+</xenoData>
+    <xenoData corresp="this:f237_qdb-d1e31118" xml:id="orig-f237_qdb-d1e31118">
+*A* HK 327, f227#998.1 = fare0126.eck#55.1
+*HL* (aus)faren:6
+*QU* Mittelvintschgau, Spechtenhauser [Waschgler] @@@
+===
+*NR/KT1* 100F47: Getreide durch Ochsen/Pferde austreten lassen*
+*KT1* das Korn ausf%*ahrn *KL* Fg:A16
+*ZL/KT1* Korn:1
+********************
+</xenoData>
+  </teiHeader>
+  <text>
+    <body>
+      <entry xml:id="f237_qdb-d1e29398" n="213095" source="#orig-f237_qdb-d1e29398">
+        <form type="hauptlemma" xml:id="tu-33325.56">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <cit type="kontext" n="1" xml:id="tu-33326.1">
+          <quote xml:lang="bar">mipm wagɒn ausfārɒ</quote>
+          <interp>Fg:7A16</interp>
+          <re type="zusatzlemma" xml:id="tu-33326.2">
+            <form>
+              <orth>Wagen</orth>
+            </form>
+            <gramGrp>
+              <pos>Subst</pos>
+            </gramGrp>
+          </re>
+          <ref type="fragebogenNummer" xml:id="tu-33325.60">44A7: ausfahren; Bed. (wegfahren; m. Arm ausholen;*)</ref>
+        </cit>
+        <cit type="kontext" n="2" xml:id="tu-33326.5">
+          <quote xml:lang="bar">mitər hant bɒm šraibɒ ausfārɒ</quote>
+          <interp>Fg:7A17A16</interp>
+          <re type="zusatzlemma" xml:id="tu-33326.6">
+            <form>
+              <orth>Hand</orth>
+            </form>
+            <gramGrp>
+              <pos>Subst</pos>
+            </gramGrp>
+          </re>
+          <re type="zusatzlemma" xml:id="tu-33326.7">
+            <form>
+              <orth>schreiben</orth>
+            </form>
+            <gramGrp>
+              <pos>Verb</pos>
+              <gram>I/1</gram>
+            </gramGrp>
+          </re>
+          <ref type="fragebogenNummer" xml:id="tu-33326.4">44A7: ausfahren; Bed. (wegfahren; m. Arm ausholen;*)</ref>
+        </cit>
+        <ref type="archiv" xml:id="tu-33325.55">HK 327, f227#944.1 = fare0126.eck#1.1</ref>
+        <ref type="quelle" xml:id="tu-33325.57">Biberwier, Bez. Reutte, Rudolf</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33325.58">{1C.1f02} Zw.Toren:Außf.:WTir. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>FbB.RUDOLF· (193x:30-35) [SFb.42-46,64/EFb.3-7,9/Mtlg.]</bibl>
+        </ref>
+        <usg type="geo" corresp="this:QDB">
+          <placeName type="orig">Biberwier NTir.</placeName>
+          <listPlace corresp="sigle:1C.1f02">
+            <place type="Bundesland">
+              <placeName>NTir.</placeName>
+              <idno>1C</idno>
+              <listPlace>
+                <place type="Großregion">
+                  <placeName>wNTir.</placeName>
+                  <idno>1C.1</idno>
+                  <listPlace>
+                    <place type="Kleinregion">
+                      <placeName>Zw.Toren</placeName>
+                      <idno>1C.1f</idno>
+                      <listPlace>
+                        <place type="Gemeinde">
+                          <placeName>Biberwier</placeName>
+                          <listPlace>
+                            <place type="Ort">
+                              <placeName>Biberwier</placeName>
+                              <idno>1C.1f02</idno>
+                            </place>
+                          </listPlace>
+                        </place>
+                      </listPlace>
+                    </place>
+                  </listPlace>
+                </place>
+              </listPlace>
+            </place>
+          </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="f237_qdb-d1e29438" n="213096" source="#orig-f237_qdb-d1e29438">
+        <form type="hauptlemma" xml:id="tu-33326.10">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <cit type="kontext" n="1" xml:id="tu-33326.15">
+          <quote xml:lang="bar">ɒn tsǫrn ausfārɒ lǫ̆sɒ</quote>
+          <interp>Fg:U166</interp>
+          <re type="zusatzlemma" xml:id="tu-33326.16">
+            <form>
+              <orth>Zorn</orth>
+            </form>
+            <gramGrp>
+              <pos>Subst</pos>
+            </gramGrp>
+          </re>
+          <re type="zusatzlemma" xml:id="tu-33326.17">
+            <form>
+              <orth>lâßen</orth>
+            </form>
+            <gramGrp>
+              <pos>Verb</pos>
+            </gramGrp>
+          </re>
+          <ref type="fragebogenNummer" xml:id="tu-33326.14">44A7: ausfahren; Bed. (wegfahren; m. Arm ausholen;*)</ref>
+        </cit>
+        <ref type="archiv" xml:id="tu-33326.9">HK 327, f227#945.1 = fare0126.eck#2.1</ref>
+        <ref type="quelle" xml:id="tu-33326.11">Biberwier, Bez. Reutte, Rudolf</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33326.12">{1C.1f02} Zw.Toren:Außf.:WTir. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>FbB.RUDOLF· (193x:30-35) [SFb.42-46,64/EFb.3-7,9/Mtlg.]</bibl>
+        </ref>
+        <usg type="geo" corresp="this:QDB">
+          <placeName type="orig">Biberwier NTir.</placeName>
+          <listPlace corresp="sigle:1C.1f02">
+            <place type="Bundesland">
+              <placeName>NTir.</placeName>
+              <idno>1C</idno>
+              <listPlace>
+                <place type="Großregion">
+                  <placeName>wNTir.</placeName>
+                  <idno>1C.1</idno>
+                  <listPlace>
+                    <place type="Kleinregion">
+                      <placeName>Zw.Toren</placeName>
+                      <idno>1C.1f</idno>
+                      <listPlace>
+                        <place type="Gemeinde">
+                          <placeName>Biberwier</placeName>
+                          <listPlace>
+                            <place type="Ort">
+                              <placeName>Biberwier</placeName>
+                              <idno>1C.1f02</idno>
+                            </place>
+                          </listPlace>
+                        </place>
+                      </listPlace>
+                    </place>
+                  </listPlace>
+                </place>
+              </listPlace>
+            </place>
+          </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="f237_qdb-d1e29467" n="213097" source="#orig-f237_qdb-d1e29467">
+        <form type="hauptlemma" xml:id="tu-33326.20">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-33326.25">
+          <pron xml:lang="bar" notation="teuthonista">ausfå-n</pron>
+        </form>
+        <sense corresp="this:LT1" xml:id="tu-33326.26">
+          <def xml:lang="de">AUSFAHREN mit dem Wagen; weit ... ausholen</def>
+        </sense>
+        <cit type="kontext" n="1" xml:id="tu-33326.29">
+          <quote xml:lang="bar">is Feia is <pRef>ausgfån</pRef>
+            <seg type="gram"> [P2]</seg>
+          </quote>
+          <interp>Fg:A166</interp>
+          <def xml:lang="de">DAS FEUER ist zum Ausbruch gekommen</def>
+          <re type="zusatzlemma" xml:id="tu-33326.31">
+            <form>
+              <orth>Feuer</orth>
+            </form>
+            <gramGrp>
+              <pos>Subst</pos>
+            </gramGrp>
+          </re>
+          <ref type="fragebogenNummer" xml:id="tu-33326.28">44A7: ausfahren; Bed. (wegfahren; m. Arm ausholen;*)</ref>
+        </cit>
+        <ref type="archiv" xml:id="tu-33326.19">HK 327, f227#946.1 = fare0126.eck#3.1</ref>
+        <ref type="quelle" xml:id="tu-33326.21">Kirchau, Teufelsbauer</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33326.22">{6.2h28} Buckl.Wt.:söIndustriev.:sIndustriev.:öIndustriev.:Industriev.:NÖ </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>FbB.TEUFELSBAUER· (19xx) [SFb./EFb./WFb.2]</bibl>
+        </ref>
+        <ref type="fragebogenNummer" xml:id="tu-33326.24">44A7: ausfahren; Bed. (wegfahren; m. Arm ausholen;*)</ref>
+        <usg type="geo" corresp="this:QDB">
+          <placeName type="orig">Kirchau in Gm. Warth NÖ</placeName>
+          <listPlace corresp="sigle:6.2h28">
+            <place type="Bundesland">
+              <placeName>NÖ</placeName>
+              <idno>6</idno>
+              <listPlace>
+                <place type="Großregion">
+                  <placeName>Industriev.</placeName>
+                  <idno>6.2</idno>
+                  <listPlace>
+                    <place type="Kleinregion">
+                      <placeName>Buckl.Wt.</placeName>
+                      <idno>6.2h</idno>
+                      <listPlace>
+                        <place type="Gemeinde">
+                          <placeName>Warth</placeName>
+                          <listPlace>
+                            <place type="Ort">
+                              <placeName>Warth</placeName>
+                              <idno>6.2h28</idno>
+                            </place>
+                          </listPlace>
+                        </place>
+                      </listPlace>
+                    </place>
+                  </listPlace>
+                </place>
+              </listPlace>
+            </place>
+          </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="f237_qdb-d1e29505" n="213098" source="#orig-f237_qdb-d1e29505">
+        <form type="hauptlemma" xml:id="tu-33326.34">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <cit type="kontext" n="1" xml:id="tu-33326.39">
+          <quote xml:lang="bar">Geᵃt it z'nochn zuᵃi, der Schuᵃchter <pRef>fohrt</pRef>
+            <seg type="gram"> [sg3] </seg> weit <pRef>aus</pRef>
+            <seg type="gram"> [0]</seg>
+          </quote>
+          <def xml:lang="de">Geht nicht zu nahe hinzu, der Schuster fährt weit aus</def>
+          <note type="anmerkung" resp="B">Ltg!</note>
+          <re type="zusatzlemma" xml:id="tu-33326.42">
+            <form>
+              <orth>(zů-hin)gên</orth>
+            </form>
+            <gramGrp>
+              <pos>Verb</pos>
+              <gram>imp;pl</gram>
+            </gramGrp>
+          </re>
+          <re type="zusatzlemma" xml:id="tu-33326.43">
+            <form>
+              <orth>weit</orth>
+            </form>
+            <gramGrp>
+              <pos>Adv</pos>
+              <gram>M</gram>
+            </gramGrp>
+          </re>
+          <re type="zusatzlemma" xml:id="tu-33326.44">
+            <form>
+              <orth>Schůster</orth>
+            </form>
+            <gramGrp>
+              <pos>Subst</pos>
+            </gramGrp>
+          </re>
+          <note type="diverse" xml:id="tu-33326.41">Wenn der Schuster auf der Stör ist und die Kinder sich zu nahe hinzu drängen</note>
+          <ref type="fragebogenNummer" xml:id="tu-33326.38">44A7: ausfahren; Bed. (wegfahren; m. Arm ausholen;*)</ref>
+        </cit>
+        <ref type="archiv" xml:id="tu-33326.33">HK 327, f227#947.1 = fare0126.eck#4.1</ref>
+        <ref type="quelle" xml:id="tu-33326.35">Fendels, Kammerlander</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33326.36">{1C.1m02} obstObInnt.:ObInnt.:Innt.:WTir.:wNTir.:NTir.:Tir. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>FbB.KAMMERLANDER· (19xx) [SFb./WFb.2]</bibl>
+        </ref>
+        <usg type="geo" corresp="this:QDB">
+          <placeName type="orig">Fendels NTir.</placeName>
+          <listPlace corresp="sigle:1C.1m02">
+            <place type="Bundesland">
+              <placeName>NTir.</placeName>
+              <idno>1C</idno>
+              <listPlace>
+                <place type="Großregion">
+                  <placeName>wNTir.</placeName>
+                  <idno>1C.1</idno>
+                  <listPlace>
+                    <place type="Kleinregion">
+                      <placeName>obstObInnt.</placeName>
+                      <idno>1C.1m</idno>
+                      <listPlace>
+                        <place type="Gemeinde">
+                          <placeName>Fendels</placeName>
+                          <listPlace>
+                            <place type="Ort">
+                              <placeName>Fendels</placeName>
+                              <idno>1C.1m02</idno>
+                            </place>
+                          </listPlace>
+                        </place>
+                      </listPlace>
+                    </place>
+                  </listPlace>
+                </place>
+              </listPlace>
+            </place>
+          </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="f237_qdb-d1e29541" n="213099" source="#orig-f237_qdb-d1e29541">
+        <form type="hauptlemma" xml:id="tu-33326.47">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <cit type="kontext" n="1" xml:id="tu-33326.52">
+          <quote xml:lang="bar">Bua we a sche aus-fåarn</quote>
+          <def xml:lang="de">Bub wirst ausfahren</def>
+          <note type="anmerkung" resp="O" corresp="this:BD">spottender Zuruf</note>
+          <re type="zusatzlemma" xml:id="tu-33326.55">
+            <form>
+              <orth>Půbe</orth>
+            </form>
+            <gramGrp>
+              <pos>Subst</pos>
+            </gramGrp>
+          </re>
+          <re type="zusatzlemma" xml:id="tu-33326.56">
+            <form>
+              <orth>schö̂n</orth>
+            </form>
+            <gramGrp>
+              <pos>Adj</pos>
+              <gram>P</gram>
+            </gramGrp>
+          </re>
+          <note type="diverse" xml:id="tu-33326.54">wenn jemand mit einem armseligen Fuhrwerk des Weges kommt</note>
+          <ref type="fragebogenNummer" xml:id="tu-33326.51">44A7: ausfahren; Bed. (wegfahren; m. Arm ausholen;*)</ref>
+        </cit>
+        <ref type="archiv" xml:id="tu-33326.46">HK 327, f227#948.1 = fare0126.eck#5.1</ref>
+        <ref type="quelle" xml:id="tu-33326.48">Greifenburg, Traunig</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33326.49">{2.1d03} ObDraut.:sObKä. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>FbB.TRAUNIG· (192x:22-25) [SFb.1-44,tw/WrFb.1/Mtlg.]</bibl>
+        </ref>
+        <usg type="geo" corresp="this:QDB">
+          <placeName type="orig">Greifenb-g. Kä.</placeName>
+          <listPlace corresp="sigle:2.1d03">
+            <place type="Bundesland">
+              <placeName>Ktn.</placeName>
+              <idno>2</idno>
+              <listPlace>
+                <place type="Großregion">
+                  <placeName>ObKtn.</placeName>
+                  <idno>2.1</idno>
+                  <listPlace>
+                    <place type="Kleinregion">
+                      <placeName>ObDraut.</placeName>
+                      <idno>2.1d</idno>
+                      <listPlace>
+                        <place type="Gemeinde">
+                          <placeName>Greifenburg</placeName>
+                          <listPlace>
+                            <place type="Ort">
+                              <placeName>Greifenburg</placeName>
+                              <idno>2.1d03</idno>
+                            </place>
+                          </listPlace>
+                        </place>
+                      </listPlace>
+                    </place>
+                  </listPlace>
+                </place>
+              </listPlace>
+            </place>
+          </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="f237_qdb-d1e29575" n="213100" source="#orig-f237_qdb-d1e29575">
+        <form type="hauptlemma" xml:id="tu-33326.59">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <cit type="kontext" n="1" xml:id="tu-33327.6">
+          <quote xml:lang="bar">mǭɒriŋ <pRef>|ƒǭɒ</pRef>
+            <seg type="gram"> [pl3] </seg> mɒ <pRef>å̄s</pRef>
+            <seg type="gram"> [0] </seg> !</quote>
+          <interp>Fg:3650</interp>
+          <def xml:lang="de" corresp="this:WBD/KT1" xml:id="tu-33327.7">fort- FAHREN</def>
+          <re type="zusatzlemma" xml:id="tu-33327.8">
+            <form>
+              <orth>morgen</orth>
+            </form>
+            <gramGrp>
+              <pos>Adv</pos>
+              <gram>Z</gram>
+            </gramGrp>
+          </re>
+          <ref type="fragebogenNummer" xml:id="tu-33327.5">44A7: ausfahren; Bed. (wegfahren; m. Arm ausholen;*)</ref>
+        </cit>
+        <cit type="kontext" n="2" xml:id="tu-33327.11">
+          <quote xml:lang="bar">viɒ r i ĩn bēsn̥ gŋǫ̃mɒ hǫb, is de τsigä̃́nɒrị̃n å̄s^kƒǭɒn viɒ dɒ dǟfị</quote>
+          <note type="anmerkung" resp="B">
+            <pRef>ị</pRef> Ersatzzeichen für auf den Kopf gestelltes i</note>
+          <re type="zusatzlemma" xml:id="tu-33327.12">
+            <form>
+              <orth>nëmen</orth>
+            </form>
+            <gramGrp>
+              <pos>Verb</pos>
+              <gram>P2</gram>
+            </gramGrp>
+          </re>
+          <re type="zusatzlemma" xml:id="tu-33327.13">
+            <form>
+              <orth>Zigéiner</orth>
+            </form>
+            <gramGrp>
+              <pos>Subst</pos>
+            </gramGrp>
+          </re>
+          <re type="zusatzlemma" xml:id="tu-33327.14">
+            <form>
+              <orth>Teufel</orth>
+            </form>
+            <gramGrp>
+              <pos>Subst</pos>
+            </gramGrp>
+          </re>
+          <ref type="fragebogenNummer" xml:id="tu-33327.10">44A7: ausfahren; Bed. (wegfahren; m. Arm ausholen;*)</ref>
+        </cit>
+        <note type="diverse" n="1" xml:id="tu-33327.3">"Mit der Hand AUSFAHREN", "mit dem Arm ausfahren" scheint nicht üblich zu sein</note>
+        <ref type="archiv" xml:id="tu-33326.58">HK 327, f227#949.1 = fare0126.eck#6.1</ref>
+        <ref type="quelle" xml:id="tu-33326.60">+Speisendf. a. d. Thaya NÖ, Hinterecker <certainty assertedValue="unknown" locus="value"/>
+        </ref>
+        <ref type="fragebogenNummer" xml:id="tu-33327.2">44A7: ausfahren; Bed. (wegfahren; m. Arm ausholen;*)</ref>
+      </entry>
+      <entry xml:id="f237_qdb-d1e29620" n="213101" source="#orig-f237_qdb-d1e29620">
+        <form type="hauptlemma" xml:id="tu-33327.17">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-33327.22">
+          <pron xml:lang="bar" notation="teuthonista">ausfăʳn</pron>
+        </form>
+        <sense corresp="this:LT1" xml:id="tu-33327.23">
+          <def xml:lang="de">AUSFAHREN mit Wagen</def>
+        </sense>
+        <sense corresp="this:LT2" xml:id="tu-33327.24">
+          <def xml:lang="de">mit DEN Kindern AUSFAHREN, auch wenn alle zu Fuß gehen, ausgehen</def>
+        </sense>
+        <cit type="kontext" n="1" xml:id="tu-33327.27">
+          <quote xml:lang="bar">Wo <pRef>făscht</pRef>
+            <seg type="gram"> [sg2] </seg> haiⁿt mit dö Kinna <pRef>aus</pRef>
+            <seg type="gram"> [0]</seg>
+          </quote>
+          <re type="zusatzlemma" xml:id="tu-33327.28">
+            <form>
+              <orth>Kind</orth>
+            </form>
+            <gramGrp>
+              <pos>Subst</pos>
+              <gram>pl</gram>
+            </gramGrp>
+          </re>
+          <ref type="fragebogenNummer" xml:id="tu-33327.26">44A7: ausfahren; Bed. (wegfahren; m. Arm ausholen;*)</ref>
+        </cit>
+        <ref type="archiv" xml:id="tu-33327.16">HK 327, f227#950.1 = fare0126.eck#7.1</ref>
+        <ref type="quelle" xml:id="tu-33327.18">Hopfgtn. u. St.Johann, Bichler</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33327.19">{1C.3} öNOTir.:NOTir.:öNTir.:NTir.:Tir.</ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>Bichler</bibl>
+        </ref>
+        <ref type="fragebogenNummer" xml:id="tu-33327.21">44A7: ausfahren; Bed. (wegfahren; m. Arm ausholen;*)</ref>
+        <usg type="geo" corresp="this:QDB">
+          <placeName type="orig">Hopfgtn. NTir. u. St.Johann NTir.</placeName>
+          <listPlace corresp="sigle:1C.3f02">
+            <place type="Bundesland">
+              <placeName>NTir.</placeName>
+              <idno>1C</idno>
+              <listPlace>
+                <place type="Großregion">
+                  <placeName>öNTir.</placeName>
+                  <idno>1C.3</idno>
+                  <listPlace>
+                    <place type="Kleinregion">
+                      <placeName>Brixent.</placeName>
+                      <idno>1C.3f</idno>
+                      <listPlace>
+                        <place type="Gemeinde">
+                          <placeName>Hopfgarten im Brixental</placeName>
+                          <listPlace>
+                            <place type="Ort">
+                              <placeName>Hopfgarten im Brixental</placeName>
+                              <idno>1C.3f02</idno>
+                            </place>
+                          </listPlace>
+                        </place>
+                      </listPlace>
+                    </place>
+                  </listPlace>
+                </place>
+              </listPlace>
+            </place>
+          </listPlace>
+          <listPlace corresp="sigle:1C.3i05">
+            <place type="Bundesland">
+              <placeName>NTir.</placeName>
+              <idno>1C</idno>
+              <listPlace>
+                <place type="Großregion">
+                  <placeName>öNTir.</placeName>
+                  <idno>1C.3</idno>
+                  <listPlace>
+                    <place type="Kleinregion">
+                      <placeName>Leukent.</placeName>
+                      <idno>1C.3i</idno>
+                      <listPlace>
+                        <place type="Gemeinde">
+                          <placeName>St. Johann in Tirol</placeName>
+                          <listPlace>
+                            <place type="Ort">
+                              <placeName>St. Johann in Tirol</placeName>
+                              <idno>1C.3i05</idno>
+                            </place>
+                          </listPlace>
+                        </place>
+                      </listPlace>
+                    </place>
+                  </listPlace>
+                </place>
+              </listPlace>
+            </place>
+          </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="f237_qdb-d1e29656" n="213102" source="#orig-f237_qdb-d1e29656">
+        <form type="hauptlemma" xml:id="tu-33327.31">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <cit type="kontext" n="1" xml:id="tu-33327.36">
+          <quote xml:lang="bar">ausfăʳn mit oan</quote>
+          <interp>Fg:675</interp>
+          <def xml:lang="de">im Wagen mit einem fahren</def>
+          <re type="zusatzlemma" xml:id="tu-33327.38">
+            <form>
+              <orth>ēin</orth>
+            </form>
+            <gramGrp>
+              <pos>Pron</pos>
+              <gram>IN</gram>
+            </gramGrp>
+          </re>
+          <ref type="fragebogenNummer" xml:id="tu-33327.35">44A7: ausfahren; Bed. (wegfahren; m. Arm ausholen;*)</ref>
+        </cit>
+        <cit type="kontext" n="2" xml:id="tu-33327.41">
+          <quote xml:lang="bar">
+            <pRef>făr</pRef>
+            <seg type="gram"> [imp,sg2] </seg> mid dean Saggra <pRef>aus</pRef>
+            <seg type="gram"> [0]</seg>
+          </quote>
+          <interp>Fg:67A10</interp>
+          <def xml:lang="de">bring den Stänkerer aus der Wirtsstube</def>
+          <re type="zusatzlemma" xml:id="tu-33327.43">
+            <form>
+              <orth>Sȧkerer</orth>
+            </form>
+            <gramGrp>
+              <pos>Subst</pos>
+            </gramGrp>
+          </re>
+          <ref type="fragebogenNummer" xml:id="tu-33327.40">44A7: ausfahren; Bed. (wegfahren; m. Arm ausholen;*)</ref>
+        </cit>
+        <ref type="archiv" xml:id="tu-33327.30">HK 327, f227#951.1 = fare0126.eck#8.1</ref>
+        <ref type="quelle" xml:id="tu-33327.32">Hopfgtn. u. St.Johann, Bichler</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33327.33">{1C.3} öNOTir.:NOTir.:öNTir.:NTir.:Tir.</ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>Bichler</bibl>
+        </ref>
+        <usg type="geo" corresp="this:QDB">
+          <placeName type="orig">Hopfgtn. NTir. u. St.Johann NTir.</placeName>
+          <listPlace corresp="sigle:1C.3f02">
+            <place type="Bundesland">
+              <placeName>NTir.</placeName>
+              <idno>1C</idno>
+              <listPlace>
+                <place type="Großregion">
+                  <placeName>öNTir.</placeName>
+                  <idno>1C.3</idno>
+                  <listPlace>
+                    <place type="Kleinregion">
+                      <placeName>Brixent.</placeName>
+                      <idno>1C.3f</idno>
+                      <listPlace>
+                        <place type="Gemeinde">
+                          <placeName>Hopfgarten im Brixental</placeName>
+                          <listPlace>
+                            <place type="Ort">
+                              <placeName>Hopfgarten im Brixental</placeName>
+                              <idno>1C.3f02</idno>
+                            </place>
+                          </listPlace>
+                        </place>
+                      </listPlace>
+                    </place>
+                  </listPlace>
+                </place>
+              </listPlace>
+            </place>
+          </listPlace>
+          <listPlace corresp="sigle:1C.3i05">
+            <place type="Bundesland">
+              <placeName>NTir.</placeName>
+              <idno>1C</idno>
+              <listPlace>
+                <place type="Großregion">
+                  <placeName>öNTir.</placeName>
+                  <idno>1C.3</idno>
+                  <listPlace>
+                    <place type="Kleinregion">
+                      <placeName>Leukent.</placeName>
+                      <idno>1C.3i</idno>
+                      <listPlace>
+                        <place type="Gemeinde">
+                          <placeName>St. Johann in Tirol</placeName>
+                          <listPlace>
+                            <place type="Ort">
+                              <placeName>St. Johann in Tirol</placeName>
+                              <idno>1C.3i05</idno>
+                            </place>
+                          </listPlace>
+                        </place>
+                      </listPlace>
+                    </place>
+                  </listPlace>
+                </place>
+              </listPlace>
+            </place>
+          </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="f237_qdb-d1e29698" n="213103" source="#orig-f237_qdb-d1e29698">
+        <form type="hauptlemma" xml:id="tu-33327.46">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <cit type="kontext" n="1" xml:id="tu-33327.51">
+          <quote xml:lang="bar">ea is mit da Hăndt <pRef>ausgfăʳn</pRef>
+            <seg type="gram"> [P2]</seg>
+          </quote>
+          <interp>Fg:567A16</interp>
+          <def xml:lang="de" corresp="this:WBD/KT1" xml:id="tu-33327.52">AUFAHREN = AUSHOLEN um zu schlagen; beim Schreiben AUSFAHREN</def>
+          <re type="zusatzlemma" xml:id="tu-33327.53">
+            <form>
+              <orth>Hand</orth>
+            </form>
+            <gramGrp>
+              <pos>Subst</pos>
+            </gramGrp>
+          </re>
+          <ref type="fragebogenNummer" xml:id="tu-33327.50">44A7: ausfahren; Bed. (wegfahren; m. Arm ausholen;*)</ref>
+        </cit>
+        <ref type="archiv" xml:id="tu-33327.45">HK 327, f227#952.1 = fare0126.eck#9.1</ref>
+        <ref type="quelle" xml:id="tu-33327.47">Hopfgtn. u. St.Johann, Bichler</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33327.48">{1C.3} öNOTir.:NOTir.:öNTir.:NTir.:Tir.</ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>Bichler</bibl>
+        </ref>
+        <usg type="geo" corresp="this:QDB">
+          <placeName type="orig">Hopfgtn. NTir. u. St.Johann NTir.</placeName>
+          <listPlace corresp="sigle:1C.3f02">
+            <place type="Bundesland">
+              <placeName>NTir.</placeName>
+              <idno>1C</idno>
+              <listPlace>
+                <place type="Großregion">
+                  <placeName>öNTir.</placeName>
+                  <idno>1C.3</idno>
+                  <listPlace>
+                    <place type="Kleinregion">
+                      <placeName>Brixent.</placeName>
+                      <idno>1C.3f</idno>
+                      <listPlace>
+                        <place type="Gemeinde">
+                          <placeName>Hopfgarten im Brixental</placeName>
+                          <listPlace>
+                            <place type="Ort">
+                              <placeName>Hopfgarten im Brixental</placeName>
+                              <idno>1C.3f02</idno>
+                            </place>
+                          </listPlace>
+                        </place>
+                      </listPlace>
+                    </place>
+                  </listPlace>
+                </place>
+              </listPlace>
+            </place>
+          </listPlace>
+          <listPlace corresp="sigle:1C.3i05">
+            <place type="Bundesland">
+              <placeName>NTir.</placeName>
+              <idno>1C</idno>
+              <listPlace>
+                <place type="Großregion">
+                  <placeName>öNTir.</placeName>
+                  <idno>1C.3</idno>
+                  <listPlace>
+                    <place type="Kleinregion">
+                      <placeName>Leukent.</placeName>
+                      <idno>1C.3i</idno>
+                      <listPlace>
+                        <place type="Gemeinde">
+                          <placeName>St. Johann in Tirol</placeName>
+                          <listPlace>
+                            <place type="Ort">
+                              <placeName>St. Johann in Tirol</placeName>
+                              <idno>1C.3i05</idno>
+                            </place>
+                          </listPlace>
+                        </place>
+                      </listPlace>
+                    </place>
+                  </listPlace>
+                </place>
+              </listPlace>
+            </place>
+          </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="f237_qdb-d1e29727" n="213104" source="#orig-f237_qdb-d1e29727">
+        <form type="hauptlemma" xml:id="tu-33327.56">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <cit type="kontext" n="1" xml:id="tu-33328.1">
+          <quote xml:lang="bar">posτ asfǭə-ṇ</quote>
+          <interp>Fg:16</interp>
+          <def xml:lang="de">die post ausfahren = die PAKETE an die Empfänger zur Verteilung bringen</def>
+          <re type="zusatzlemma" xml:id="tu-33328.3">
+            <form>
+              <orth>Post</orth>
+            </form>
+            <gramGrp>
+              <pos>Subst</pos>
+            </gramGrp>
+          </re>
+          <ref type="fragebogenNummer" xml:id="tu-33327.60">44A7: ausfahren; Bed. (wegfahren; m. Arm ausholen;*)</ref>
+        </cit>
+        <cit type="kontext" n="2" xml:id="tu-33328.6">
+          <quote xml:lang="bar">ə klǭis āsfǭə-ṇ</quote>
+          <interp>Fg:U16</interp>
+          <def xml:lang="de">ein Geleise ausfahren = immer in derselben Spur bleiben - beim wiederholten Fahren</def>
+          <re type="zusatzlemma" xml:id="tu-33328.8">
+            <form>
+              <orth>(Ge)lēise</orth>
+            </form>
+            <gramGrp>
+              <pos>Subst</pos>
+            </gramGrp>
+          </re>
+          <ref type="fragebogenNummer" xml:id="tu-33328.5">44A7: ausfahren; Bed. (wegfahren; m. Arm ausholen;*)</ref>
+        </cit>
+        <ref type="archiv" xml:id="tu-33327.55">HK 327, f227#953.1 = fare0126.eck#10.1</ref>
+        <ref type="quelle" xml:id="tu-33327.57">Königswerth, Horner</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33327.58">{10} nwEgerld./nbair. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>FbB.HORNER· (1922-35) [SFb.8,13-105tw./EFb.4-9/WrFb.1/Mtlg.]</bibl>
+        </ref>
+        <usg type="geo" corresp="this:QDB">
+          <placeName>Königswerth Egerld.</placeName>
+        </usg>
+      </entry>
+      <entry xml:id="f237_qdb-d1e29769" n="213105" source="#orig-f237_qdb-d1e29769">
+        <form type="hauptlemma" xml:id="tu-33328.11">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <cit type="kontext" n="1" xml:id="tu-33328.16">
+          <quote xml:lang="bar">mīsτ asfǭə-ṇ</quote>
+          <interp>Fg:16</interp>
+          <def xml:lang="de">Mist ausfahren = Mist fahren</def>
+          <re type="zusatzlemma" xml:id="tu-33328.18">
+            <form>
+              <orth>Mist</orth>
+            </form>
+            <gramGrp>
+              <pos>Subst</pos>
+            </gramGrp>
+          </re>
+          <ref type="fragebogenNummer" xml:id="tu-33328.15">44A7: ausfahren; Bed. (wegfahren; m. Arm ausholen;*)</ref>
+        </cit>
+        <cit type="kontext" n="2" xml:id="tu-33328.21">
+          <quote xml:lang="bar">τE hę̄ə īs <pRef>āskfǭə-ṇ</pRef>
+            <seg type="gram"> [P2]</seg>
+          </quote>
+          <interp>Fg:A166</interp>
+          <def xml:lang="de">der Herr ist ausgefahren (mit dem Wagen, meist zum Vergnügen)</def>
+          <re type="zusatzlemma" xml:id="tu-33328.23">
+            <form>
+              <orth>Hërr</orth>
+            </form>
+            <gramGrp>
+              <pos>Subst</pos>
+            </gramGrp>
+          </re>
+          <ref type="fragebogenNummer" xml:id="tu-33328.20">44A7: ausfahren; Bed. (wegfahren; m. Arm ausholen;*)</ref>
+        </cit>
+        <ref type="archiv" xml:id="tu-33328.10">HK 327, f227#954.1 = fare0126.eck#11.1</ref>
+        <ref type="quelle" xml:id="tu-33328.12">Königswerth, Horner</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33328.13">{10} nwEgerld./nbair. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>FbB.HORNER· (1922-35) [SFb.8,13-105tw./EFb.4-9/WrFb.1/Mtlg.]</bibl>
+        </ref>
+        <usg type="geo" corresp="this:QDB">
+          <placeName>Königswerth Egerld.</placeName>
+        </usg>
+      </entry>
+      <entry xml:id="f237_qdb-d1e29812" n="213106" source="#orig-f237_qdb-d1e29812">
+        <form type="hauptlemma" xml:id="tu-33328.26">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <cit type="kontext" n="1" xml:id="tu-33328.31">
+          <quote xml:lang="bar">auskfārəts tsuik</quote>
+          <interp>Fg:61</interp>
+          <re type="zusatzlemma" xml:id="tu-33328.32">
+            <form>
+              <orth>Zeug</orth>
+            </form>
+            <gramGrp>
+              <pos>Subst</pos>
+            </gramGrp>
+          </re>
+          <ref type="fragebogenNummer" xml:id="tu-33328.30">44A7b: Ausfahrets</ref>
+        </cit>
+        <ref type="archiv" xml:id="tu-33328.25">HK 327, f227#955.1 = fare0126.eck#12.1</ref>
+        <ref type="quelle" xml:id="tu-33328.27">Biberwier, Bez. Reutte, Rudolf</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33328.28">{1C.1f02} Zw.Toren:Außf.:WTir. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>FbB.RUDOLF· (193x:30-35) [SFb.42-46,64/EFb.3-7,9/Mtlg.]</bibl>
+        </ref>
+        <usg type="geo" corresp="this:QDB">
+          <placeName type="orig">Biberwier NTir.</placeName>
+          <listPlace corresp="sigle:1C.1f02">
+            <place type="Bundesland">
+              <placeName>NTir.</placeName>
+              <idno>1C</idno>
+              <listPlace>
+                <place type="Großregion">
+                  <placeName>wNTir.</placeName>
+                  <idno>1C.1</idno>
+                  <listPlace>
+                    <place type="Kleinregion">
+                      <placeName>Zw.Toren</placeName>
+                      <idno>1C.1f</idno>
+                      <listPlace>
+                        <place type="Gemeinde">
+                          <placeName>Biberwier</placeName>
+                          <listPlace>
+                            <place type="Ort">
+                              <placeName>Biberwier</placeName>
+                              <idno>1C.1f02</idno>
+                            </place>
+                          </listPlace>
+                        </place>
+                      </listPlace>
+                    </place>
+                  </listPlace>
+                </place>
+              </listPlace>
+            </place>
+          </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="f237_qdb-d1e29839" n="213107" source="#orig-f237_qdb-d1e29839">
+        <form type="hauptlemma" xml:id="tu-33328.35">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <cit type="kontext" n="1" xml:id="tu-33328.40">
+          <quote xml:lang="bar">an <pRef>ausgfăʳns</pRef>
+            <seg type="gram"> [P2,fl] </seg> diandl</quote>
+          <interp>Fg:U61</interp>
+          <def xml:lang="de">ein ausgelassenes Weib</def>
+          <re type="zusatzlemma" xml:id="tu-33328.42">
+            <form>
+              <orth>Dierne</orth>
+            </form>
+            <gramGrp>
+              <pos>Subst</pos>
+              <gram>D1</gram>
+            </gramGrp>
+          </re>
+          <ref type="fragebogenNummer" xml:id="tu-33328.39">44A7c</ref>
+        </cit>
+        <ref type="archiv" xml:id="tu-33328.34">HK 327, f227#956.1 = fare0126.eck#13.1</ref>
+        <ref type="quelle" xml:id="tu-33328.36">Hopfgtn. u. St.Johann, Bichler</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33328.37">{1C.3} öNOTir.:NOTir.:öNTir.:NTir.:Tir.</ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>Bichler</bibl>
+        </ref>
+        <usg type="geo" corresp="this:QDB">
+          <placeName type="orig">Hopfgtn. NTir. u. St.Johann NTir.</placeName>
+          <listPlace corresp="sigle:1C.3f02">
+            <place type="Bundesland">
+              <placeName>NTir.</placeName>
+              <idno>1C</idno>
+              <listPlace>
+                <place type="Großregion">
+                  <placeName>öNTir.</placeName>
+                  <idno>1C.3</idno>
+                  <listPlace>
+                    <place type="Kleinregion">
+                      <placeName>Brixent.</placeName>
+                      <idno>1C.3f</idno>
+                      <listPlace>
+                        <place type="Gemeinde">
+                          <placeName>Hopfgarten im Brixental</placeName>
+                          <listPlace>
+                            <place type="Ort">
+                              <placeName>Hopfgarten im Brixental</placeName>
+                              <idno>1C.3f02</idno>
+                            </place>
+                          </listPlace>
+                        </place>
+                      </listPlace>
+                    </place>
+                  </listPlace>
+                </place>
+              </listPlace>
+            </place>
+          </listPlace>
+          <listPlace corresp="sigle:1C.3i05">
+            <place type="Bundesland">
+              <placeName>NTir.</placeName>
+              <idno>1C</idno>
+              <listPlace>
+                <place type="Großregion">
+                  <placeName>öNTir.</placeName>
+                  <idno>1C.3</idno>
+                  <listPlace>
+                    <place type="Kleinregion">
+                      <placeName>Leukent.</placeName>
+                      <idno>1C.3i</idno>
+                      <listPlace>
+                        <place type="Gemeinde">
+                          <placeName>St. Johann in Tirol</placeName>
+                          <listPlace>
+                            <place type="Ort">
+                              <placeName>St. Johann in Tirol</placeName>
+                              <idno>1C.3i05</idno>
+                            </place>
+                          </listPlace>
+                        </place>
+                      </listPlace>
+                    </place>
+                  </listPlace>
+                </place>
+              </listPlace>
+            </place>
+          </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="f237_qdb-d1e29868" n="213108" source="#orig-f237_qdb-d1e29868">
+        <form type="hauptlemma" xml:id="tu-33328.45">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-33328.50">
+          <pron xml:lang="bar" notation="teuthonista">ausfoarn</pron>
+        </form>
+        <sense corresp="this:LT1" xml:id="tu-33328.51">
+          <def xml:lang="de">AUSFAHREN mit dem Wagen, dem Schlitten</def>
+        </sense>
+        <cit type="kontext" n="1" xml:id="tu-33328.56">
+          <quote xml:lang="bar">An <pRef>ausgfoarna</pRef>
+            <seg type="gram"> [P2,fl] </seg> Wėg</quote>
+          <interp>Fg:U61</interp>
+          <def xml:lang="de">ein durch tiefe eingefahrene Radspuren schlecht gemachter Weg</def>
+          <re type="zusatzlemma" xml:id="tu-33328.58">
+            <form>
+              <orth>Wëg</orth>
+            </form>
+            <gramGrp>
+              <pos>Subst</pos>
+            </gramGrp>
+          </re>
+          <ref type="fragebogenNummer" xml:id="tu-33328.55">44A7: ausfahren; Bed. (wegfahren; m. Arm ausholen;*)</ref>
+        </cit>
+        <cit type="kontext" n="2" xml:id="tu-33329.1">
+          <quote xml:lang="bar">in Wėg ausfoarn</quote>
+          <def xml:lang="de">DEN Weg durch tiefe eingefahrene Radspuren schlecht machen</def>
+          <re type="zusatzlemma" xml:id="tu-33329.3">
+            <form>
+              <orth>Wëg</orth>
+            </form>
+            <gramGrp>
+              <pos>Subst</pos>
+            </gramGrp>
+          </re>
+          <ref type="fragebogenNummer" xml:id="tu-33328.60">44A7: ausfahren; Bed. (wegfahren; m. Arm ausholen;*)</ref>
+        </cit>
+        <note type="diverse" n="1" xml:id="tu-33328.52">dagegen: <pRef>ausfü[r]n</pRef> : ausführen, nicht allein etwas ausführen aus dem Hause, z. B. aufs Feld, oder eine böse Handlung begehen, sondern auch einen Weg durch tiefe eingefahrene Radspuren schlecht machen " <pRef>An ausgfoarna Wėg</pRef> "; man sagt dazu aber auch: <pRef>in Wėg ausfoarn</pRef>
+        </note>
+        <xr type="verweise" resp="O" xml:id="tu-33328.53">s. a. <pRef>ausfü[r]n</pRef>
+        </xr>
+        <ref type="archiv" xml:id="tu-33328.44">HK 327, f227#957.1 = fare0126.eck#14.1</ref>
+        <ref type="quelle" xml:id="tu-33328.46">Plattetschlag, Schacherl</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33328.47">{8.1a11} uBöW:wSBö.:SBö.:Bö. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>FbB.SCHACHERL· (19xx) [SFb./EFb./Slg."Plattetschl."]</bibl>
+        </ref>
+        <ref type="fragebogenNummer" xml:id="tu-33328.49">44A7: ausfahren; Bed. (wegfahren; m. Arm ausholen;*)</ref>
+        <usg type="geo" corresp="this:QDB">
+          <placeName>Plattetschl. BöW</placeName>
+        </usg>
+      </entry>
+      <entry xml:id="f237_qdb-d1e29930" n="213109" source="#orig-f237_qdb-d1e29930">
+        <form type="hauptlemma" xml:id="tu-33329.6">
+          <orth>(aus)fuͤren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-33329.11">
+          <pron xml:lang="bar" notation="teuthonista">ausfü[r]n</pron>
+        </form>
+        <sense corresp="this:LT1" xml:id="tu-33329.12">
+          <def xml:lang="de">ausführen</def>
+        </sense>
+        <xr type="verweise" resp="B" xml:id="tu-33329.13">s. a. (aus)faren</xr>
+        <ref type="archiv" xml:id="tu-33329.5">HK 327, f227#958.1 = fare0126.eck#15.1</ref>
+        <ref type="quelle" xml:id="tu-33329.7">Plattetschlag, Schacherl</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33329.8">{8.1a11} uBöW:wSBö.:SBö.:Bö. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>FbB.SCHACHERL· (19xx) [SFb./EFb./Slg."Plattetschl."]</bibl>
+        </ref>
+        <ref type="fragebogenNummer" xml:id="tu-33329.10">44A7: ausfahren; Bed. (wegfahren; m. Arm ausholen;*)</ref>
+        <usg type="geo" corresp="this:QDB">
+          <placeName>Plattetschl. BöW</placeName>
+        </usg>
+      </entry>
+      <entry xml:id="f237_qdb-d1e29957" n="213110" source="#orig-f237_qdb-d1e29957">
+        <form type="hauptlemma" xml:id="tu-33329.16">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-33329.21">
+          <pron xml:lang="bar" notation="teuthonista">ausfǫʳn</pron>
+        </form>
+        <sense corresp="this:LT1" xml:id="tu-33329.22">
+          <def xml:lang="de">von der Alpe abfahren</def>
+        </sense>
+        <ref type="archiv" xml:id="tu-33329.15">HK 327, f227#959.1 = fare0126.eck#16.1</ref>
+        <ref type="quelle" xml:id="tu-33329.17">Angerbg., Juffinger</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33329.18">{1C.3c07} wUInnt.: UInnt.:NOTir.:öNTir. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>FbB.JUFFINGER· (19xx) [SFb.]</bibl>
+        </ref>
+        <ref type="fragebogenNummer" xml:id="tu-33329.20">64I46: von d. Alm abtreiben; wann? Regeln</ref>
+        <usg type="geo" corresp="this:QDB">
+          <placeName type="orig">Angerbg. in Gm. Kramsach NTir.</placeName>
+          <listPlace corresp="sigle:1C.3c07">
+            <place type="Bundesland">
+              <placeName>NTir.</placeName>
+              <idno>1C</idno>
+              <listPlace>
+                <place type="Großregion">
+                  <placeName>öNTir.</placeName>
+                  <idno>1C.3</idno>
+                  <listPlace>
+                    <place type="Kleinregion">
+                      <placeName>wUInnt.</placeName>
+                      <idno>1C.3c</idno>
+                      <listPlace>
+                        <place type="Gemeinde">
+                          <placeName>Kramsach</placeName>
+                          <listPlace>
+                            <place type="Ort">
+                              <placeName>Kramsach</placeName>
+                              <idno>1C.3c07</idno>
+                            </place>
+                          </listPlace>
+                        </place>
+                      </listPlace>
+                    </place>
+                  </listPlace>
+                </place>
+              </listPlace>
+            </place>
+          </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="f237_qdb-d1e29982" n="213111" source="#orig-f237_qdb-d1e29982">
+        <form type="hauptlemma" xml:id="tu-33329.25">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <cit type="kontext" n="1" xml:id="tu-33329.30">
+          <quote xml:lang="bar">n Mist ausfohrn</quote>
+          <interp>Fg:A16</interp>
+          <def xml:lang="de" corresp="this:WBD/KT1" xml:id="tu-33329.31">ausfahren</def>
+          <re type="zusatzlemma" xml:id="tu-33329.33">
+            <form>
+              <orth>Mist</orth>
+            </form>
+            <gramGrp>
+              <pos>Subst</pos>
+            </gramGrp>
+          </re>
+          <note type="diverse" xml:id="tu-33329.32">was auch <pRef>dungă</pRef> genannt wird</note>
+          <ref type="fragebogenNummer" xml:id="tu-33329.29">18E12: Mist ausfahren/führen</ref>
+        </cit>
+        <ref type="archiv" xml:id="tu-33329.24">HK 327, f227#960.1 = fare0126.eck#17.1</ref>
+        <ref type="quelle" xml:id="tu-33329.26">Weident., Graßl</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33329.27">{11.3a05} WRum.</ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>FbB.GRASSL· (19xx) [SFb.]</bibl>
+        </ref>
+        <usg type="geo" corresp="this:QDB">
+          <placeName>Weident. WRum.</placeName>
+        </usg>
+      </entry>
+      <entry xml:id="f237_qdb-d1e30017" n="213112" source="#orig-f237_qdb-d1e30017">
+        <form type="hauptlemma" xml:id="tu-33329.36">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <cit type="kontext" n="1" xml:id="tu-33329.41">
+          <quote xml:lang="bar">mīst āsfåəʳn</quote>
+          <interp>Fg:16</interp>
+          <def xml:lang="de">Mist ausfahren</def>
+          <re type="zusatzlemma" xml:id="tu-33329.44">
+            <form>
+              <orth>Mist</orth>
+            </form>
+            <gramGrp>
+              <pos>Subst</pos>
+            </gramGrp>
+          </re>
+          <note type="diverse" xml:id="tu-33329.43">
+            <pRef>mīst āsfeiəʳn</pRef> = Mist ausfahren</note>
+          <ref type="fragebogenNummer" xml:id="tu-33329.40">18E12: Mist ausfahren/führen</ref>
+        </cit>
+        <ref type="archiv" xml:id="tu-33329.35">HK 327, f227#961.1 = fare0126.eck#18.1</ref>
+        <ref type="quelle" xml:id="tu-33329.37">Oschelin, Bachmann</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33329.38">{wb0:CZ-Eg} söEgerl./nbair. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>FbB.BACHMANN· (19xx) [SFb./Mtlg.]Oschelin Egerl.</bibl>
+        </ref>
+      </entry>
+      <entry xml:id="f237_qdb-d1e30051" n="213113" source="#orig-f237_qdb-d1e30051">
+        <form type="hauptlemma" xml:id="tu-33329.47">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <cit type="kontext" n="1" xml:id="tu-33329.52">
+          <quote xml:lang="bar">Mist as̄fahr'n</quote>
+          <interp>Fg:16</interp>
+          <def xml:lang="de">Mist ausführen</def>
+          <re type="zusatzlemma" xml:id="tu-33329.54">
+            <form>
+              <orth>Mist</orth>
+            </form>
+            <gramGrp>
+              <pos>Subst</pos>
+            </gramGrp>
+          </re>
+          <ref type="fragebogenNummer" xml:id="tu-33329.51">18E12: Mist ausfahren/führen</ref>
+        </cit>
+        <ref type="archiv" xml:id="tu-33329.46">HK 327, f227#962.1 = fare0126.eck#19.1</ref>
+        <ref type="quelle" xml:id="tu-33329.48">Eger, Habermann</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33329.49">{10.2a26} nwEgerld:Tschech./nbair. Eger Egerld.</ref>
+      </entry>
+      <entry xml:id="f237_qdb-d1e30076" n="213114" source="#orig-f237_qdb-d1e30076">
+        <form type="hauptlemma" xml:id="tu-33329.57">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <cit type="kontext" n="1" xml:id="tu-33330.2">
+          <quote xml:lang="bar">mist asfåəʳn</quote>
+          <interp>Fg:16</interp>
+          <re type="zusatzlemma" xml:id="tu-33330.3">
+            <form>
+              <orth>Mist</orth>
+            </form>
+            <gramGrp>
+              <pos>Subst</pos>
+            </gramGrp>
+          </re>
+          <ref type="fragebogenNummer" xml:id="tu-33330.1">18E12: Mist ausfahren/führen</ref>
+        </cit>
+        <ref type="archiv" xml:id="tu-33329.56">HK 327, f227#963.1 = fare0126.eck#20.1</ref>
+        <ref type="quelle" xml:id="tu-33329.58">Asch, Alberti</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33329.59">{10.3a} nwEgerl./nbair. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>FbB.ALBERTI· (1913-14) [SFb.1-29/Mtlg.]</bibl>
+        </ref>
+        <usg type="geo" corresp="this:QDB">
+          <placeName>Asch Egerl.</placeName>
+        </usg>
+      </entry>
+      <entry xml:id="f237_qdb-d1e30103" n="213115" source="#orig-f237_qdb-d1e30103">
+        <form type="hauptlemma" xml:id="tu-33330.6">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-33330.11">
+          <pron xml:lang="bar" notation="teuthonista">āsfȯən</pron>
+        </form>
+        <form type="lautung" n="2" xml:id="tu-33330.12">
+          <pron xml:lang="bar" notation="teuthonista">āsgfȯən</pron>
+          <gramGrp>
+            <gram> [P2]</gram>
+          </gramGrp>
+        </form>
+        <sense corresp="this:LT1" xml:id="tu-33330.13">
+          <def xml:lang="de">ausfahren</def>
+        </sense>
+        <cit type="kontext" n="1" xml:id="tu-33330.16">
+          <quote xml:lang="bar">mīst asfȯən</quote>
+          <interp>Fg:16</interp>
+          <def xml:lang="de">Mist ausfahren</def>
+          <re type="zusatzlemma" xml:id="tu-33330.18">
+            <form>
+              <orth>Mist</orth>
+            </form>
+            <gramGrp>
+              <pos>Subst</pos>
+            </gramGrp>
+          </re>
+          <ref type="fragebogenNummer" xml:id="tu-33330.15">18E12: Mist ausfahren/führen</ref>
+        </cit>
+        <ref type="archiv" xml:id="tu-33330.5">HK 327, f227#964.1 = fare0126.eck#21.1</ref>
+        <ref type="quelle" xml:id="tu-33330.7">Sangerbg., Reiniger</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33330.8">{wb0:CZ-Eg} nwEgerl./nbair. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>FbB.REINIGER· (191x:13-1915) [SFb.]Sangerbg. Egerl.</bibl>
+        </ref>
+        <ref type="fragebogenNummer" xml:id="tu-33330.10">18E12: Mist ausfahren/führen</ref>
+      </entry>
+      <entry xml:id="f237_qdb-d1e30145" n="213116" source="#orig-f237_qdb-d1e30145">
+        <form type="hauptlemma" xml:id="tu-33330.21">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <cit type="kontext" n="1" xml:id="tu-33330.26">
+          <quote xml:lang="bar">mí̄st ^%-­asfå̄ə-n</quote>
+          <interp>Fg:16</interp>
+          <def xml:lang="de">Mist ausfahren</def>
+          <re type="zusatzlemma" xml:id="tu-33330.28">
+            <form>
+              <orth>Mist</orth>
+            </form>
+            <gramGrp>
+              <pos>Subst</pos>
+            </gramGrp>
+          </re>
+          <ref type="fragebogenNummer" xml:id="tu-33330.25">18E12: Mist ausfahren/führen</ref>
+        </cit>
+        <cit type="kontext" n="2" xml:id="tu-33330.29">
+          <quote xml:lang="bar">tuŋ̄ ^%-­asfå̄ə-n</quote>
+          <interp>Fg:16</interp>
+          <def xml:lang="de">Dünger ausfahren</def>
+          <re type="zusatzlemma" xml:id="tu-33330.31">
+            <form>
+              <orth>Tung</orth>
+            </form>
+            <gramGrp>
+              <pos>Subst</pos>
+            </gramGrp>
+          </re>
+        </cit>
+        <ref type="archiv" xml:id="tu-33330.20">HK 327, f227#965.1 = fare0126.eck#22.1</ref>
+        <ref type="quelle" xml:id="tu-33330.22">Ma.Kulm, Hassmann</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33330.23">{10.2a50} nwEgerld. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>Mtlg.Hassmann?</bibl>
+        </ref>
+      </entry>
+      <entry xml:id="f237_qdb-d1e30184" n="213117" source="#orig-f237_qdb-d1e30184">
+        <form type="hauptlemma" xml:id="tu-33330.34">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <note type="diverse" n="1" xml:id="tu-33330.38">HIER bringt Mist ausfahren am Samstag Unglück, heißt es</note>
+        <ref type="archiv" xml:id="tu-33330.33">HK 327, f227#966.1 = fare0126.eck#23.1</ref>
+        <ref type="quelle" xml:id="tu-33330.35">Neurollau bei Karlsbad, Hassmann <certainty assertedValue="unknown" locus="value"/>
+        </ref>
+        <ref type="fragebogenNummer" xml:id="tu-33330.37">18E12: Mist ausfahren/führen</ref>
+      </entry>
+      <entry xml:id="f237_qdb-d1e30200" n="213118" source="#orig-f237_qdb-d1e30200">
+        <form type="hauptlemma" xml:id="tu-33330.41">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <cit type="kontext" n="1" xml:id="tu-33330.46">
+          <quote xml:lang="bar">Mist asfoahn</quote>
+          <interp>Fg:16</interp>
+          <def xml:lang="de">Mist ausfahren</def>
+          <re type="zusatzlemma" xml:id="tu-33330.49">
+            <form>
+              <orth>Mist</orth>
+            </form>
+            <gramGrp>
+              <pos>Subst</pos>
+            </gramGrp>
+          </re>
+          <note type="diverse" xml:id="tu-33330.48">
+            <pRef>dungə</pRef> = düngen</note>
+          <ref type="fragebogenNummer" xml:id="tu-33330.45">18E12: Mist ausfahren/führen</ref>
+        </cit>
+        <ref type="archiv" xml:id="tu-33330.40">HK 327, f227#967.1 = fare0126.eck#24.1</ref>
+        <ref type="quelle" xml:id="tu-33330.42">Neubg. b. Asch, Oertel</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33330.43">{10.2a54} nwEgerld.</ref>
+      </entry>
+      <entry xml:id="f237_qdb-d1e30230" n="213119" source="#orig-f237_qdb-d1e30230">
+        <form type="hauptlemma" xml:id="tu-33330.52">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <cit type="kontext" n="1" xml:id="tu-33330.57">
+          <quote xml:lang="bar">Dung asfaa[o]n</quote>
+          <interp>Fg:16</interp>
+          <re type="zusatzlemma" xml:id="tu-33330.58">
+            <form>
+              <orth>Tung</orth>
+            </form>
+            <gramGrp>
+              <pos>Subst</pos>
+            </gramGrp>
+          </re>
+          <ref type="fragebogenNummer" xml:id="tu-33330.56">18E12: Mist ausfahren/führen</ref>
+        </cit>
+        <ref type="archiv" xml:id="tu-33330.51">HK 327, f227#968.1 = fare0126.eck#25.1</ref>
+        <ref type="quelle" xml:id="tu-33330.53">Plan, Urban</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33330.54">{10.2c35} swEgerld. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>FbB.URBAN· (19xx) [SFb./Mtlg.]</bibl>
+        </ref>
+        <usg type="geo" corresp="this:QDB">
+          <placeName>Plan Egerld.</placeName>
+        </usg>
+      </entry>
+      <entry xml:id="f237_qdb-d1e30257" n="213120" source="#orig-f237_qdb-d1e30257">
+        <form type="hauptlemma" xml:id="tu-33331.1">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <cit type="kontext" n="1" xml:id="tu-33331.6">
+          <quote xml:lang="bar">Mist ausfoaʳn</quote>
+          <interp>Fg:16</interp>
+          <re type="zusatzlemma" xml:id="tu-33331.8">
+            <form>
+              <orth>Mist</orth>
+            </form>
+            <gramGrp>
+              <pos>Subst</pos>
+            </gramGrp>
+          </re>
+          <note type="diverse" xml:id="tu-33331.7">
+            <pRef>Mist ausfiaʳn , Mist ausbriŋan</pRef>
+          </note>
+          <ref type="fragebogenNummer" xml:id="tu-33331.5">18E12: Mist ausfahren/führen</ref>
+        </cit>
+        <ref type="archiv" xml:id="tu-33330.60">HK 327, f227#969.1 = fare0126.eck#26.1</ref>
+        <ref type="quelle" xml:id="tu-33331.2">Seiz, Richter</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33331.3">{3.2b02} Liesingt.:öObMurgeb.:mbair.ObSt. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>FbB.RICHTER· (19xx) [SFb.]</bibl>
+        </ref>
+        <usg type="geo" corresp="this:QDB">
+          <placeName type="orig">Seiz in Gm. Kammern St.</placeName>
+          <listPlace corresp="sigle:3.2b02">
+            <place type="Bundesland">
+              <placeName>Stmk.</placeName>
+              <idno>3</idno>
+              <listPlace>
+                <place type="Großregion">
+                  <placeName>mbair.ObStmk.</placeName>
+                  <idno>3.2</idno>
+                  <listPlace>
+                    <place type="Kleinregion">
+                      <placeName>Liesingt.</placeName>
+                      <idno>3.2b</idno>
+                      <listPlace>
+                        <place type="Gemeinde">
+                          <placeName>Kammern im Liesingtal</placeName>
+                          <listPlace>
+                            <place type="Ort">
+                              <placeName>Kammern im Liesingtal</placeName>
+                              <idno>3.2b02</idno>
+                            </place>
+                          </listPlace>
+                        </place>
+                      </listPlace>
+                    </place>
+                  </listPlace>
+                </place>
+              </listPlace>
+            </place>
+          </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="f237_qdb-d1e30290" n="213121" source="#orig-f237_qdb-d1e30290">
+        <form type="hauptlemma" xml:id="tu-33331.11">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <cit type="kontext" n="1" xml:id="tu-33331.16">
+          <quote xml:lang="bar">Mīst asfoəʳn</quote>
+          <interp>Fg:16</interp>
+          <def xml:lang="de">Mist ausfahren</def>
+          <re type="zusatzlemma" xml:id="tu-33331.18">
+            <form>
+              <orth>Mist</orth>
+            </form>
+            <gramGrp>
+              <pos>Subst</pos>
+            </gramGrp>
+          </re>
+          <ref type="fragebogenNummer" xml:id="tu-33331.15">18E12: Mist ausfahren/führen</ref>
+        </cit>
+        <ref type="archiv" xml:id="tu-33331.10">HK 327, f227#970.1 = fare0126.eck#27.1</ref>
+        <ref type="quelle" xml:id="tu-33331.12">Reichent., Stich</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33331.13">{10.2c38} swEgerld.:Tschech./nbair.: Reichent. Egerld. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>Fb./Mtlg.Stich</bibl>
+        </ref>
+      </entry>
+      <entry xml:id="f237_qdb-d1e30317" n="213122" source="#orig-f237_qdb-d1e30317">
+        <form type="hauptlemma" xml:id="tu-33331.21">
+          <orth>faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-33331.26">
+          <pron xml:lang="bar" notation="teuthonista">ich foə</pron>
+          <gramGrp>
+            <gram> [sg1+5P1]</gram>
+          </gramGrp>
+        </form>
+        <form type="lautung" n="2" xml:id="tu-33331.27">
+          <pron xml:lang="bar" notation="teuthonista">du foəst</pron>
+          <gramGrp>
+            <gram> [sg2+5P2]</gram>
+          </gramGrp>
+        </form>
+        <form type="lautung" n="3" xml:id="tu-33331.28">
+          <pron xml:lang="bar" notation="teuthonista">du fiəst</pron>
+          <gramGrp>
+            <gram> [+5P2]</gram>
+          </gramGrp>
+        </form>
+        <form type="lautung" n="4" xml:id="tu-33331.29">
+          <pron xml:lang="bar" notation="teuthonista">eə foət</pron>
+          <gramGrp>
+            <gram> [sg3+5P3]</gram>
+          </gramGrp>
+        </form>
+        <form type="lautung" n="5" xml:id="tu-33331.30">
+          <pron xml:lang="bar" notation="teuthonista">eə fiət</pron>
+          <gramGrp>
+            <gram> [+5P3]</gram>
+          </gramGrp>
+        </form>
+        <ref type="archiv" xml:id="tu-33331.20">HK 327, f227#971.1 = fare0126.eck#28.1</ref>
+        <ref type="quelle" xml:id="tu-33331.22">Reichent., Stich</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33331.23">{10.2c38} swEgerld.:Tschech./nbair.: Reichent. Egerld. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>Fb./Mtlg.Stich</bibl>
+        </ref>
+        <ref type="fragebogenNummer" xml:id="tu-33331.25">18E12: Mist ausfahren/führen</ref>
+      </entry>
+      <entry xml:id="f237_qdb-d1e30355" n="213123" source="#orig-f237_qdb-d1e30355">
+        <form type="hauptlemma" xml:id="tu-33331.33">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <cit type="kontext" n="1" xml:id="tu-33331.38">
+          <quote xml:lang="bar">Mist auˢfoan khouma wouns a rėngth</quote>
+          <def xml:lang="de">Mistausfahren kann man wenn es auch regnet</def>
+          <note type="anmerkung" resp="B">
+            <pRef>Mist auˢfoan</pRef> im Or. zusammen</note>
+          <re type="zusatzlemma" xml:id="tu-33331.40">
+            <form>
+              <orth>Mist</orth>
+            </form>
+            <gramGrp>
+              <pos>Subst</pos>
+            </gramGrp>
+          </re>
+          <re type="zusatzlemma" xml:id="tu-33331.41">
+            <form>
+              <orth>können</orth>
+            </form>
+            <gramGrp>
+              <pos>Verb</pos>
+              <gram>sg3</gram>
+            </gramGrp>
+          </re>
+          <re type="zusatzlemma" xml:id="tu-33331.42">
+            <form>
+              <orth>regnen</orth>
+            </form>
+            <gramGrp>
+              <pos>Verb</pos>
+              <gram>sg3</gram>
+            </gramGrp>
+          </re>
+          <ref type="fragebogenNummer" xml:id="tu-33331.37">18E12: Mist ausfahren/führen</ref>
+        </cit>
+        <ref type="archiv" xml:id="tu-33331.32">HK 327, f227#972.1 = fare0126.eck#29.1</ref>
+        <ref type="quelle" xml:id="tu-33331.34">Radschin, Frasl</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33331.35">{6.3a15} nwWaldv.:nWaldv.:wWaldv.:Waldv.:NÖ </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>FbB.FRASL· (19xx) [SFb.]</bibl>
+        </ref>
+        <usg type="geo" corresp="this:QDB">
+          <placeName type="orig">Radschin in Gm. Kautzen NÖ [2o/1.]</placeName>
+          <listPlace corresp="sigle:6.3a15">
+            <place type="Bundesland">
+              <placeName>NÖ</placeName>
+              <idno>6</idno>
+              <listPlace>
+                <place type="Großregion">
+                  <placeName>Waldv.</placeName>
+                  <idno>6.3</idno>
+                  <listPlace>
+                    <place type="Kleinregion">
+                      <placeName>nwWaldv.</placeName>
+                      <idno>6.3a</idno>
+                      <listPlace>
+                        <place type="Gemeinde">
+                          <placeName>Kautzen</placeName>
+                          <listPlace>
+                            <place type="Ort">
+                              <placeName>Kautzen</placeName>
+                              <idno>6.3a15</idno>
+                            </place>
+                          </listPlace>
+                        </place>
+                      </listPlace>
+                    </place>
+                  </listPlace>
+                </place>
+              </listPlace>
+            </place>
+          </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="f237_qdb-d1e30391" n="213124" source="#orig-f237_qdb-d1e30391">
+        <form type="hauptlemma" xml:id="tu-33331.45">
+          <orth>fuͤren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <cit type="kontext" n="1" xml:id="tu-33331.50">
+          <quote xml:lang="bar">ę̄a tuit Mistfian</quote>
+          <def xml:lang="de">er tut Mist fahren; ER TUT MIST führen</def>
+          <re type="zusatzlemma" xml:id="tu-33331.52">
+            <form>
+              <orth>Mist</orth>
+            </form>
+            <gramGrp>
+              <pos>Subst</pos>
+            </gramGrp>
+          </re>
+          <ref type="fragebogenNummer" xml:id="tu-33331.49">18E12: Mist ausfahren/führen</ref>
+        </cit>
+        <ref type="archiv" xml:id="tu-33331.44">HK 327, f227#973.1 = fare0126.eck#30.1</ref>
+        <ref type="quelle" xml:id="tu-33331.46">Radschin, Frasl</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33331.47">{6.3a15} nwWaldv.:nWaldv.:wWaldv.:Waldv.:NÖ </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>FbB.FRASL· (19xx) [SFb.]</bibl>
+        </ref>
+        <usg type="geo" corresp="this:QDB">
+          <placeName type="orig">Radschin in Gm. Kautzen NÖ [2o/1.]</placeName>
+          <listPlace corresp="sigle:6.3a15">
+            <place type="Bundesland">
+              <placeName>NÖ</placeName>
+              <idno>6</idno>
+              <listPlace>
+                <place type="Großregion">
+                  <placeName>Waldv.</placeName>
+                  <idno>6.3</idno>
+                  <listPlace>
+                    <place type="Kleinregion">
+                      <placeName>nwWaldv.</placeName>
+                      <idno>6.3a</idno>
+                      <listPlace>
+                        <place type="Gemeinde">
+                          <placeName>Kautzen</placeName>
+                          <listPlace>
+                            <place type="Ort">
+                              <placeName>Kautzen</placeName>
+                              <idno>6.3a15</idno>
+                            </place>
+                          </listPlace>
+                        </place>
+                      </listPlace>
+                    </place>
+                  </listPlace>
+                </place>
+              </listPlace>
+            </place>
+          </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="f237_qdb-d1e30418" n="213125" source="#orig-f237_qdb-d1e30418">
+        <form type="hauptlemma" xml:id="tu-33331.55">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-33331.60">
+          <pron xml:lang="bar" notation="teuthonista">ausfǭrə</pron>
+        </form>
+        <cit type="kontext" n="1" xml:id="tu-33332.3">
+          <quote xml:lang="bar">ən ǫkχər ausfǭrə</quote>
+          <interp>Fg:A16</interp>
+          <def xml:lang="de" corresp="this:WBD/KT1" xml:id="tu-33332.4">umpflügen</def>
+          <re type="zusatzlemma" xml:id="tu-33332.5">
+            <form>
+              <orth>Acker</orth>
+            </form>
+            <gramGrp>
+              <pos>Subst</pos>
+            </gramGrp>
+          </re>
+          <ref type="fragebogenNummer" xml:id="tu-33332.2">18F1: pflügen/ackern/bauen; Bed.Untersch.?; übertr.Bed.</ref>
+        </cit>
+        <ref type="archiv" xml:id="tu-33331.54">HK 327, f227#974.1 = fare0126.eck#31.1</ref>
+        <ref type="quelle" xml:id="tu-33331.56">Imst, Schatz</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33331.57">{1C.1n01} wObInnt.:ObInnt.:Innt.:Tir.:wNTir.:NTir.:Tir. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>FbB.SCHATZ· (19xx) [SFb./Mtlg.]</bibl>
+        </ref>
+        <ref type="fragebogenNummer" xml:id="tu-33331.59">18F1: pflügen/ackern/bauen; Bed.Untersch.?; übertr.Bed.</ref>
+        <usg type="geo" corresp="this:QDB">
+          <placeName type="orig">Imst NTir.</placeName>
+          <listPlace corresp="sigle:1C.1n01">
+            <place type="Bundesland">
+              <placeName>NTir.</placeName>
+              <idno>1C</idno>
+              <listPlace>
+                <place type="Großregion">
+                  <placeName>wNTir.</placeName>
+                  <idno>1C.1</idno>
+                  <listPlace>
+                    <place type="Kleinregion">
+                      <placeName>wObInnt.</placeName>
+                      <idno>1C.1n</idno>
+                      <listPlace>
+                        <place type="Gemeinde">
+                          <placeName>Imst</placeName>
+                          <listPlace>
+                            <place type="Ort">
+                              <placeName>Imst</placeName>
+                              <idno>1C.1n01</idno>
+                            </place>
+                          </listPlace>
+                        </place>
+                      </listPlace>
+                    </place>
+                  </listPlace>
+                </place>
+              </listPlace>
+            </place>
+          </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="f237_qdb-d1e30454" n="213126" source="#orig-f237_qdb-d1e30454">
+        <form type="hauptlemma" xml:id="tu-33332.8">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-33332.13">
+          <pron xml:lang="bar" notation="teuthonista">ausgfåan</pron>
+          <gramGrp>
+            <gram> [P2]</gram>
+          </gramGrp>
+        </form>
+        <sense corresp="this:LT1" xml:id="tu-33332.14">
+          <def xml:lang="de">ausgefahren</def>
+        </sense>
+        <note type="diverse" n="1" xml:id="tu-33332.15">Die Ackerkrume hat keine besondere Bezeichnung</note>
+        <ref type="archiv" xml:id="tu-33332.7">HK 327, f227#975.1 = fare0126.eck#32.1</ref>
+        <ref type="quelle" xml:id="tu-33332.9">Winklern, Trojer</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33332.10">{2.1b06} mMöllt.:nObKä. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>FbB.TROJER· (191x:12-17) [SFb.]</bibl>
+        </ref>
+        <ref type="fragebogenNummer" xml:id="tu-33332.12">18F1 (f): pflügen/ackern/bauen; Bed.Untersch.?; übertr.Bed.</ref>
+        <usg type="geo" corresp="this:QDB">
+          <placeName type="orig">Winklern Kä.</placeName>
+          <listPlace corresp="sigle:2.1b06">
+            <place type="Bundesland">
+              <placeName>Ktn.</placeName>
+              <idno>2</idno>
+              <listPlace>
+                <place type="Großregion">
+                  <placeName>ObKtn.</placeName>
+                  <idno>2.1</idno>
+                  <listPlace>
+                    <place type="Kleinregion">
+                      <placeName>mMöllt.</placeName>
+                      <idno>2.1b</idno>
+                      <listPlace>
+                        <place type="Gemeinde">
+                          <placeName>Winklern</placeName>
+                          <listPlace>
+                            <place type="Ort">
+                              <placeName>Winklern</placeName>
+                              <idno>2.1b06</idno>
+                            </place>
+                          </listPlace>
+                        </place>
+                      </listPlace>
+                    </place>
+                  </listPlace>
+                </place>
+              </listPlace>
+            </place>
+          </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="f237_qdb-d1e30481" n="213127" source="#orig-f237_qdb-d1e30481">
+        <form type="hauptlemma" xml:id="tu-33332.18">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-33332.23">
+          <pron xml:lang="bar" notation="teuthonista">ausfahrn</pron>
+        </form>
+        <form type="lautung" n="2" xml:id="tu-33332.24">
+          <pron xml:lang="bar" notation="teuthonista">ausfahrn</pron>
+        </form>
+        <sense corresp="this:LT1" xml:id="tu-33332.25">
+          <def xml:lang="de">in die Backkuchl tragen</def>
+        </sense>
+        <sense corresp="this:LT2" xml:id="tu-33332.26">
+          <def xml:lang="de">SEMMELN IN DIE KÄLTE BRINGEN, NACHDEM SIE GENUG GEGART SIND</def>
+        </sense>
+        <note type="diverse" corresp="this:LT2" xml:id="tu-33332.27">Wenn die Semmeln genug gegart sind, müssen sie in die Kälte gebracht werden</note>
+        <ref type="archiv" xml:id="tu-33332.17">HK 327, f227#976.1 = fare0126.eck#33.1</ref>
+        <ref type="quelle" xml:id="tu-33332.19">Lamb., Pausinger</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33332.20">{5.2b18} mHausrv.:OÖ </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>FbB.PAUSINGER· (19xx) [SFb.]</bibl>
+        </ref>
+        <ref type="fragebogenNummer" xml:id="tu-33332.22">31A3: Teigarbeiten bei Weißgebäck (im Ggs. zu Schwarz-)</ref>
+        <usg type="geo" corresp="this:QDB">
+          <placeName type="orig">(Umg.) Lamb. OÖ</placeName>
+          <listPlace corresp="sigle:5.2b18">
+            <place type="Bundesland">
+              <placeName>OÖ</placeName>
+              <idno>5</idno>
+              <listPlace>
+                <place type="Großregion">
+                  <placeName>Hausrv.</placeName>
+                  <idno>5.2</idno>
+                  <listPlace>
+                    <place type="Kleinregion">
+                      <placeName>mHausrv.</placeName>
+                      <idno>5.2b</idno>
+                      <listPlace>
+                        <place type="Gemeinde">
+                          <placeName>Lambach</placeName>
+                          <listPlace>
+                            <place type="Ort">
+                              <placeName>Lambach</placeName>
+                              <idno>5.2b18</idno>
+                            </place>
+                          </listPlace>
+                        </place>
+                      </listPlace>
+                    </place>
+                  </listPlace>
+                </place>
+              </listPlace>
+            </place>
+          </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="f237_qdb-d1e30516" n="213128" source="#orig-f237_qdb-d1e30516">
+        <form type="hauptlemma" xml:id="tu-33332.30">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <cit type="kontext" n="1" xml:id="tu-33332.35">
+          <quote xml:lang="bar">ən Lǫdn ausfǫaʳn</quote>
+          <re type="zusatzlemma" xml:id="tu-33332.36">
+            <form>
+              <orth>Laden</orth>
+            </form>
+            <gramGrp>
+              <pos>Subst</pos>
+            </gramGrp>
+          </re>
+          <ref type="fragebogenNummer" xml:id="tu-33332.34">31A11: den Laden (m. Teigsemmeln) neb. Ofengrube stellen</ref>
+        </cit>
+        <ref type="archiv" xml:id="tu-33332.29">HK 327, f227#977.1 = fare0126.eck#34.1</ref>
+        <ref type="quelle" xml:id="tu-33332.31">Zellerndf., Mattes</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33332.32">{6.4b08} Pulkaut.:nwWeinv.:nWeinv.:wWeinv.:Weinv.:NÖ </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>Slg.Mattes</bibl>
+        </ref>
+        <usg type="geo" corresp="this:QDB">
+          <placeName type="orig">Zellerndf. NÖ</placeName>
+          <listPlace corresp="sigle:6.4b08">
+            <place type="Bundesland">
+              <placeName>NÖ</placeName>
+              <idno>6</idno>
+              <listPlace>
+                <place type="Großregion">
+                  <placeName>Weinv.</placeName>
+                  <idno>6.4</idno>
+                  <listPlace>
+                    <place type="Kleinregion">
+                      <placeName>Pulkaut.</placeName>
+                      <idno>6.4b</idno>
+                      <listPlace>
+                        <place type="Gemeinde">
+                          <placeName>Zellerndorf</placeName>
+                          <listPlace>
+                            <place type="Ort">
+                              <placeName>Zellerndorf</placeName>
+                              <idno>6.4b08</idno>
+                            </place>
+                          </listPlace>
+                        </place>
+                      </listPlace>
+                    </place>
+                  </listPlace>
+                </place>
+              </listPlace>
+            </place>
+          </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="f237_qdb-d1e30541" n="213129" source="#orig-f237_qdb-d1e30541">
+        <form type="hauptlemma" xml:id="tu-33332.39">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-33332.44">
+          <pron xml:lang="bar" notation="teuthonista">Ausfoan !</pron>
+        </form>
+        <sense corresp="this:LT1" xml:id="tu-33332.45">
+          <def xml:lang="de">ausfahren</def>
+        </sense>
+        <ref type="archiv" xml:id="tu-33332.38">HK 327, f227#978.1 = fare0126.eck#35.1</ref>
+        <ref type="quelle" xml:id="tu-33332.40">Kuschwarda, Ilg</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33332.41">{10.1a09} mBöW:Tschech./mbair.</ref>
+        <ref type="fragebogenNummer" xml:id="tu-33332.43">31A11: den Laden (m. Teigsemmeln) neb. Ofengrube stellen</ref>
+        <usg type="geo" corresp="this:QDB">
+          <placeName>Kuschwarda BöW</placeName>
+        </usg>
+      </entry>
+      <entry xml:id="f237_qdb-d1e30564" n="213130" source="#orig-f237_qdb-d1e30564">
+        <form type="hauptlemma" xml:id="tu-33332.48">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-33332.52">
+          <pron xml:lang="bar" notation="teuthonista">ausfǫan</pron>
+        </form>
+        <sense corresp="this:LT1" xml:id="tu-33332.53">
+          <def xml:lang="de">ausfahren</def>
+        </sense>
+        <ref type="archiv" xml:id="tu-33332.47">HK 327, f227#979.1 = fare0126.eck#36.1</ref>
+        <ref type="quelle" xml:id="tu-33332.49">Mauer b. W., Z. <certainty assertedValue="unknown" locus="value"/>
+        </ref>
+        <ref type="fragebogenNummer" xml:id="tu-33332.51">31A11: den Laden (m. Teigsemmeln) neb. Ofengrube stellen</ref>
+      </entry>
+      <entry xml:id="f237_qdb-d1e30584" n="213131" source="#orig-f237_qdb-d1e30584">
+        <form type="hauptlemma" xml:id="tu-33332.56">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <cit type="kontext" n="1" xml:id="tu-33333.1">
+          <quote xml:lang="bar">Mitn årm ausfårn</quote>
+          <interp>Fg:7A16</interp>
+          <def xml:lang="de">mit dem Arm ausfahren</def>
+          <re type="zusatzlemma" xml:id="tu-33333.4">
+            <form>
+              <orth>Arm</orth>
+            </form>
+            <gramGrp>
+              <pos>Subst</pos>
+            </gramGrp>
+          </re>
+          <note type="diverse" xml:id="tu-33333.3">z. B. um eine Ohrfeige zu geben</note>
+          <ref type="fragebogenNummer" xml:id="tu-33332.60">33B26: d. Arme bewegen (umeinanderfuchteln)</ref>
+        </cit>
+        <ref type="archiv" xml:id="tu-33332.55">HK 327, f227#980.1 = fare0126.eck#37.1</ref>
+        <ref type="quelle" xml:id="tu-33332.57">Meran, Menghin</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33332.58">{1A.1h} Umg.Meran:Burggr.:wSTir.:STir.:It. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>FbB.MENGHIN· (19xx) [SFb./EFb./WFb.2/Mtlg.]</bibl>
+        </ref>
+        <usg type="geo" corresp="this:QDB">
+          <placeName type="orig">(Umg.) Meran STir.</placeName>
+          <listPlace corresp="sigle:1A.1h">
+            <place type="Bundesland">
+              <placeName>STir.</placeName>
+              <idno>1A</idno>
+              <listPlace>
+                <place type="Großregion">
+                  <placeName>wSTir.</placeName>
+                  <idno>1A.1</idno>
+                  <listPlace>
+                    <place type="Kleinregion">
+                      <placeName>Umg.Meran</placeName>
+                      <idno>1A.1h</idno>
+                    </place>
+                  </listPlace>
+                </place>
+              </listPlace>
+            </place>
+          </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="f237_qdb-d1e30616" n="213132" source="#orig-f237_qdb-d1e30616">
+        <form type="hauptlemma" xml:id="tu-33333.7">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-33333.12">
+          <pron xml:lang="bar" notation="teuthonista">ausgfåʳn</pron>
+        </form>
+        <cit type="kontext" n="1" xml:id="tu-33333.15">
+          <quote xml:lang="bar">Ön Laidn-Fä<g ref="#hoch-small-letter-o-with-diaeresis-glyph"/>l isᵒs <pRef>ausgfåʳn</pRef>
+            <seg type="gram"> [P2]</seg>
+          </quote>
+          <re type="zusatzlemma" xml:id="tu-33333.16">
+            <form>
+              <orth>(Leiten)fëld</orth>
+            </form>
+            <gramGrp>
+              <pos>Subst</pos>
+            </gramGrp>
+          </re>
+          <ref type="fragebogenNummer" xml:id="tu-33333.14">17C28: vermurt/verwüstet durch Elemente, v. Ackerboden</ref>
+        </cit>
+        <ref type="archiv" xml:id="tu-33333.6">HK 327, f227#981.1 = fare0126.eck#38.1</ref>
+        <ref type="quelle" xml:id="tu-33333.8">Gmunden, Loitlesberger</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33333.9">{5.3b} nöSkgt.:öSkgt.:Skgt.:swTraunv.:sTraunv.: wTraunv.:Traunv.:OÖ </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>FbB.LOITLESBERGER· (19xx) [SFb./Mtlg./Slg. "PflN+TierN.Gmunden"]</bibl>
+        </ref>
+        <ref type="fragebogenNummer" xml:id="tu-33333.11">17C28: vermurt/verwüstet durch Elemente, v. Ackerboden</ref>
+        <usg type="geo" corresp="this:QDB">
+          <placeName type="orig">Gmunden OÖ</placeName>
+          <listPlace corresp="sigle:5.3b02">
+            <place type="Bundesland">
+              <placeName>OÖ</placeName>
+              <idno>5</idno>
+              <listPlace>
+                <place type="Großregion">
+                  <placeName>Traunv.</placeName>
+                  <idno>5.3</idno>
+                  <listPlace>
+                    <place type="Kleinregion">
+                      <placeName>nöSkgt.</placeName>
+                      <idno>5.3b</idno>
+                      <listPlace>
+                        <place type="Gemeinde">
+                          <placeName>Gmunden</placeName>
+                          <listPlace>
+                            <place type="Ort">
+                              <placeName>Gmunden</placeName>
+                              <idno>5.3b02</idno>
+                            </place>
+                          </listPlace>
+                        </place>
+                      </listPlace>
+                    </place>
+                  </listPlace>
+                </place>
+              </listPlace>
+            </place>
+          </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="f237_qdb-d1e30648" n="213133" source="#orig-f237_qdb-d1e30648">
+        <form type="hauptlemma" xml:id="tu-33333.19">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <cit type="kontext" n="1" xml:id="tu-33333.24">
+          <quote xml:lang="bar">mit oando ausfōrn</quote>
+          <re type="zusatzlemma" xml:id="tu-33333.26">
+            <form>
+              <orth>ēin</orth>
+            </form>
+            <gramGrp>
+              <pos>Pron</pos>
+              <gram>IN;fl</gram>
+            </gramGrp>
+          </re>
+          <note type="diverse" xml:id="tu-33333.25">Man macht häufig eine Spazierfahrt, Wallfahrt etc.</note>
+          <ref type="fragebogenNummer" xml:id="tu-33333.23">7A5: Hausschau(en) vor Verlobg. (auf d. Beschau gehn)</ref>
+        </cit>
+        <ref type="archiv" xml:id="tu-33333.18">HK 327, f227#982.1 = fare0126.eck#39.1</ref>
+        <ref type="quelle" xml:id="tu-33333.20">Kiens, Röd</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33333.21">{1A.4d02} unt.STir.Pustert.:öSTir. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>FbB.RÖD· (19xx) [SFb./Mtlg.?]</bibl>
+        </ref>
+        <usg type="geo" corresp="this:QDB">
+          <placeName type="orig">Kiens STir.</placeName>
+          <listPlace corresp="sigle:1A.4d02">
+            <place type="Bundesland">
+              <placeName>STir.</placeName>
+              <idno>1A</idno>
+              <listPlace>
+                <place type="Großregion">
+                  <placeName>öSTir.</placeName>
+                  <idno>1A.4</idno>
+                  <listPlace>
+                    <place type="Kleinregion">
+                      <placeName>unt.STir.Pustert.</placeName>
+                      <idno>1A.4d</idno>
+                      <listPlace>
+                        <place type="Gemeinde">
+                          <placeName>Kiens</placeName>
+                          <listPlace>
+                            <place type="Ort">
+                              <placeName>Kiens, Chienes</placeName>
+                              <idno>1A.4d02</idno>
+                            </place>
+                          </listPlace>
+                        </place>
+                      </listPlace>
+                    </place>
+                  </listPlace>
+                </place>
+              </listPlace>
+            </place>
+          </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="f237_qdb-d1e30675" n="213134" source="#orig-f237_qdb-d1e30675">
+        <form type="hauptlemma" xml:id="tu-33333.29">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <cit type="kontext" n="1" xml:id="tu-33333.34">
+          <quote xml:lang="bar">das oan d Gåⁱˡ <pRef>ausfåʳscht</pRef>
+            <seg type="gram"> [sg3]</seg>
+          </quote>
+          <interp>Ra:85A16</interp>
+          <re type="zusatzlemma" xml:id="tu-33333.35">
+            <form>
+              <orth>ēin</orth>
+            </form>
+            <gramGrp>
+              <pos>Pron</pos>
+              <gram>IN</gram>
+            </gramGrp>
+          </re>
+          <re type="zusatzlemma" xml:id="tu-33333.36">
+            <form>
+              <orth>Galle</orth>
+            </form>
+            <gramGrp>
+              <pos>Subst</pos>
+            </gramGrp>
+          </re>
+          <ref type="fragebogenNummer" xml:id="tu-33333.33">77D69: Galle in Komp. (gallhantig, -bitter)</ref>
+        </cit>
+        <ref type="archiv" xml:id="tu-33333.28">HK 327, f227#983.1 = fare0126.eck#40.1</ref>
+        <ref type="quelle" xml:id="tu-33333.30">Fusch, Huber</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33333.31">{4.2c01} Fuschert.:UPinzg.:Pinzg.:Sa. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>FbB.HUBER· (1913-30) [SFb./EFb./Mtlg.]</bibl>
+        </ref>
+        <usg type="geo" corresp="this:QDB">
+          <placeName type="orig">Fusch Sa.</placeName>
+          <listPlace corresp="sigle:4.2c01">
+            <place type="Bundesland">
+              <placeName>Sbg.</placeName>
+              <idno>4</idno>
+              <listPlace>
+                <place type="Großregion">
+                  <placeName>Pinzg.</placeName>
+                  <idno>4.2</idno>
+                  <listPlace>
+                    <place type="Kleinregion">
+                      <placeName>Fuschert.</placeName>
+                      <idno>4.2c</idno>
+                      <listPlace>
+                        <place type="Gemeinde">
+                          <placeName>Fusch an der Großglocknerstraße</placeName>
+                          <listPlace>
+                            <place type="Ort">
+                              <placeName>Fusch an der Großglocknerstraße</placeName>
+                              <idno>4.2c01</idno>
+                            </place>
+                          </listPlace>
+                        </place>
+                      </listPlace>
+                    </place>
+                  </listPlace>
+                </place>
+              </listPlace>
+            </place>
+          </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="f237_qdb-d1e30704" n="213135" source="#orig-f237_qdb-d1e30704">
+        <form type="hauptlemma" xml:id="tu-33333.39">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <cit type="kontext" n="1" xml:id="tu-33333.44">
+          <quote xml:lang="bar">Wennst ann Himmǫ̈ wüst kemma, / Muast dǫ̈ feina benemma, / Mit dei growa Maniar / Wurtens ausfǫhʳn mit dia!</quote>
+          <interp>4Z</interp>
+          <note type="anmerkung" resp="B">Querstrich über <pRef>feina , Maniar , aus</pRef>
+          </note>
+          <re type="zusatzlemma" xml:id="tu-33333.45">
+            <form>
+              <orth>Himmel</orth>
+            </form>
+            <gramGrp>
+              <pos>Subst</pos>
+            </gramGrp>
+          </re>
+          <re type="zusatzlemma" xml:id="tu-33333.46">
+            <form>
+              <orth>këmmen</orth>
+            </form>
+            <gramGrp>
+              <pos>Verb</pos>
+            </gramGrp>
+          </re>
+          <ref type="fragebogenNummer" xml:id="tu-33333.43">89L1: Himmel im relig.Sinn; im Fluch*; Füg./Ra.*</ref>
+        </cit>
+        <ref type="archiv" xml:id="tu-33333.38">HK 327, f227#984.1 = fare0126.eck#41.1</ref>
+        <ref type="quelle" xml:id="tu-33333.40">Kuf., K.</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33333.41">{1C.3e06} öUInnt.:UInnt.:Innt.:öNOTir.:NOTir.:öNTir.:NTir.:Tir. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>FbB.KAPFINGER· (19xx) [SFb.]</bibl>
+        </ref>
+        <usg type="geo" corresp="this:QDB">
+          <placeName type="orig">Kufstn. NTir.</placeName>
+          <listPlace corresp="sigle:1C.3e06">
+            <place type="Bundesland">
+              <placeName>NTir.</placeName>
+              <idno>1C</idno>
+              <listPlace>
+                <place type="Großregion">
+                  <placeName>öNTir.</placeName>
+                  <idno>1C.3</idno>
+                  <listPlace>
+                    <place type="Kleinregion">
+                      <placeName>öUInnt.</placeName>
+                      <idno>1C.3e</idno>
+                      <listPlace>
+                        <place type="Gemeinde">
+                          <placeName>Kufstein</placeName>
+                          <listPlace>
+                            <place type="Ort">
+                              <placeName>Kufstein</placeName>
+                              <idno>1C.3e06</idno>
+                            </place>
+                          </listPlace>
+                        </place>
+                      </listPlace>
+                    </place>
+                  </listPlace>
+                </place>
+              </listPlace>
+            </place>
+          </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="f237_qdb-d1e30743" n="213136" source="#orig-f237_qdb-d1e30743">
+        <form type="hauptlemma" xml:id="tu-33333.49">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <cit type="kontext" n="1" xml:id="tu-33333.54">
+          <quote xml:lang="bar">mit dö Khinna ausfă<g ref="#hoch-lettergroup-|ṛ|-glyph"/>n</quote>
+          <interp>Fg:7A16</interp>
+          <def xml:lang="de" corresp="this:WBD/KT1" xml:id="tu-33333.55">spazieren gehen</def>
+          <re type="zusatzlemma" xml:id="tu-33333.56">
+            <form>
+              <orth>Kind</orth>
+            </form>
+            <gramGrp>
+              <pos>Subst</pos>
+            </gramGrp>
+          </re>
+          <ref type="fragebogenNummer" xml:id="tu-33333.53">47D11: spazieren; Komp./Abl.; Syn. (hossen gehn)</ref>
+        </cit>
+        <cit type="kontext" n="2" xml:id="tu-33333.59">
+          <quote xml:lang="bar">mit d'r ɒ̆ötn ausfă<g ref="#hoch-lettergroup-|ṛ|-glyph"/>n</quote>
+          <interp>Fg:7A16</interp>
+          <def xml:lang="de" corresp="this:WBD/KT2" xml:id="tu-33333.60">spazieren gehen</def>
+          <re type="zusatzlemma" xml:id="tu-33334.1">
+            <form>
+              <orth>alt</orth>
+            </form>
+            <gramGrp>
+              <pos>Adj</pos>
+              <gram>P/1,fl</gram>
+            </gramGrp>
+          </re>
+          <ref type="fragebogenNummer" xml:id="tu-33333.58">47D11: spazieren; Komp./Abl.; Syn. (hossen gehn)</ref>
+        </cit>
+        <ref type="archiv" xml:id="tu-33333.48">HK 327, f227#985.1 = fare0126.eck#42.1</ref>
+        <ref type="quelle" xml:id="tu-33333.50">Hopfgtn. u. St.Johann, Bichler</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33333.51">{1C.3} öNOTir.:NOTir.:öNTir.:NTir.:Tir.</ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>Bichler</bibl>
+        </ref>
+        <usg type="geo" corresp="this:QDB">
+          <placeName type="orig">Hopfgtn. NTir. u. St.Johann NTir.</placeName>
+          <listPlace corresp="sigle:1C.3f02">
+            <place type="Bundesland">
+              <placeName>NTir.</placeName>
+              <idno>1C</idno>
+              <listPlace>
+                <place type="Großregion">
+                  <placeName>öNTir.</placeName>
+                  <idno>1C.3</idno>
+                  <listPlace>
+                    <place type="Kleinregion">
+                      <placeName>Brixent.</placeName>
+                      <idno>1C.3f</idno>
+                      <listPlace>
+                        <place type="Gemeinde">
+                          <placeName>Hopfgarten im Brixental</placeName>
+                          <listPlace>
+                            <place type="Ort">
+                              <placeName>Hopfgarten im Brixental</placeName>
+                              <idno>1C.3f02</idno>
+                            </place>
+                          </listPlace>
+                        </place>
+                      </listPlace>
+                    </place>
+                  </listPlace>
+                </place>
+              </listPlace>
+            </place>
+          </listPlace>
+          <listPlace corresp="sigle:1C.3i05">
+            <place type="Bundesland">
+              <placeName>NTir.</placeName>
+              <idno>1C</idno>
+              <listPlace>
+                <place type="Großregion">
+                  <placeName>öNTir.</placeName>
+                  <idno>1C.3</idno>
+                  <listPlace>
+                    <place type="Kleinregion">
+                      <placeName>Leukent.</placeName>
+                      <idno>1C.3i</idno>
+                      <listPlace>
+                        <place type="Gemeinde">
+                          <placeName>St. Johann in Tirol</placeName>
+                          <listPlace>
+                            <place type="Ort">
+                              <placeName>St. Johann in Tirol</placeName>
+                              <idno>1C.3i05</idno>
+                            </place>
+                          </listPlace>
+                        </place>
+                      </listPlace>
+                    </place>
+                  </listPlace>
+                </place>
+              </listPlace>
+            </place>
+          </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="f237_qdb-d1e30785" n="213137" source="#orig-f237_qdb-d1e30785">
+        <form type="hauptlemma" xml:id="tu-33334.4">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <cit type="kontext" n="1" xml:id="tu-33334.9">
+          <quote xml:lang="bar">əs is ęam tsum +? Maul <pRef>auskfårn</pRef>
+            <seg type="gram"> [P2]</seg>
+          </quote>
+          <interp>Ra.</interp>
+          <def xml:lang="de">er hat Ausschlag um den Mund</def>
+          <re type="zusatzlemma" xml:id="tu-33334.11">
+            <form>
+              <orth>Maul</orth>
+            </form>
+            <gramGrp>
+              <pos>Subst</pos>
+            </gramGrp>
+          </re>
+          <ref type="fragebogenNummer" xml:id="tu-33334.8">1H11: Ausschlag um Mund; Mund-Krankh. (Mundfäule*)</ref>
+        </cit>
+        <ref type="archiv" xml:id="tu-33334.3">HK 327, f227#986.1 = fare0126.eck#43.1</ref>
+        <ref type="quelle" xml:id="tu-33334.5">Großpold, Piringer</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33334.6">{wb0:RU} Landlergeb.:Siebenbürgen:WRum./mbair. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>FbB.PIRINGER· (19xx) [SFb.]Gr.Pold WRum.</bibl>
+        </ref>
+      </entry>
+      <entry xml:id="f237_qdb-d1e30814" n="213138" source="#orig-f237_qdb-d1e30814">
+        <form type="hauptlemma" xml:id="tu-33334.14">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-33334.19">
+          <pron xml:lang="bar" notation="teuthonista">ausfåan</pron>
+        </form>
+        <sense corresp="this:LT1" xml:id="tu-33334.20">
+          <def xml:lang="de">ausfahren = das Hinaustragen des Gebäckes oder Brotes von der Backstube in einen kühlen Raum</def>
+        </sense>
+        <ref type="archiv" xml:id="tu-33334.13">HK 327, f227#987.1 = fare0126.eck#44.1</ref>
+        <ref type="quelle" xml:id="tu-33334.15">Winklern, Trojer</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33334.16">{2.1b06} mMöllt.:nObKä. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>FbB.TROJER· (191x:12-17) [SFb.]</bibl>
+        </ref>
+        <ref type="fragebogenNummer" xml:id="tu-33334.18">29B70 (F2): Arbeiten/Werkz./Maschinen b. gewerbl.Brotbacken*</ref>
+        <usg type="geo" corresp="this:QDB">
+          <placeName type="orig">Winklern Kä.</placeName>
+          <listPlace corresp="sigle:2.1b06">
+            <place type="Bundesland">
+              <placeName>Ktn.</placeName>
+              <idno>2</idno>
+              <listPlace>
+                <place type="Großregion">
+                  <placeName>ObKtn.</placeName>
+                  <idno>2.1</idno>
+                  <listPlace>
+                    <place type="Kleinregion">
+                      <placeName>mMöllt.</placeName>
+                      <idno>2.1b</idno>
+                      <listPlace>
+                        <place type="Gemeinde">
+                          <placeName>Winklern</placeName>
+                          <listPlace>
+                            <place type="Ort">
+                              <placeName>Winklern</placeName>
+                              <idno>2.1b06</idno>
+                            </place>
+                          </listPlace>
+                        </place>
+                      </listPlace>
+                    </place>
+                  </listPlace>
+                </place>
+              </listPlace>
+            </place>
+          </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="f237_qdb-d1e30840" n="213139" source="#orig-f237_qdb-d1e30840">
+        <form type="hauptlemma" xml:id="tu-33334.23">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <cit type="kontext" n="1" xml:id="tu-33334.28">
+          <quote xml:lang="bar">wou mɒ r <pRef>ausfoɒhd</pRef>
+            <seg type="gram"> [sg3]</seg>
+          </quote>
+          <interp>Fg:356</interp>
+          <def xml:lang="de">wo man ausfährt</def>
+          <re type="zusatzlemma" xml:id="tu-33334.30">
+            <form>
+              <orth>wo</orth>
+            </form>
+            <gramGrp>
+              <pos>Adv</pos>
+              <gram>FR</gram>
+            </gramGrp>
+          </re>
+          <ref type="fragebogenNummer" xml:id="tu-33334.27">79E16: Stelle, wo Sensenhieb zu Ende ist (hinter d.Mahd)</ref>
+        </cit>
+        <ref type="archiv" xml:id="tu-33334.22">HK 327, f227#988.1 = fare0126.eck#45.1</ref>
+        <ref type="quelle" xml:id="tu-33334.24">Schönbg., Andr.</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33334.25">{10.1a} mBöW:Tschech./mbair. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>FbB.ANDRASCHKO· (1913-28) [SFb.1-80tw.,94/WrFb.1/Mtlg.]</bibl>
+        </ref>
+        <usg type="geo" corresp="this:QDB">
+          <placeName>(Leimsgrub u. Moarhäuser in Gm.) Schönbg. BöW</placeName>
+        </usg>
+      </entry>
+      <entry xml:id="f237_qdb-d1e30869" n="213140" source="#orig-f237_qdb-d1e30869">
+        <form type="hauptlemma" xml:id="tu-33334.33">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <cit type="kontext" n="1" xml:id="tu-33334.38">
+          <quote xml:lang="bar">dou is ouwar s-Ortar <pRef>außgforn</pRef>
+            <seg type="gram"> [P2] </seg> wiars des Gschwüar aufgschnin hom</quote>
+          <re type="zusatzlemma" xml:id="tu-33334.39">
+            <form>
+              <orth>Ēiter</orth>
+            </form>
+            <gramGrp>
+              <pos>Subst</pos>
+            </gramGrp>
+          </re>
+          <re type="zusatzlemma" xml:id="tu-33334.40">
+            <form>
+              <orth>(Ge)schwër</orth>
+            </form>
+            <gramGrp>
+              <pos>Subst</pos>
+            </gramGrp>
+          </re>
+          <ref type="fragebogenNummer" xml:id="tu-33334.37">26P30: Eiter m. Vb. (es spritzt; es auskratzen,*)</ref>
+        </cit>
+        <ref type="archiv" xml:id="tu-33334.32">HK 327, f227#989.1 = fare0126.eck#46.1</ref>
+        <ref type="quelle" xml:id="tu-33334.34">Reichgruben b. St.P., Bertl</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33334.35">{6.1q06} Perschlingt.:nöMostv.:nMostv.:öMostv.:Mostv.:NÖ </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>Mtlg. Bertl?</bibl>
+        </ref>
+        <usg type="geo" corresp="this:QDB" resp="sigle_auto">
+          <placeName type="orig">Perschlingt.:nöMostv.:nMostv.:öMostv.:Mostv.:NÖ</placeName>
+          <listPlace corresp="sigle:6.1q06">
+      <place type="Bundesland">
+        <placeName>NÖ</placeName>
+        <idno>6</idno>
+        <listPlace>
+          <place type="Großregion">
+            <placeName>Mostv.</placeName>
+            <idno>6.1</idno>
+            <listPlace>
+              <place type="Kleinregion">
+                <placeName>Perschlingt.</placeName>
+                <idno>6.1q</idno>
+                <listPlace>
+                  <place type="Gemeinde">
+                    <placeName>Pyhra</placeName>
+                    <idno/>
+                    <listPlace>
+                      <place type="Ort">
+                        <placeName>Pyhra</placeName>
+                        <idno>6.1q06</idno>
+                      </place>
+                    </listPlace>
+                  </place>
+                </listPlace>
+              </place>
+            </listPlace>
+          </place>
+        </listPlace>
+      </place>
+    </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="f237_qdb-d1e30894" n="213141" source="#orig-f237_qdb-d1e30894">
+        <form type="hauptlemma" xml:id="tu-33334.43">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-33334.48">
+          <pron xml:lang="bar" notation="teuthonista">ausfarn</pron>
+        </form>
+        <sense corresp="this:LT1" xml:id="tu-33334.49">
+          <def xml:lang="de">AUSFAHREN (= wenn das Gebäck fertig ist)</def>
+        </sense>
+        <ref type="archiv" xml:id="tu-33334.42">HK 327, f227#990.1 = fare0126.eck#47.1</ref>
+        <ref type="quelle" xml:id="tu-33334.44">Wien, Pöschl</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33334.45">{6.5} W.</ref>
+        <ref type="fragebogenNummer" xml:id="tu-33334.47">28A14: Zeitang. zum Feuer(machen) im Backofen, Ra.*</ref>
+        <usg type="geo" corresp="this:QDB">
+          <placeName type="orig">Wien</placeName>
+          <listPlace corresp="sigle:6.5">
+            <place type="Bundesland">
+              <placeName>Wien</placeName>
+              <idno>6.5</idno>
+              <listPlace>
+                <place type="Großregion">
+                  <placeName>Wien</placeName>
+                  <idno>6.5</idno>
+                </place>
+              </listPlace>
+            </place>
+          </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="f237_qdb-d1e30917" n="213142" source="#orig-f237_qdb-d1e30917">
+        <form type="hauptlemma" xml:id="tu-33334.52">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <cit type="kontext" n="1" xml:id="tu-33334.57">
+          <quote xml:lang="bar">Doăg aūsfoărn</quote>
+          <interp>Fg:16</interp>
+          <def xml:lang="de">Teig ausfahren = TEIG ins Kühle bringen</def>
+          <re type="zusatzlemma" xml:id="tu-33334.59">
+            <form>
+              <orth>Tēig</orth>
+            </form>
+            <gramGrp>
+              <pos>Subst</pos>
+            </gramGrp>
+          </re>
+          <ref type="fragebogenNummer" xml:id="tu-33334.56">29B41 (F): Brotteig nach d. Gärg. aus d. Trog nehmen (*)</ref>
+        </cit>
+        <ref type="archiv" xml:id="tu-33334.51">HK 327, f227#991.1 = fare0126.eck#48.1</ref>
+        <ref type="quelle" xml:id="tu-33334.53">Rohr im Gebirge, Schmatzberger</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33334.54">{6.2e04} Schneebg.Geb.:swIndustriev.:sIndustriev.:wIndustriev.:Industriev.:NÖ </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>FbB.SCHMATZBERGER· (19xx) [SFb.]</bibl>
+        </ref>
+        <usg type="geo" corresp="this:QDB">
+          <placeName type="orig">Rohr NÖ</placeName>
+          <listPlace corresp="sigle:6.2e04">
+            <place type="Bundesland">
+              <placeName>NÖ</placeName>
+              <idno>6</idno>
+              <listPlace>
+                <place type="Großregion">
+                  <placeName>Industriev.</placeName>
+                  <idno>6.2</idno>
+                  <listPlace>
+                    <place type="Kleinregion">
+                      <placeName>Schneebg.Geb.</placeName>
+                      <idno>6.2e</idno>
+                      <listPlace>
+                        <place type="Gemeinde">
+                          <placeName>Rohr im Gebirge</placeName>
+                          <listPlace>
+                            <place type="Ort">
+                              <placeName>Rohr im Gebirge</placeName>
+                              <idno>6.2e04</idno>
+                            </place>
+                          </listPlace>
+                        </place>
+                      </listPlace>
+                    </place>
+                  </listPlace>
+                </place>
+              </listPlace>
+            </place>
+          </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="f237_qdb-d1e30946" n="213143" source="#orig-f237_qdb-d1e30946">
+        <form type="hauptlemma" xml:id="tu-33335.2">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-33335.7">
+          <pron xml:lang="bar" notation="teuthonista">ausfọ̄rn</pron>
+        </form>
+        <sense corresp="this:LT1" xml:id="tu-33335.8">
+          <def xml:lang="de">von der Garb wegnehmen</def>
+        </sense>
+        <ref type="archiv" xml:id="tu-33335.1">HK 327, f227#992.1 = fare0126.eck#49.1</ref>
+        <ref type="quelle" xml:id="tu-33335.3">Matrei, Egger</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33335.4">{1C.2h02} mittl.NTir.Wippt.:NTir.Wippt.:Wippt.:Sillgeb.:mNTir. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>FbB.EGGER· (19xx) [SFb.]</bibl>
+        </ref>
+        <ref type="fragebogenNummer" xml:id="tu-33335.6">28A33: Herstellgsräume der gewerbl.Bäckerei</ref>
+        <usg type="geo" corresp="this:QDB">
+          <placeName type="orig">Matrei NTir.</placeName>
+          <listPlace corresp="sigle:1C.2h02">
+            <place type="Bundesland">
+              <placeName>NTir.</placeName>
+              <idno>1C</idno>
+              <listPlace>
+                <place type="Großregion">
+                  <placeName>mNTir.</placeName>
+                  <idno>1C.2</idno>
+                  <listPlace>
+                    <place type="Kleinregion">
+                      <placeName>mittl.NTir.Wippt.</placeName>
+                      <idno>1C.2h</idno>
+                      <listPlace>
+                        <place type="Gemeinde">
+                          <placeName>Matrei am Brenner</placeName>
+                          <listPlace>
+                            <place type="Ort">
+                              <placeName>Matrei am Brenner</placeName>
+                              <idno>1C.2h02</idno>
+                            </place>
+                          </listPlace>
+                        </place>
+                      </listPlace>
+                    </place>
+                  </listPlace>
+                </place>
+              </listPlace>
+            </place>
+          </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="f237_qdb-d1e30971" n="213144" source="#orig-f237_qdb-d1e30971">
+        <form type="hauptlemma" xml:id="tu-33335.11">
+          <orth>(aus)fallen</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-33335.16">
+          <pron xml:lang="bar" notation="teuthonista">ausfåön</pron>
+        </form>
+        <cit type="kontext" n="1" xml:id="tu-33335.19">
+          <quote xml:lang="bar">a Bǫaⁿ håd aʳ sö ausgfå<g ref="#hoch-small-letter-o-with-diaeresis-glyph"/>n</quote>
+          <interp>Fg:U16556</interp>
+          <def xml:lang="de" corresp="this:WBD/KT1" xml:id="tu-33335.20">durch Fall ausgekegelt</def>
+          <re type="zusatzlemma" xml:id="tu-33335.21">
+            <form>
+              <orth>Pēin</orth>
+            </form>
+            <gramGrp>
+              <pos>Subst</pos>
+            </gramGrp>
+          </re>
+          <ref type="fragebogenNummer" xml:id="tu-33335.18">22E3: Bein "Knochen" (als Subj.) m. Vb. (wächst,*)</ref>
+        </cit>
+        <ref type="archiv" xml:id="tu-33335.10">HK 327, f227#993.1 = fare0126.eck#50.1</ref>
+        <ref type="quelle" xml:id="tu-33335.12">Gmunden, Loitlesberger</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33335.13">{5.3b} nöSkgt.:öSkgt.:Skgt.:swTraunv.:sTraunv.: wTraunv.:Traunv.:OÖ </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>FbB.LOITLESBERGER· (19xx) [SFb./Mtlg./Slg. "PflN+TierN.Gmunden"]</bibl>
+        </ref>
+        <ref type="fragebogenNummer" xml:id="tu-33335.15">22E3: Bein "Knochen" (als Subj.) m. Vb. (wächst,*)</ref>
+        <usg type="geo" corresp="this:QDB">
+          <placeName type="orig">Gmunden OÖ</placeName>
+          <listPlace corresp="sigle:5.3b02">
+            <place type="Bundesland">
+              <placeName>OÖ</placeName>
+              <idno>5</idno>
+              <listPlace>
+                <place type="Großregion">
+                  <placeName>Traunv.</placeName>
+                  <idno>5.3</idno>
+                  <listPlace>
+                    <place type="Kleinregion">
+                      <placeName>nöSkgt.</placeName>
+                      <idno>5.3b</idno>
+                      <listPlace>
+                        <place type="Gemeinde">
+                          <placeName>Gmunden</placeName>
+                          <listPlace>
+                            <place type="Ort">
+                              <placeName>Gmunden</placeName>
+                              <idno>5.3b02</idno>
+                            </place>
+                          </listPlace>
+                        </place>
+                      </listPlace>
+                    </place>
+                  </listPlace>
+                </place>
+              </listPlace>
+            </place>
+          </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="f237_qdb-d1e31007" n="213145" source="#orig-f237_qdb-d1e31007">
+        <form type="hauptlemma" xml:id="tu-33335.24">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <cit type="kontext" n="1" xml:id="tu-33335.29">
+          <quote xml:lang="bar">mit di Hęnt ausfǭrn</quote>
+          <interp>Fg:7A16</interp>
+          <def xml:lang="de">mit den Händen ausfahren; MIT DEN HÄNDEN fuchteln</def>
+          <re type="zusatzlemma" xml:id="tu-33335.31">
+            <form>
+              <orth>Hand</orth>
+            </form>
+            <gramGrp>
+              <pos>Subst</pos>
+              <gram>pl</gram>
+            </gramGrp>
+          </re>
+          <ref type="fragebogenNummer" xml:id="tu-33335.28">34C29: Bewegungen m. Hand ausführen, gestikulieren (*)</ref>
+        </cit>
+        <ref type="archiv" xml:id="tu-33335.23">HK 327, f227#994.1 = fare0126.eck#51.1</ref>
+        <ref type="quelle" xml:id="tu-33335.25">Schlanders, Gamper</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33335.26">{1A.1d03} westl.uVinschg.:wSTir. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>FbB.GAMPER· (19xx) [SFb./Mtlg.]</bibl>
+        </ref>
+        <usg type="geo" corresp="this:QDB">
+          <placeName type="orig">Schlanders STir.</placeName>
+          <listPlace corresp="sigle:1A.1d03">
+            <place type="Bundesland">
+              <placeName>STir.</placeName>
+              <idno>1A</idno>
+              <listPlace>
+                <place type="Großregion">
+                  <placeName>wSTir.</placeName>
+                  <idno>1A.1</idno>
+                  <listPlace>
+                    <place type="Kleinregion">
+                      <placeName>westl.uVinschg.</placeName>
+                      <idno>1A.1d</idno>
+                      <listPlace>
+                        <place type="Gemeinde">
+                          <placeName>Schlanders</placeName>
+                          <listPlace>
+                            <place type="Ort">
+                              <placeName>Schlanders, Silandro</placeName>
+                              <idno>1A.1d03</idno>
+                            </place>
+                          </listPlace>
+                        </place>
+                      </listPlace>
+                    </place>
+                  </listPlace>
+                </place>
+              </listPlace>
+            </place>
+          </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="f237_qdb-d1e31036" n="213146" source="#orig-f237_qdb-d1e31036">
+        <form type="hauptlemma" xml:id="tu-33335.34">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-33335.39">
+          <pron xml:lang="bar" notation="teuthonista">ausfo͜arn</pron>
+        </form>
+        <sense corresp="this:LT1" xml:id="tu-33335.40">
+          <def xml:lang="de">ausfahren = eine Vergnügungsfahrt unternehmen</def>
+        </sense>
+        <ref type="archiv" xml:id="tu-33335.33">HK 327, f227#995.1 = fare0126.eck#52.1</ref>
+        <ref type="quelle" xml:id="tu-33335.35">Straßburg Umg., Nagelmayer</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33335.36">{2.2d,2.3b,2.3c,2.3d} Gurkt.:MKä.:Kä. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>FbB.NAGELMAYER· (19xx) [SFb./WFb.2/Mtlg.]</bibl>
+        </ref>
+        <ref type="fragebogenNummer" xml:id="tu-33335.38">76K67: fahrtbereit machen, aufbrechen</ref>
+        <usg type="geo" corresp="this:QDB" resp="sigle_auto">
+          <placeName type="orig">Gurkt.:MKä.:Kä.</placeName>
+          <listPlace corresp="sigle:2.2d">
+      <place type="Bundesland">
+        <placeName>Ktn.</placeName>
+        <idno>2</idno>
+        <listPlace>
+          <place type="Großregion">
+            <placeName>MKtn.</placeName>
+            <idno>2.2</idno>
+            <idno>2.3</idno>
+            <listPlace>
+              <place type="Kleinregion">
+                <placeName>obstGurkt.</placeName>
+                <idno>2.2d</idno>
+              </place>
+            </listPlace>
+          </place>
+        </listPlace>
+      </place>
+    </listPlace>
+          <listPlace corresp="sigle:2.3b">
+      <place type="Bundesland">
+        <placeName>Ktn.</placeName>
+        <idno>2</idno>
+        <listPlace>
+          <place type="Großregion">
+            <placeName>MKtn.</placeName>
+            <idno>2.2</idno>
+            <idno>2.3</idno>
+            <listPlace>
+              <place type="Kleinregion">
+                <placeName>obGurkt.</placeName>
+                <idno>2.3b</idno>
+              </place>
+            </listPlace>
+          </place>
+        </listPlace>
+      </place>
+    </listPlace>
+          <listPlace corresp="sigle:2.3c">
+      <place type="Bundesland">
+        <placeName>Ktn.</placeName>
+        <idno>2</idno>
+        <listPlace>
+          <place type="Großregion">
+            <placeName>MKtn.</placeName>
+            <idno>2.2</idno>
+            <idno>2.3</idno>
+            <listPlace>
+              <place type="Kleinregion">
+                <placeName>Krappfd.</placeName>
+                <idno>2.3c</idno>
+              </place>
+            </listPlace>
+          </place>
+        </listPlace>
+      </place>
+    </listPlace>
+          <listPlace corresp="sigle:2.3d">
+      <place type="Bundesland">
+        <placeName>Ktn.</placeName>
+        <idno>2</idno>
+        <listPlace>
+          <place type="Großregion">
+            <placeName>MKtn.</placeName>
+            <idno>2.2</idno>
+            <idno>2.3</idno>
+            <listPlace>
+              <place type="Kleinregion">
+                <placeName>uGurkt.</placeName>
+                <idno>2.3d</idno>
+              </place>
+            </listPlace>
+          </place>
+        </listPlace>
+      </place>
+    </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="f237_qdb-d1e31059" n="213147" source="#orig-f237_qdb-d1e31059">
+        <form type="hauptlemma" xml:id="tu-33335.43">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-33335.48">
+          <pron xml:lang="bar" notation="teuthonista">ausfoarn</pron>
+        </form>
+        <sense corresp="this:LT1" xml:id="tu-33335.49">
+          <def xml:lang="de">auslaufen EINES SCHIFFES</def>
+        </sense>
+        <xr type="verweise" resp="O" xml:id="tu-33335.50">vgl: <pRef>ausrina</pRef> = auslaufen</xr>
+        <ref type="archiv" xml:id="tu-33335.42">HK 327, f227#996.1 = fare0126.eck#53.1</ref>
+        <ref type="quelle" xml:id="tu-33335.44">Plattetschlag, Schacherl</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33335.45">{8.1a11} uBöW:wSBö.:SBö.:Bö. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>FbB.SCHACHERL· (19xx) [SFb./EFb./Slg."Plattetschl."]</bibl>
+        </ref>
+        <ref type="fragebogenNummer" xml:id="tu-33335.47">45B7: auslaufen; Bed./Füg. (Flüssigk.; spazieren gehn,*)</ref>
+        <usg type="geo" corresp="this:QDB">
+          <placeName>Plattetschl. BöW</placeName>
+        </usg>
+      </entry>
+      <entry xml:id="f237_qdb-d1e31089" n="213148" source="#orig-f237_qdb-d1e31089">
+        <form type="hauptlemma" xml:id="tu-33335.53">
+          <orth>(aus)rinnen</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-33335.58">
+          <pron xml:lang="bar" notation="teuthonista">ausrina</pron>
+        </form>
+        <sense corresp="this:LT1" xml:id="tu-33335.59">
+          <def xml:lang="de">auslaufen</def>
+        </sense>
+        <xr type="verweise" resp="O" xml:id="tu-33335.60">vgl. <pRef>ausfoarn</pRef>
+        </xr>
+        <ref type="archiv" xml:id="tu-33335.52">HK 327, f227#997.1 = fare0126.eck#54.1</ref>
+        <ref type="quelle" xml:id="tu-33335.54">Plattetschlag, Schacherl</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-33335.55">{8.1a11} uBöW:wSBö.:SBö.:Bö. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>FbB.SCHACHERL· (19xx) [SFb./EFb./Slg."Plattetschl."]</bibl>
+        </ref>
+        <ref type="fragebogenNummer" xml:id="tu-33335.57">45B7: auslaufen; Bed./Füg. (Flüssigk.; spazieren gehn,*)</ref>
+        <usg type="geo" corresp="this:QDB">
+          <placeName>Plattetschl. BöW</placeName>
+        </usg>
+      </entry>
+      <entry xml:id="f237_qdb-d1e31118" n="213149" source="#orig-f237_qdb-d1e31118">
+        <form type="hauptlemma" xml:id="tu-33336.3">
+          <orth>(aus)faren</orth>
+        </form>
+        <gramGrp>
+          <pos>Verb</pos>
+        </gramGrp>
+        <cit type="kontext" n="1" xml:id="tu-33336.7">
+          <quote xml:lang="bar">das Korn ausfåhrn</quote>
+          <interp>Fg:A16</interp>
+          <re type="zusatzlemma" xml:id="tu-33336.8">
+            <form>
+              <orth>Korn</orth>
+            </form>
+            <gramGrp>
+              <pos>Subst</pos>
+            </gramGrp>
+          </re>
+          <ref type="fragebogenNummer" xml:id="tu-33336.6">100F47: Getreide durch Ochsen/Pferde austreten lassen*</ref>
+        </cit>
+        <ref type="archiv" xml:id="tu-33336.2">HK 327, f227#998.1 = fare0126.eck#55.1</ref>
+        <ref type="quelle" xml:id="tu-33336.4">Mittelvintschgau, Spechtenhauser [Waschgler] <certainty assertedValue="unknown" locus="value"/>
+        </ref>
+      </entry>
+    </body>
+  </text>
+</TEI>

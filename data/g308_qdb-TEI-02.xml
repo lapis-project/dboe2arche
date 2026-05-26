@@ -1,0 +1,295 @@
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>DBO@TEI</title>
+        <respStmt>
+          <resp>Data modelling and conversion by:</resp>
+          <name>Jack Bowers</name>
+          <name>Omar Siam</name>
+          <name>Daniel Schopper</name>
+        </respStmt>
+      </titleStmt>
+      <editionStmt>
+        <edition>Second TEI edition of DBOE database, created <date>2018-09</date>.</edition>
+      </editionStmt>
+      <publicationStmt>
+        <p>Publication Information to be elaborated in following versions</p>
+      </publicationStmt>
+      <sourceDesc>
+        <p> Source of current file is <ptr target="file:///opt/basex/webapp/dboe_tei_modelling/xsl/cleanExport-TEI.xsl"/> which was converted from version 09 of the plain XML version of the DBOE</p>
+      </sourceDesc>
+    </fileDesc>
+    <encodingDesc>
+      <listPrefixDef>
+        <prefixDef ident="this" matchPattern="this:A" replacementPattern="#xpath(ancestor::entry//ref[@type = 'archiv'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:ANM([0-9]+)" replacementPattern="#xpath(ancestor::entry//note[@type = 'anmerkung'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:ANMB([0-9]+)" replacementPattern="#xpath(ancestor::entry//note[@type = 'anmerkung' and @resp = 'B'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:LT([0-9]+)" replacementPattern="#xpath(ancestor::entry//form[@type = 'lautung'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:LW([0-9]+)" replacementPattern="#xpath(ancestor::entry//form[@type = 'lehnwort'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:LW" replacementPattern="#xpath(ancestor::entry//form[@type = 'lehnwort'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:BD" replacementPattern="#xpath(ancestor::entry//def[position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:BD[2]" replacementPattern="#xpath(ancestor::entry//def[2])"/>
+        <prefixDef ident="this" matchPattern="this:BD[3]" replacementPattern="#xpath(ancestor::entry//def[3])"/>
+        <prefixDef ident="this" matchPattern="this:BD[4]" replacementPattern="#xpath(ancestor::entry//def[4])"/>
+        <prefixDef ident="this" matchPattern="this:BD[5]" replacementPattern="#xpath(ancestor::entry//def[5])"/>
+        <prefixDef ident="this" matchPattern="this:BD[6]" replacementPattern="#xpath(ancestor::entry//def[6])"/>
+        <prefixDef ident="this" matchPattern="this:BD[7]" replacementPattern="#xpath(ancestor::entry//def[7])"/>
+        <prefixDef ident="this" matchPattern="this:BD[8]" replacementPattern="#xpath(ancestor::entry//def[8])"/>
+        <prefixDef ident="this" matchPattern="this:BD[9]" replacementPattern="#xpath(ancestor::entry//def[9])"/>
+        <prefixDef ident="this" matchPattern="this:BD([0-9]+)" replacementPattern="#xpath(ancestor::entry//def[position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:DV" replacementPattern="#xpath(ancestor::entry//note[@type='diverse'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:DV[1]" replacementPattern="#xpath(ancestor::entry//note[@type='diverse'][1])"/>
+        <prefixDef ident="this" matchPattern="this:DV[2]" replacementPattern="#xpath(ancestor::entry//note[@type='diverse'][2])"/>
+        <prefixDef ident="this" matchPattern="this:DV[3]" replacementPattern="#xpath(ancestor::entry//note[@type='diverse'][3])"/>
+        <prefixDef ident="this" matchPattern="this:DV[4]" replacementPattern="#xpath(ancestor::entry//note[@type='diverse'][4])"/>
+        <prefixDef ident="this" matchPattern="this:ET" replacementPattern="#xpath(ancestor::entry//etym[position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:ETO" replacementPattern="#xpath(ancestor::entry//etym[@resp='O'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:ET[1]" replacementPattern="#xpath(ancestor::entry//etym[1])"/>
+        <prefixDef ident="this" matchPattern="this:ET[2]" replacementPattern="#xpath(ancestor::entry//etym[2])"/>
+        <prefixDef ident="this" matchPattern="this:ET[3]" replacementPattern="#xpath(ancestor::entry//etym[3])"/>
+        <prefixDef ident="this" matchPattern="this:ET[4]" replacementPattern="#xpath(ancestor::entry//etym[4])"/>
+        <prefixDef ident="this" matchPattern="this:BILDDAT" replacementPattern="#xpath(ancestor::entry//figure[position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:HL([0-9]+)" replacementPattern="#xpath(ancestor::entry//form[@type = 'hauptlemma'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:HLV([0-9]+)" replacementPattern="#xpath(ancestor::entry//form[@type = 'hauptlemma' and @subtype = 'verweis'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:J" replacementPattern="#xpath(ancestor::entry//ref/date[position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:KT([0-9]+)" replacementPattern="#xpath(ancestor::entry//cit[@type = 'kontext'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:KL" replacementPattern="#xpath(ancestor::entry//interp[position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:NB([0-9]+)" replacementPattern="#xpath(ancestor::entry//note[@type = 'notabene'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:QDB" replacementPattern="#xpath(ancestor::entry//ref[@type = 'quelleBearbeitet'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:QU" replacementPattern="#xpath(ancestor::entry//ref[@type = 'quelle'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:QZ" replacementPattern="#xpath(ancestor::entry//ref[@type = 'quelleZitierte']/bibl[position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:NR([0-9]+)" replacementPattern="#xpath(ancestor::entry//ref[@type = 'fragebogenNummer'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:N" replacementPattern="#xpath(ancestor::entry//num[position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:VL([0-9]+)" replacementPattern="#xpath(ancestor::entry//form[@type = 'verweiselemma'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:VRW([0-9]+)" replacementPattern="#xpath(ancestor::entry//xr[@type = 'verweise'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:VRWO([0-9]+)" replacementPattern="#xpath(ancestor::entry//xr[@type = 'verweise' and @resp = 'O'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:VRW[2]" replacementPattern="#xpath(ancestor::entry//xr[@type = 'verweise'][2])"/>
+        <prefixDef ident="this" matchPattern="this:NL([0-9]+)" replacementPattern="#xpath(ancestor::entry//form[@type = 'nebenlemma'][position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:WBD[1]" replacementPattern="#xpath(ancestor::entry//cit[@type = 'kontext']/quote/pRef)"/>
+        <prefixDef ident="this" matchPattern="this:WBD[2]" replacementPattern="#xpath(ancestor::entry//cit[@type = 'kontext']/quote/pRef)"/>
+        <prefixDef ident="this" matchPattern="this:WBD[3]" replacementPattern="#xpath(ancestor::entry//cit[@type = 'kontext']/quote/pRef)"/>
+        <prefixDef ident="this" matchPattern="this:WBD[4]" replacementPattern="#xpath(ancestor::entry//cit[@type = 'kontext']/quote/pRef)"/>
+        <prefixDef ident="this" matchPattern="this:WBD[5]" replacementPattern="#xpath(ancestor::entry//cit[@type = 'kontext']/quote/pRef)"/>
+        <prefixDef ident="this" matchPattern="this:WBD[6]" replacementPattern="#xpath(ancestor::entry//cit[@type = 'kontext']/quote/pRef)"/>
+        <prefixDef ident="this" matchPattern="this:WBD/KT([0-9]+)" replacementPattern="#xpath(ancestor::entry//cit[@type='kontext']/quote/pRef[position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:ZL([0-9]+)" replacementPattern="#xpath(ancestor::entry//re[@type = 'zusatzlemma']/form/orth[position() = '$1'])"/>
+        <prefixDef ident="this" matchPattern="this:ZW" replacementPattern="#xpath(ancestor::entry//ref[@type = 'zitiereweise']/bibl[position() = '$1'])"/>
+      </listPrefixDef>
+    </encodingDesc>
+    <xenoData corresp="this:g308_qdb-d1e2" xml:id="orig-g308_qdb-d1e2">
+*A* HK 308, G308#1.1 = G3080129.pir#0.0, korr. E.K.
+*HL* (Ge)g%&lt;each:1
+*QU* Taschner Diss. *S* 139
+*QDB* {1A.2c01} Reggelbg.:n^oBoz.Uld.:sSTir. *@ TASCHNER^. (1969) S. [D-4517: Diss."Mda.Aldein"] ** Exz.Groschopf *O* Aldein STir.
+===
+*LT1* gEg~-i~ENA [n]
+*BD/LT1* l^astige Geherei
+********************
+</xenoData>
+    <xenoData corresp="this:g308_qdb-d1e25" xml:id="orig-g308_qdb-d1e25">
+*A* HK 308, G308#2.1 = G3080129.pir#0.0, korr. E.K.
+*HL* (Ge)g%&lt;each:1
+*QU* +Strassburg Umg. Nagelmayer
+*QDB* {2.3b05} obGurkt.:n^oMK^a. *@ FbB.NAGELMAYER^. (19xx) [SFb./WFb.2/Mtlg.] *O* (Umg.) Stra^sb-g. K^a. ## tw. verk^urzte FbNr.?
+===
+*NR* 43A51b: Gehecht (Zshg. m. gehn)
+*LT1* G!eg%))ea^!ach
+*BD/LT1* "Gegehicht": Ausdruck des Spottes, der Verwunderung ^uber sonderbare Gehweise
+********************
+</xenoData>
+    <xenoData corresp="this:g308_qdb-d1e48" xml:id="orig-g308_qdb-d1e48">
+*A* HK 308, G308#3.1 = G3080129.pir#0.0, korr. E.K.
+*HL* (Ge)g%&lt;each:1
+*QU* +Strassburg Umg. Nagelmayer
+*QDB* {2.3b05} obGurkt.:n^oMK^a. *@ FbB.NAGELMAYER^. (19xx) [SFb./WFb.2/Mtlg.] *O* (Umg.) Stra^sb-g. K^a. ## tw. verk^urzte FbNr.?
+===
+*NR/KT1* 43A51b: Gehecht (Zshg. m. gehn)
+*KT1* H%*at d%\er a G!eg%))ea^!ach [sg4]! *KL* Fg:65U1
+*BD/KT1* Dieser hat eine ganz sonderbare Gehweise
+********************
+</xenoData>
+    <xenoData corresp="this:g308_qdb-d1e73" xml:id="orig-g308_qdb-d1e73">
+*A* HK 308, G308#4.1 = G3080129.pir#0.0, korr. E.K.
+*HL/V* ge-:0
+********************
+</xenoData>
+  </teiHeader>
+  <text>
+    <body>
+      <entry xml:id="g308_qdb-d1e2" n="391407" source="#orig-g308_qdb-d1e2">
+        <form type="hauptlemma" xml:id="tu-61727.1">
+          <orth>(Ge)gêach</orth>
+        </form>
+        <gramGrp>
+          <pos>Subst</pos>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61727.5">
+          <pron xml:lang="bar" notation="teuthonista">gəgī̃ə̃ŋɒ</pron>
+          <gramGrp>
+            <gram> [n]</gram>
+          </gramGrp>
+        </form>
+        <sense corresp="this:LT1" xml:id="tu-61727.6">
+          <def xml:lang="de">lästige Geherei</def>
+        </sense>
+        <ref type="archiv" xml:id="tu-61726.60">HK 308, G308#1.1 = G3080129.pir#0.0, korr. E.K.</ref>
+        <ref type="quelle" xml:id="tu-61727.2">Taschner Diss.<ref type="seite">139</ref>
+        </ref>
+        <ref type="quelleBearbeitet" xml:id="tu-61727.3">{1A.2c01} Reggelbg.:nöBoz.Uld.:sSTir. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>TASCHNER· (1969) S. [D-4517: Diss."Mda.Aldein"] ** Exz.Groschopf</bibl>
+        </ref>
+        <usg type="geo" corresp="this:QDB">
+          <placeName type="orig">Aldein STir.</placeName>
+          <listPlace corresp="sigle:1A.2c01">
+            <place type="Bundesland">
+              <placeName>STir.</placeName>
+              <idno>1A</idno>
+              <listPlace>
+                <place type="Großregion">
+                  <placeName>mSTir.</placeName>
+                  <idno>1A.2</idno>
+                  <idno>1A.3</idno>
+                  <listPlace>
+                    <place type="Kleinregion">
+                      <placeName>Reggelbg.</placeName>
+                      <idno>1A.2c</idno>
+                      <listPlace>
+                        <place type="Gemeinde">
+                          <placeName>Aldein</placeName>
+                          <listPlace>
+                            <place type="Ort">
+                              <placeName>Aldein, Aldino</placeName>
+                              <idno>1A.2c01</idno>
+                            </place>
+                          </listPlace>
+                        </place>
+                      </listPlace>
+                    </place>
+                  </listPlace>
+                </place>
+              </listPlace>
+            </place>
+          </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="g308_qdb-d1e25" n="391408" source="#orig-g308_qdb-d1e25">
+        <form type="hauptlemma" xml:id="tu-61727.9">
+          <orth>(Ge)gêach</orth>
+        </form>
+        <gramGrp>
+          <pos>Subst</pos>
+        </gramGrp>
+        <form type="lautung" n="1" xml:id="tu-61727.14">
+          <pron xml:lang="bar" notation="teuthonista">Gₑge͜aᵃch</pron>
+        </form>
+        <sense corresp="this:LT1" xml:id="tu-61727.15">
+          <def xml:lang="de">"Gegehicht": Ausdruck des Spottes, der Verwunderung über sonderbare Gehweise</def>
+        </sense>
+        <ref type="archiv" xml:id="tu-61727.8">HK 308, G308#2.1 = G3080129.pir#0.0, korr. E.K.</ref>
+        <ref type="quelle" xml:id="tu-61727.10">+Strassburg Umg. Nagelmayer</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-61727.11">{2.3b05} obGurkt.:nöMKä. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>FbB.NAGELMAYER· (19xx) [SFb./WFb.2/Mtlg.]</bibl>
+        </ref>
+        <ref type="fragebogenNummer" xml:id="tu-61727.13">43A51b: Gehecht (Zshg. m. gehn)</ref>
+        <usg type="geo" corresp="this:QDB" resp="sigle_auto">
+          <placeName type="orig">(Umg.) Straßb-g. Kä. ## tw. verkürzte FbNr.?</placeName>
+          <listPlace corresp="sigle:2.3b05">
+      <place type="Bundesland">
+        <placeName>Ktn.</placeName>
+        <idno>2</idno>
+        <listPlace>
+          <place type="Großregion">
+            <placeName>MKtn.</placeName>
+            <idno>2.2</idno>
+            <idno>2.3</idno>
+            <listPlace>
+              <place type="Kleinregion">
+                <placeName>obGurkt.</placeName>
+                <idno>2.3b</idno>
+                <listPlace>
+                  <place type="Gemeinde">
+                    <placeName>Straßburg</placeName>
+                    <idno/>
+                    <listPlace>
+                      <place type="Ort">
+                        <placeName>Straßburg</placeName>
+                        <idno>2.3b05</idno>
+                      </place>
+                    </listPlace>
+                  </place>
+                </listPlace>
+              </place>
+            </listPlace>
+          </place>
+        </listPlace>
+      </place>
+    </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="g308_qdb-d1e48" n="391409" source="#orig-g308_qdb-d1e48">
+        <form type="hauptlemma" xml:id="tu-61727.18">
+          <orth>(Ge)gêach</orth>
+        </form>
+        <gramGrp>
+          <pos>Subst</pos>
+        </gramGrp>
+        <cit type="kontext" n="1" xml:id="tu-61727.23">
+          <quote xml:lang="bar">Håt d­er a <pRef>Gₑge͜aᵃch</pRef>
+            <seg type="gram"> [sg4] </seg> !</quote>
+          <interp>Fg:65U1</interp>
+          <def xml:lang="de">Dieser hat eine ganz sonderbare Gehweise</def>
+          <ref type="fragebogenNummer" xml:id="tu-61727.22">43A51b: Gehecht (Zshg. m. gehn)</ref>
+        </cit>
+        <ref type="archiv" xml:id="tu-61727.17">HK 308, G308#3.1 = G3080129.pir#0.0, korr. E.K.</ref>
+        <ref type="quelle" xml:id="tu-61727.19">+Strassburg Umg. Nagelmayer</ref>
+        <ref type="quelleBearbeitet" xml:id="tu-61727.20">{2.3b05} obGurkt.:nöMKä. </ref>
+        <ref type="bibl" corresp="this:QDB">
+          <bibl>FbB.NAGELMAYER· (19xx) [SFb./WFb.2/Mtlg.]</bibl>
+        </ref>
+        <usg type="geo" corresp="this:QDB" resp="sigle_auto">
+          <placeName type="orig">(Umg.) Straßb-g. Kä. ## tw. verkürzte FbNr.?</placeName>
+          <listPlace corresp="sigle:2.3b05">
+      <place type="Bundesland">
+        <placeName>Ktn.</placeName>
+        <idno>2</idno>
+        <listPlace>
+          <place type="Großregion">
+            <placeName>MKtn.</placeName>
+            <idno>2.2</idno>
+            <idno>2.3</idno>
+            <listPlace>
+              <place type="Kleinregion">
+                <placeName>obGurkt.</placeName>
+                <idno>2.3b</idno>
+                <listPlace>
+                  <place type="Gemeinde">
+                    <placeName>Straßburg</placeName>
+                    <idno/>
+                    <listPlace>
+                      <place type="Ort">
+                        <placeName>Straßburg</placeName>
+                        <idno>2.3b05</idno>
+                      </place>
+                    </listPlace>
+                  </place>
+                </listPlace>
+              </place>
+            </listPlace>
+          </place>
+        </listPlace>
+      </place>
+    </listPlace>
+        </usg>
+      </entry>
+      <entry xml:id="g308_qdb-d1e73" n="391410" source="#orig-g308_qdb-d1e73">
+        <form type="hauptlemma" subtype="verweis">
+          <orth>ge-</orth>
+        </form>
+        <ref type="archiv" xml:id="tu-61727.26">HK 308, G308#4.1 = G3080129.pir#0.0, korr. E.K.</ref>
+      </entry>
+    </body>
+  </text>
+</TEI>
