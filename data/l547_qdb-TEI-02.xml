@@ -1,3 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
   <teiHeader>
     <fileDesc>
@@ -56677,7 +56681,7 @@
       <place type="Bundesland">
         <placeName>NÖ</placeName>
         <idno>6</idno>
-        <listPlace/>
+        
       </place>
       <place type="Bundesland">
         <placeName>Wien</placeName>
@@ -89700,7 +89704,7 @@
       <place type="Bundesland">
         <placeName>NÖ</placeName>
         <idno>6</idno>
-        <listPlace/>
+        
       </place>
       <place type="Bundesland">
         <placeName>Wien</placeName>
@@ -120958,7 +120962,7 @@ record has 2 QDB fields.
       <place type="Bundesland">
         <placeName>NÖ</placeName>
         <idno>6</idno>
-        <listPlace/>
+        
       </place>
       <place type="Bundesland">
         <placeName>Wien</placeName>
@@ -165582,7 +165586,7 @@ record has 2 QDB fields.
       <place type="Bundesland">
         <placeName>NÖ</placeName>
         <idno>6</idno>
-        <listPlace/>
+        
       </place>
       <place type="Bundesland">
         <placeName>Wien</placeName>
@@ -165640,7 +165644,7 @@ record has 2 QDB fields.
       <place type="Bundesland">
         <placeName>NÖ</placeName>
         <idno>6</idno>
-        <listPlace/>
+        
       </place>
       <place type="Bundesland">
         <placeName>Wien</placeName>
@@ -165699,7 +165703,7 @@ record has 2 QDB fields.
       <place type="Bundesland">
         <placeName>NÖ</placeName>
         <idno>6</idno>
-        <listPlace/>
+        
       </place>
       <place type="Bundesland">
         <placeName>Wien</placeName>
@@ -175113,7 +175117,7 @@ record has 2 QDB fields.
       <place type="Bundesland">
         <placeName>NÖ</placeName>
         <idno>6</idno>
-        <listPlace/>
+        
       </place>
       <place type="Bundesland">
         <placeName>Wien</placeName>
@@ -226040,7 +226044,7 @@ record has 2 QDB fields.
       <place type="Bundesland">
         <placeName>NÖ</placeName>
         <idno>6</idno>
-        <listPlace/>
+        
       </place>
       <place type="Bundesland">
         <placeName>Wien</placeName>

@@ -1,3 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
   <teiHeader>
     <fileDesc>
@@ -157480,7 +157484,7 @@ record has 2 QU fields.
       <place type="Bundesland">
         <placeName>NÖ</placeName>
         <idno>6</idno>
-        <listPlace/>
+        
       </place>
       <place type="Bundesland">
         <placeName>Wien</placeName>
@@ -159769,7 +159773,7 @@ record has 2 QU fields.
       <place type="Bundesland">
         <placeName>NÖ</placeName>
         <idno>6</idno>
-        <listPlace/>
+        
       </place>
       <place type="Bundesland">
         <placeName>Wien</placeName>
@@ -216482,7 +216486,7 @@ record has 2 QU fields.
       <place type="Bundesland">
         <placeName>NÖ</placeName>
         <idno>6</idno>
-        <listPlace/>
+        
       </place>
       <place type="Bundesland">
         <placeName>Wien</placeName>
@@ -216539,7 +216543,7 @@ record has 2 QU fields.
       <place type="Bundesland">
         <placeName>NÖ</placeName>
         <idno>6</idno>
-        <listPlace/>
+        
       </place>
       <place type="Bundesland">
         <placeName>Wien</placeName>
@@ -216596,7 +216600,7 @@ record has 2 QU fields.
       <place type="Bundesland">
         <placeName>NÖ</placeName>
         <idno>6</idno>
-        <listPlace/>
+        
       </place>
       <place type="Bundesland">
         <placeName>Wien</placeName>
@@ -216657,7 +216661,7 @@ record has 2 QU fields.
       <place type="Bundesland">
         <placeName>NÖ</placeName>
         <idno>6</idno>
-        <listPlace/>
+        
       </place>
       <place type="Bundesland">
         <placeName>Wien</placeName>
@@ -216715,7 +216719,7 @@ record has 2 QU fields.
       <place type="Bundesland">
         <placeName>NÖ</placeName>
         <idno>6</idno>
-        <listPlace/>
+        
       </place>
       <place type="Bundesland">
         <placeName>Wien</placeName>
@@ -217835,7 +217839,7 @@ record has 2 QU fields.
       <place type="Bundesland">
         <placeName>NÖ</placeName>
         <idno>6</idno>
-        <listPlace/>
+        
       </place>
       <place type="Bundesland">
         <placeName>Wien</placeName>
@@ -221274,7 +221278,7 @@ record has 2 QU fields.
       <place type="Bundesland">
         <placeName>NÖ</placeName>
         <idno>6</idno>
-        <listPlace/>
+        
       </place>
       <place type="Bundesland">
         <placeName>Wien</placeName>
@@ -239159,7 +239163,7 @@ record has 2 QU fields.
               <place type="Kleinregion">
                 <placeName>söSkgt.</placeName>
                 <idno>5.3a</idno>
-                <listPlace/>
+                
               </place>
             </listPlace>
           </place>
@@ -239178,7 +239182,7 @@ record has 2 QU fields.
               <place type="Kleinregion">
                 <placeName>nöSkgt.</placeName>
                 <idno>5.3b</idno>
-                <listPlace/>
+                
               </place>
             </listPlace>
           </place>
