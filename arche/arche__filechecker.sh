@@ -5,7 +5,7 @@ docker run \
   --rm \
   --network="host" \
   -v ${PWD}/fc_out:/reports \
-  -v /home/csae8092/repos/dboe/dboe_orig_xml/:/data \
+  -v ${PWD}/data:/data \
   --entrypoint arche-filechecker \
   acdhch/arche-ingest \
   --overwrite --skipWarnings /data /reports
