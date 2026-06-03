@@ -1,0 +1,3 @@
+"ID","PARENT_ID","URI","FILE_PATH","NAME","METHOD","STATUS","SIZE","TYPE","EXT","LAST_MODIFIED","EXTENSION_MISMATCH","HASH","FORMAT_COUNT","PUID","MIME_TYPE","FORMAT_NAME","FORMAT_VERSION"
+"1","","file:/data/","/data","data","","Done","","Folder","","2026-06-03T10:07:53","false","",""
+"2","1","file:/data/tustep.zip","/data/tustep.zip","tustep.zip","Signature","Done","473865644","File","zip","2026-06-03T10:05:15","false","","1","x-fmt/263","application/zip","ZIP Format",""
