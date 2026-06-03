@@ -69,7 +69,8 @@ The collection includes the original TUSTEP data as well. The zip "tustep.zip" c
 
 <https://id.acdh.oeaw.ac.at/dboe-tei-xml/tustep.zip> a acdh:Resource;
     acdh:isPartOf <https://id.acdh.oeaw.ac.at/dboe-tei-xml> ;
-    acdh:hasTitle "DBÖ Tustep Daten";
+    acdh:hasTitle "DBÖ Tustep Daten"@de ;
+    acdh:hasTitle "DBÖ Tustep Data"@en ;
     acdh:hasDescription """Die Zip-Datei "tustep.zip" enthält ca. 16.000 Tustep-Dateien, geordnet in Verzeichnissen, die den Schubladen entsprechen, in denen die passenden Papierzettel aufbewahrt wurden."""@de ;
     acdh:hasDescription """The zip file "tustep.zip" contains around 16,000 Tustep files, organized in directories corresponding to the drawers in which the matching paper slips were stored."""@en ;
     acdh:hasExtent "16.591 Tustep Dateien verteilt auf 527 Verzeichnisse"@de ;
