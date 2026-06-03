@@ -78,6 +78,7 @@ The collection includes the original TUSTEP data as well. The zip "tustep.zip" c
     acdh:hasContact <https://id.acdh.oeaw.ac.at/acdh> ;
     acdh:hasDepositor <https://id.acdh.oeaw.ac.at/acdh> ;
     acdh:hasMetadataCreator acdhi:pandorfer ;
+    acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/cc-by-4-0> ;
     acdh:hasLicensor <https://id.acdh.oeaw.ac.at/acdh> ;
     acdh:hasOwner <https://id.acdh.oeaw.ac.at/oeaw> ;
     # acdh:hasContributor <https://id.acdh.oeaw.ac.at/jbowers> ;
