@@ -57,7 +57,7 @@ g.add(
         TOP_COL_URI,
         ACDH["hasExtent"],
         Literal(
-            f"Die Sammlung umfasst {numb_belege_formatted} Belege, verteilt auf {len(files_to_ingest)} TEI/XML-Dateien",
+            f"Die Sammlung umfasst {numb_belege_formatted} Belege, verteilt auf {len(files_to_ingest)} TEI/XML-Dateien, sowie eine ZIP Datei mit den original Tustep Daten",
             lang="de",
         ),
     )
@@ -67,7 +67,7 @@ g.add(
         TOP_COL_URI,
         ACDH["hasExtent"],
         Literal(
-            f"The collection comprises {all_entries:,} attestations, distributed across {len(files_to_ingest)} TEI/XML files",
+            f"The collection comprises {all_entries:,} attestations, distributed across {len(files_to_ingest)} TEI/XML files as well as one zip file holding original Tustep data",
             lang="en",
         ),
     )
