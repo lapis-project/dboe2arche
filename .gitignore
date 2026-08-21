@@ -213,3 +213,5 @@ __marimo__/
 to_ingest/
 
 defs.json
+attribute_names.json
+notes.json
